@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* | ------------ | */
+/* | - CSS BASE - | */
+/* | ------------ | */
+.containt {
+  border: 1px solid red;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* scale resolution for resolution under 1024px */
+@media screen and (max-width: 1024px) {
+  .containt {
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* scale resolution for resolution above 1024px */
+@media screen and (min-width: 1400px) {
+  .containt {
+    height: calc(100vh - 64px);
+  }
+}
+
+/* | ----------------- | */
+/* | - CSS SITUATION - | */
+/* | ----------------- | */
+
+.cta-btn {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 20px 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+
+.img-box {
+  width: 90%;
+  height: auto;
+  margin: 20px auto;
+}
+
+.text-box {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.return-button {
+  padding: 10px 20px;
+}
+
+.cta-btn {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 20px 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+/* | ------------- | */
+/* | - CSS AUDIO - | */
+/* | ------------- | */
+
+.cta-btn-audio {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 12px 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+
+/* scale resolution for resolution under 1024px */
+@media screen and (max-width: 1024px) {
+  .containt {
+    height: auto;
+  }
+
+  .content-box {
+    flex-direction: column;
+  }
+}
+
+/* scale resolution for resolution above 1024px */
+@media screen and (min-width: 1400px) {
+  .containt {
+    height: calc(100vh - 64px);
+  }
+
+  .content-box {
+    margin: 60px;
+    justify-content: space-between;
+    gap: 100px;
+  }
+
+  .return-button {
+    margin-left: 72px;
+  }
+
+  .text-box-audio {
+    width: 50%;
+    margin: 20px auto;
   }
 }
