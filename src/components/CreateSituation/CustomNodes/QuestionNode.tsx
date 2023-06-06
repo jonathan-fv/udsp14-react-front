@@ -1,7 +1,8 @@
 import { memo, useCallback, useState } from "react";
 import { Handle, Position } from "reactflow";
+import RemoveNodeButton from "./RemoveNodeButton";
 
-const QuestionNode = ({data, isConnectable}: any) => {
+const QuestionNode = ({data, isConnectable, selected}: any) => {
 
   const [text, setText] = useState('Question');
 
@@ -12,9 +13,10 @@ const QuestionNode = ({data, isConnectable}: any) => {
 
   return (
     <div style={{border: '1px solid orange', padding: '10px', width: '400px'}}>
-      <Handle type="target" position={Position.Top} style={{ borderRadius: 0 }} isConnectable id="a" className="!bg-teal-500"/>
+      <RemoveNodeButton selected={selected} removeNode={() => console.log('remove node')} />
+      <Handle type="target" position={Position.Top} style={{ borderRadius: 0 }} isConnectable id="a" className="!bg-teal-500 !w-[50px]"/>
       <textarea className="nodeText" value={text} onChange={onChange}></textarea>
-      <Handle type="source" position={Position.Bottom} style={{ borderRadius: 0 }} isConnectable id="b" className="!bg-teal-500"/>
+      <Handle type="source" position={Position.Bottom} style={{ borderRadius: 0 }} isConnectable id="b" className="!bg-teal-500 !w-[50px]"/>
     </div>
   );
 };

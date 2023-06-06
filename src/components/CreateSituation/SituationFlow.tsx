@@ -6,7 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Connection,
-  Edge, updateEdge, getConnectedEdges, applyNodeChanges, Node, ReactFlowInstance,
+  Edge, updateEdge, applyNodeChanges, Node, ReactFlowInstance,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import AnswerNode from "./CustomNodes/AnswerNode";
