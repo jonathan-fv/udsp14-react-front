@@ -1,3 +1,6 @@
+/* | ------------ | */
+/* | - CSS BASE - | */
+/* | ------------ | */
 .containt {
   border: 1px solid red;
   display: flex;
@@ -5,6 +8,42 @@
   flex-direction: column;
 }
 
+<<<<<<< HEAD
+=======
+/* scale resolution for resolution under 1024px */
+@media screen and (max-width: 1024px) {
+  .containt {
+    height: auto;
+  }
+}
+
+/* scale resolution for resolution above 1024px */
+@media screen and (min-width: 1400px) {
+  .containt {
+    height: calc(100vh - 64px);
+  }
+}
+
+/* | ----------------- | */
+/* | - CSS SITUATION - | */
+/* | ----------------- | */
+
+.cta-btn {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 20px 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+
+.return-button {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+
+>>>>>>> 9fa33b9d7d2c12d9c7de571ab08746423e12cc83
 .img-box {
   width: 90%;
   height: auto;
@@ -16,19 +55,28 @@
   margin: 20px auto;
 }
 
+<<<<<<< HEAD
 .return-button {
   padding: 10px 20px;
 }
 
 .cta-btn {
+=======
+/* | ------------- | */
+/* | - CSS AUDIO - | */
+/* | ------------- | */
+
+.cta-btn-audio {
+>>>>>>> 9fa33b9d7d2c12d9c7de571ab08746423e12cc83
   font-size: 3rem;
   margin: 0 auto;
-  padding: 20px 15px;
+  padding: 12px 15px;
   color: white;
   font-weight: bold;
   transition: all 0.25s ease-in-out;
 }
 
+<<<<<<< HEAD
 /* scale resolution for resolution under 1024px */
 @media screen and (max-width: 1024px) {
   .containt {
@@ -55,4 +103,21 @@
   .return-button {
     margin-left: 72px;
   }
+=======
+.return-button-audio {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+
+.img-box-audio {
+  width: 50%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.text-box-audio {
+  width: 50%;
+  margin: 20px auto;
+>>>>>>> 9fa33b9d7d2c12d9c7de571ab08746423e12cc83
 }
