@@ -6,14 +6,14 @@ const Home = () => {
         <div className="containt flex justify-center">
             <div className="flex flex-wrap justify-center ">
                 <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
-                <Situation situation={"Situation 1"} />
+                <Situation />
+                <Situation situation={"Situation 3"}/>
+                <Situation />
+                <Situation />
+                <Situation situation={"Situation 6"}/>
+                <Situation />
+                <Situation />
+                <Situation />
             </div>
             
         </div>

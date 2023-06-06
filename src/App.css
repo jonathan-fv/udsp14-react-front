@@ -1,6 +1,20 @@
 .containt{
-    height: calc(100vh - 64px);
     border: 1px solid red;
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+/* scale resolution for resolution under 1024px */
+@media screen and (max-width: 1024px) {
+    .containt{
+        height: auto;
+    }
+}
+
+/* scale resolution for resolution above 1024px */
+@media screen and (min-width: 1400px) {
+    .containt{
+        height: calc(100vh - 64px);
+    }
 }
