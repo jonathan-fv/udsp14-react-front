@@ -1,20 +1,46 @@
-.containt{
-    border: 1px solid red;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.containt {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.return-button {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+
+.img-box {
+  width: 90%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.text-box {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.cta-btn {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 20px 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
 }
 
 /* scale resolution for resolution under 1024px */
 @media screen and (max-width: 1024px) {
-    .containt{
-        height: auto;
-    }
+  .containt {
+    height: auto;
+  }
 }
 
 /* scale resolution for resolution above 1024px */
 @media screen and (min-width: 1400px) {
-    .containt{
-        height: calc(100vh - 64px);
-    }
+  .containt {
+    height: calc(100vh - 64px);
+  }
 }
