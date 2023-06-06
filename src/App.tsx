@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
-import NavBar from './components/navbar/NavBar';
-import './App.css';
+import NavBar from './components/navbar/NavBar'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      
-    </div>
-  );
+    return (
+        <div className="App">
+            <header>
+                <NavBar />
+            </header>
+        </div>
+    );
 }
 
 export default App;
