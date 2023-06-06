@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, SetStateAction, useMemo } from 'react';
+import React, {useState, useRef, useCallback, SetStateAction, useMemo, createElement} from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -115,12 +115,36 @@ const CreateSituationFlow = () => {
     }, [reactFlowInstance]
   );
 
+  // const onSave = useCallback(() => {
+  //   if (reactFlowInstance) {
+  //     // @ts-ignore
+  //     console.log('rfInstance', connectEdgesToNodes(reactFlowInstance.toObject()));
+  //     const localStorageKey = 'reactflow';
+  //     localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
+  //   }
+  // }, [reactFlowInstance]);
+
   const onSave = useCallback(() => {
     if (reactFlowInstance) {
       // @ts-ignore
-      console.log('rfInstance', connectEdgesToNodes(reactFlowInstance.toObject()));
+      let renderData = reactFlowInstance.toObject();
+      const updatedNodes = renderData.nodes.map(node => ({
+        ...node,
+        edges: renderData.edges.filter(edge => edge.source === node.id)
+      }));
+
+      const filteredArray = updatedNodes.map((obj) => {
+        const { id, type } = obj;
+        const { label } = obj.data;
+        const targets = obj.edges.map((edge) => edge.target);
+
+        return { id, label, type, targets };
+      });
+
       const localStorageKey = 'reactflow';
+      const flow = 'flow';
       localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
+      localStorage.setItem(flow, JSON.stringify(filteredArray));
     }
   }, [reactFlowInstance]);
 
