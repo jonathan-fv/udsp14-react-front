@@ -9,7 +9,7 @@ const NavBar = () =>{
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="flex items-center justify-center">
                             <div className="flex items-center">
-                                <Link to="/" className="text-white ml-2 text-4xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-white to-red-500 bg-clip-text tracking-wider">UDSP14 </Link>
+                                <Link to="/" className="text-white ml-2 text-4xl font-bold text-transparent tracking-wider logo-link">UDSP14 </Link>
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
