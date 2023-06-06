@@ -126,9 +126,21 @@ const CreateSituationFlow = () => {
 
   const onRestore = useCallback(() => {
     if (reactFlowInstance) {
-      //
+      const localStorageKey = 'reactflow';
+      const flow = localStorage.getItem(localStorageKey);
+
+      if (flow) {
+        // @ts-ignore
+        const flowParsed = JSON.parse(flow);
+        const { nodes: nodesParsed, edges: edgesParsed } = flowParsed;
+        setNodes(nodesParsed);
+        setEdges(edgesParsed);
+      }
     }
   }, [reactFlowInstance]);
+
+  const onDelete = useCallback(() => {
+  }, []);
 
   const onNodesChange = useCallback(
     (changes: SetStateAction<any>) => setNodes((nds) => applyNodeChanges(changes, nds)),
