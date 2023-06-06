@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const SituationPage = () => {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  }
   return (
     <div>
       <div className="flex justify-center">
-        <button className="return-button w-10 bg-gray-200 rounded-full m-4 p-1 text-2xl">
+        <button onClick={handleGoBack} className="return-button w-10 bg-gray-200 rounded-full m-4 p-1 text-2xl">
           &#706;
         </button>
         <h1 className="p-5">Situation page</h1>
