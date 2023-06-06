@@ -5,21 +5,19 @@
   flex-direction: column;
 }
 
-.return-button {
-  position: absolute;
-  top: 60px;
-  left: 0;
-}
-
 .img-box {
   width: 90%;
-  height: 200px;
+  height: auto;
   margin: 20px auto;
 }
 
 .text-box {
   width: 90%;
   margin: 20px auto;
+}
+
+.return-button {
+  padding: 10px 20px;
 }
 
 .cta-btn {
@@ -36,11 +34,25 @@
   .containt {
     height: auto;
   }
+
+  .content-box {
+    flex-direction: column;
+  }
 }
 
 /* scale resolution for resolution above 1024px */
 @media screen and (min-width: 1400px) {
   .containt {
     height: calc(100vh - 64px);
+  }
+
+  .content-box {
+    margin: 60px;
+    justify-content: space-between;
+    gap: 100px;
+  }
+
+  .return-button {
+    margin-left: 72px;
   }
 }
