@@ -6,7 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Connection,
-  Edge, updateEdge, getConnectedEdges, applyNodeChanges, Node, ReactFlowInstance,
+  Edge, updateEdge, applyNodeChanges, Node, ReactFlowInstance,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import AnswerNode from "./CustomNodes/AnswerNode";
@@ -223,7 +223,7 @@ const CreateSituationFlow = () => {
             onEdgeUpdate={onEdgeUpdate}
             onEdgeUpdateEnd={onEdgeUpdateEnd}
             onConnect={onConnect}
-            onNodeClick={(event, node) => {console.log('click', node); console.log(getConnectedEdges([node], edges))}}
+            onNodeClick={(event, node) => console.log('node clicked', node)}
             onInit={setReactFlowInstance as SetStateAction<any>}
             onDrop={onDrop}
             onDragOver={onDragOver}
