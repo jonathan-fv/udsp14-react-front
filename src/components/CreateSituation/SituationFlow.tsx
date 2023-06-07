@@ -14,6 +14,9 @@ import QuestionNode from "./CustomNodes/QuestionNode";
 
 import Sidebar from './Sidebar';
 
+import './SituationFlow.css';
+import ImageNode from "./CustomNodes/ImageNode";
+import SoundNode from "./CustomNodes/SoundNode";
 
 const initialNodes = [
   {
@@ -81,6 +84,8 @@ const CreateSituationFlow = () => {
   const nodeTypes = useMemo(() => ({
     answer: AnswerNode,
     question: QuestionNode,
+    image: ImageNode,
+    sound: SoundNode
   }), []);
 
   const onDrop = useCallback(
@@ -101,7 +106,12 @@ const CreateSituationFlow = () => {
         y: event.clientY - reactFlowBounds.top,
       });
 
-      const label = situationType === 'question' ? 'Question' : 'Réponse';
+      const label =
+          situationType === 'question'
+              ? 'Question'
+              : situationType === 'sound' || situationType === 'image'
+                  ? 'Média'
+                  : 'Réponse';
 
       const newNode = {
         id: getId(),
@@ -113,15 +123,6 @@ const CreateSituationFlow = () => {
       setNodes((nds) => nds.concat(newNode));
     }, [reactFlowInstance]
   );
-
-  // const onSave = useCallback(() => {
-  //   if (reactFlowInstance) {
-  //     // @ts-ignore
-  //     console.log('rfInstance', connectEdgesToNodes(reactFlowInstance.toObject()));
-  //     const localStorageKey = 'reactflow';
-  //     localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
-  //   }
-  // }, [reactFlowInstance]);
 
   const onSave = useCallback(() => {
     if (reactFlowInstance) {
@@ -135,10 +136,30 @@ const CreateSituationFlow = () => {
       const filteredArray = updatedNodes.map((obj) => {
         const { id, type } = obj;
         const { label } = obj.data;
-        const targets = obj.edges.map((edge) => edge.target);
+        const targets = obj.edges
+            .map((edge) => edge.target)
+            .filter((target) => {
+              const targetObj = updatedNodes.find((node) => node.id === target);
+              // @ts-ignore
+              return targetObj.type !== 'image' && targetObj.type !== 'sound';
+            });
 
-        return { id, label, type, targets };
+        const media = obj.edges
+            .filter((edge) => {
+              const targetObj = updatedNodes.find((node) => node.id === edge.target);
+              // @ts-ignore
+              return targetObj.type === 'image' || targetObj.type === 'sound';
+            })
+            .map((edge) => {
+              const targetObj = updatedNodes.find((node) => node.id === edge.target);
+              // @ts-ignore
+              return { name: targetObj.data.label, type: targetObj.type };
+            });
+
+        return { id, label, type, targets, media };
       });
+
+      console.log(filteredArray)
 
       const localStorageKey = 'reactflow';
       const flow = 'flow';
@@ -212,7 +233,9 @@ const CreateSituationFlow = () => {
         (sourceNode.type === 'answer' && targetNode.type === 'question') ||
         (sourceNode.type === 'answer' && targetNode.type === 'output') ||
         (sourceNode.type === 'question' && targetNode.type === 'answer') ||
-        (targetNode.type === 'output' && sourceNode.type === 'answer')
+        (targetNode.type === 'output' && sourceNode.type === 'answer') ||
+        (targetNode.type === 'sound' && sourceNode.type === 'question') ||
+        (targetNode.type === 'image' && sourceNode.type === 'question')
       ) {
         return true;
       }
