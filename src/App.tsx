@@ -8,10 +8,9 @@ import FrontLayout from "./components/layouts/FrontLayout";
 function App() {
   return (
 		<>
-		<div className="App">
-			<FrontLayout />
-	    </div>
-		  <MainRoute/>
+			<MainRoute/>
+			<div className="App">
+			</div>
 		</>
   );
 }
