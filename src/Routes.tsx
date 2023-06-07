@@ -5,6 +5,7 @@ import AudioPage from "./pages/AudioPage";
 import Home from "./pages/Home";
 import CreateSituationPage from "./pages/CreateSituationPage";
 import DashboardMenu from "./pages/DashboardMenu";
+import DashboardSituations from "./pages/DashboardSituations";
 import FrontLayout from "./components/layouts/FrontLayout";
 import BackLayout from "./components/layouts/BackLayout";
 
@@ -19,6 +20,7 @@ const MainRoute = () => {
       </Route>
       <Route path={'/administration'} element={<BackLayout />}>
         <Route path='dashboard' element={<DashboardMenu />}/>
+        <Route path="situations" element={<DashboardSituations />}/>
         <Route path='create-situation' element={<CreateSituationPage />}/>
       </Route>
     </Routes>
