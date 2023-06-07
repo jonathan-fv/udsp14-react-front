@@ -45,6 +45,12 @@ const Sidebar = ({ onRestore, onSave, onDelete , selectedNode }: SidebarProps) =
         <div className="dndnode !border-orange-600" onDragStart={(event) => onDragStart(event, 'answer', 'answer')} draggable>
           Réponse
         </div>
+        <div className="dndnode !border-purple-600" onDragStart={(event) => onDragStart(event, 'sound', 'sound')} draggable>
+          Son
+        </div>
+        <div className="dndnode !border-yellow-600" onDragStart={(event) => onDragStart(event, 'image', 'image')} draggable>
+          Image
+        </div>
       </div>
       <div className="h-[1px] bg-gray-200"/>
       <div className="flex flex-col justify-center gap-3">
