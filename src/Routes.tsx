@@ -4,8 +4,6 @@ import SituationPage from "./pages/SituationPage";
 import AudioPage from "./pages/AudioPage";
 import Home from "./pages/Home";
 import CreateSituationPage from "./pages/CreateSituationPage";
-import BackLayout from "./components/layouts/BackLayout";
-import FrontLayout from "./components/layouts/FrontLayout";
 
 const MainRoute = () => {
     return (
