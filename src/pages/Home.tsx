@@ -1,16 +1,33 @@
-import Situation from "../components/situation/Situation"
+import { get } from '../services/API';
+import { Root } from "../type/SituationTypes";
+import { useEffect, useState } from "react";
+
+import Situation from '../components/situation/Situation';
+
 import "../App.css"
 
-import data from '../data/data.json';
-
 const Home = () => {
-    const listItems = data.map(item => 
-        <Situation buttonId={item.id} situation={item.title} />
-    );
+    const [data, setData] = useState<Root[]>([]);
+
+    const getData = async () => {
+        const results = await get<Root[]>('http://localhost:8000/situations');
+        setData(results)
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    console.log(data);
+
     return (
         <div className="containt flex justify-center">
             <div className="flex flex-wrap justify-center ">
-                {listItems}
+                {data.map(({situation, _id}) => {
+                    return(
+                        <Situation _id={_id} situation={situation} />
+                    );
+                })}
             </div>
         </div>
     )
