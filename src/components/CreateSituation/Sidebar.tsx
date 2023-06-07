@@ -16,7 +16,7 @@ const Sidebar = ({ onRestore, onSave, onDelete , selectedNode }: SidebarProps) =
     event.dataTransfer.effectAllowed = 'move';
   };
 
-  const deleteDisabled = selectedNode?.type === 'input' || selectedNode?.type === 'output';
+  const deleteDisabled = selectedNode?.type === 'initial' || selectedNode?.type === 'final';
 
   const buttonDeleteClass = deleteDisabled
     ? 'border border-gray-200 p-3 bg-gray-200 text-gray-400 cursor-not-allowed'

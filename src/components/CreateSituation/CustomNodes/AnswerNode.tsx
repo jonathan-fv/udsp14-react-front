@@ -18,6 +18,7 @@ const AnswerNode = ({data, isConnectable, selected}: any) => {
       <Handle type="target" position={Position.Top} style={{ borderRadius: 0 }}  isConnectable={isConnectable} id="a" className="!bg-teal-500 !w-[50px]" />
       <textarea className="nodeText" value={text} onChange={onChange}></textarea>
       <Handle type="source" position={Position.Bottom} style={{ borderRadius: 0 }} isConnectable id="b" className="!bg-teal-500 !w-[50px]"/>
+      <Handle type="source" position={Position.Left} style={{ borderRadius: 0 }} isConnectable id="media" className="!bg-teal-500 !h-[10px]"/>
     </div>
   );
 };
