@@ -1,8 +1,9 @@
 import axios from "axios"
 
-export async function get<T>(
-    path: string
-): Promise<T> {
-    const { data } = await axios.get(path);
-    return data;
-};
+const api = axios.create({
+    baseURL: 'http://localhost:8000/',
+    timeout: 15000,
+  });
+  
+  export default api;
+  
