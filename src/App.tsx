@@ -6,13 +6,13 @@ import MainRoute from "./Routes";
 import FrontLayout from "./components/layouts/FrontLayout";
 
 function App() {
-  return (
-		<>
-			<MainRoute/>
-			<div className="App">
-			</div>
-		</>
-  );
+	return (
+			<>
+				<MainRoute/>
+				<div className="App">
+				</div>
+			</>
+	);
 }
 
 export default App;
