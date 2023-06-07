@@ -17,44 +17,44 @@ import Sidebar from './Sidebar';
 import './SituationFlow.css';
 import ImageNode from "./CustomNodes/ImageNode";
 import SoundNode from "./CustomNodes/SoundNode";
+import InputNode from "./CustomNodes/InitialNode";
+import InitialNode from "./CustomNodes/InitialNode";
+import finalNode from "./CustomNodes/FinalNode";
 
 const initialNodes = [
   {
     id: '1',
-    type: 'input',
-    data: {label: 'Les secours le 112 bonjour?'},
+    type: 'initial',
+    data: {label: 'Début de la situation'},
     position: {x: 250, y: 5},
     style: {border: '1px solid red', width: 400},
   },
+  // {
+  //   id: '2',
+  //   type: 'answer',
+  //   data: {label: 'Entrer une réponse'},
+  //   position: {x: 250, y: 100},
+  //   style: {width: 400},
+  // },
+  // {
+  //   id: '3',
+  //   type: 'question',
+  //   data: {label: 'Entrer une question'},
+  //   position: {x: 250, y: 200},
+  //   style: {width: 400},
+  // },
+  // {
+  //   id: '4',
+  //   type: 'answer',
+  //   data: {label: 'Entrer une réponse'},
+  //   position: {x: 250, y: 300},
+  //   style: {width: 400},
+  // },
   {
     id: '2',
-    type: 'answer',
-    data: {label: 'Entrer une réponse'},
-    position: {x: 250, y: 100},
-    style: {width: 400},
-  },
-  {
-    id: '3',
-    type: 'question',
-    data: {label: 'Entrer une question'},
-    position: {x: 250, y: 200},
-    style: {width: 400},
-  },
-  {
-    id: '4',
-    type: 'answer',
-    data: {label: 'Entrer une réponse'},
-    position: {x: 250, y: 300},
-    style: {width: 400},
-  },
-  {
-    id: '5',
-    type: 'output',
+    type: 'final',
     data: {
-      label: 'Le SAMU Bonjour, les pompiers nous ont expliqué la situation !\n' +
-        'Ils sont en route pour venir à XX Adresse.\n' +
-        'Grâce à vous nous avons tous les éléments nécessaires pour intervenir.\n' +
-        'Vous pouvez raccrocher'
+      label: 'Fin de la situation'
     },
     position: {x: 250, y: 400},
     style: {border: '1px solid red', width: 400},
@@ -85,7 +85,9 @@ const CreateSituationFlow = () => {
     answer: AnswerNode,
     question: QuestionNode,
     image: ImageNode,
-    sound: SoundNode
+    sound: SoundNode,
+    initial: InitialNode,
+    final: finalNode
   }), []);
 
   const onDrop = useCallback(
@@ -111,7 +113,12 @@ const CreateSituationFlow = () => {
               ? 'Question'
               : situationType === 'sound' || situationType === 'image'
                   ? 'Média'
-                  : 'Réponse';
+                  : situationType === 'input'
+                      ? 'Début de la situation'
+                      : situationType === 'output'
+                          ? 'Fin de situation'
+                          : 'Réponse';
+
 
       const newNode = {
         id: getId(),
