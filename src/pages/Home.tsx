@@ -1,4 +1,4 @@
-import { get } from '../services/API';
+import api from '../services/API';
 import { Root } from "../type/SituationTypes";
 import { useEffect, useState } from "react";
 
@@ -10,8 +10,8 @@ const Home = () => {
     const [data, setData] = useState<Root[]>([]);
 
     const getData = async () => {
-        const results = await get<Root[]>('http://localhost:8000/situations');
-        setData(results)
+        const results = await api.get<Root[]>('situations');
+        setData(results.data)
     }
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { get } from '../services/API';
+import api from '../services/API';
 import { Root } from "../type/SituationTypes";
 import { useEffect, useState } from "react";
 import SituationDetail from '../components/situationDetail/SituationDetail';
@@ -13,8 +13,8 @@ const SituationPage = () => {
 
 
     const getData = async () => {
-        const results = await get<Root>(`http://localhost:8000/situations/${id}`);
-        setData(results)
+        const results = await api.get<Root>(`situations/${id}`);
+        setData(results.data)
         //console.log(results);
     }
 
