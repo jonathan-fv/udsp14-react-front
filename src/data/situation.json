@@ -1,0 +1,49 @@
+[
+    {
+        "id": "1",
+        "label": "Les secours le 112 bonjour?",
+        "type": "input",
+        "targets": [
+            "2",
+            "6"
+        ]
+    },
+    {
+        "id": "2",
+        "label": "Oui bonjour, je suis au 1 rue de la paix à Paris, il y a un incendie dans mon immeuble",
+        "type": "answer",
+        "targets": [
+            "3"
+        ]
+    },
+    {
+        "id": "3",
+        "label": "Est-ce que vous êtes en sécurité ?",
+        "type": "question",
+        "targets": [
+            "4"
+        ]
+    },
+    {
+        "id": "4",
+        "label": "Oui, je suis en sécurité",
+        "type": "answer",
+        "targets": [
+            "5"
+        ] 
+    },
+    {
+        "id": "5",
+        "label": "Le SAMU Bonjour, les pompiers nous ont expliqué la situation !\nIls sont en route pour venir à XX Adresse.\nGrâce à vous nous avons tous les éléments nécessaires pour intervenir.\nVous pouvez raccrocher",
+        "type": "output",
+        "targets": []
+    },
+    {
+        "id": "6",
+        "label": "Réponse",
+        "type": "answer",
+        "targets": [
+            "3"
+        ]
+    }
+]

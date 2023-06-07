@@ -8,12 +8,11 @@ import CreateSituationPage from "./pages/CreateSituationPage";
 const MainRoute = () => {
     return (
       <Routes>
-          <Route path='/login' element={<LoginPage/>}/>
           <Route path='/situation' element={<SituationPage />}/>
           <Route path='/audio' element={<AudioPage />}/>
           <Route path="/" element={<Home/>} />
-        <Route path='/login' element={<LoginPage />}/>
-        <Route path='/test' element={<CreateSituationPage />}/>
+          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/test' element={<CreateSituationPage />}/>
       </Routes>
     );
 }
