@@ -14,7 +14,7 @@ const MainRoute = () => {
       <Route element={<FrontLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path='/situation' element={<SituationPage />}/>
+        <Route path='/situation/:id' element={<SituationPage />}/>
         <Route path='/audio' element={<AudioPage />}/>
       </Route>
       <Route path={'/administration'} element={<BackLayout />}>
