@@ -8,6 +8,7 @@ import BackLayout from "./components/layouts/BackLayout";
 import FrontLayout from "./components/layouts/FrontLayout";
 
 const MainRoute = () => {
+<<<<<<< HEAD
   return (
     <Routes>
       <Route element={<FrontLayout />}>
@@ -21,6 +22,17 @@ const MainRoute = () => {
       </Route>
     </Routes>
   );
+=======
+    return (
+      <Routes>
+          <Route path='/situation' element={<SituationPage />}/>
+          <Route path='/audio' element={<AudioPage />}/>
+          <Route path="/" element={<Home/>} />
+          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/test' element={<CreateSituationPage />}/>
+      </Routes>
+    );
+>>>>>>> frontUser
 }
 
 export default MainRoute;
