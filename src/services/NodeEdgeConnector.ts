@@ -43,8 +43,6 @@ interface GraphData {
 const connectEdgesToNodes = (graphData: GraphData) => {
   const { nodes, edges } = graphData;
 
-  const getNodeById = (id: string): Node | undefined => nodes.find((node) => node.id === id);
-
   const getConnectedEdges = (nodeId: string): Edge[] =>
     edges.filter((edge) => edge.source === nodeId || edge.target === nodeId);
 
