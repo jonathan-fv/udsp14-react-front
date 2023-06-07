@@ -71,6 +71,19 @@
   transition: all 0.25s ease-in-out;
 }
 
+/* | ---------------------- | */
+/* | - CSS DASHBOARD MENU - | */
+/* | ---------------------- | */
+
+.dasboard-menu-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
 /* scale resolution for resolution under 1024px */
 @media screen and (max-width: 1024px) {
   .containt {
