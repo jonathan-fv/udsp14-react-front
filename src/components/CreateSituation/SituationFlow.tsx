@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback, SetStateAction, useMemo, createElement} from 'react';
+import React, { useState, useRef, useCallback, SetStateAction, useMemo } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -6,16 +6,14 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Connection,
-  Edge, updateEdge, applyNodeChanges, Node, ReactFlowInstance,
+  Edge, updateEdge, applyNodeChanges, Node, ReactFlowInstance, NodeMouseHandler,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import AnswerNode from "./CustomNodes/AnswerNode";
 import QuestionNode from "./CustomNodes/QuestionNode";
-import {connectEdgesToNodes} from "../../services/NodeEdgeConnector";
 
 import Sidebar from './Sidebar';
 
-import './SituationFlow.css';
 
 const initialNodes = [
   {
@@ -28,21 +26,21 @@ const initialNodes = [
   {
     id: '2',
     type: 'answer',
-    data: {label: 'Oui bonjour, je suis au 1 rue de la paix à Paris, il y a un incendie dans mon immeuble'},
+    data: {label: 'Entrer une réponse'},
     position: {x: 250, y: 100},
     style: {width: 400},
   },
   {
     id: '3',
     type: 'question',
-    data: {label: 'Est-ce que vous êtes en sécurité ?'},
+    data: {label: 'Entrer une question'},
     position: {x: 250, y: 200},
     style: {width: 400},
   },
   {
     id: '4',
     type: 'answer',
-    data: {label: 'Oui, je suis en sécurité'},
+    data: {label: 'Entrer une réponse'},
     position: {x: 250, y: 300},
     style: {width: 400},
   },
@@ -66,6 +64,7 @@ const getId = () => `${id++}`;
 const CreateSituationFlow = () => {
   const edgeUpdateSuccessful = useRef(true);
   const reactFlowWrapper = useRef(null);
+  const [selectedNode, setSelectedNode] = useState<Node|null>(null);
   const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
@@ -163,11 +162,24 @@ const CreateSituationFlow = () => {
     }
   }, [reactFlowInstance]);
 
-  const onDelete = useCallback(() => {
+  const onDelete = () => {
+    if (selectedNode) {
+      const { id } = selectedNode;
+      setNodes((nds) => nds.filter((node) => node.id !== id));
+      setEdges((eds) => eds.filter((edge) => edge.source !== id && edge.target !== id));
+      setSelectedNode(null)
+    }
+  };
+
+  const onNodeClick: NodeMouseHandler = useCallback((event, node) => {
+    setSelectedNode(node);
+    console.log('node', node);
   }, []);
 
   const onNodesChange = useCallback(
-    (changes: SetStateAction<any>) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    (changes: SetStateAction<any>) => {
+      setNodes((nds) => applyNodeChanges(changes, nds));
+    },
     [setNodes]
   );
 
@@ -223,7 +235,7 @@ const CreateSituationFlow = () => {
             onEdgeUpdate={onEdgeUpdate}
             onEdgeUpdateEnd={onEdgeUpdateEnd}
             onConnect={onConnect}
-            onNodeClick={(event, node) => console.log('node clicked', node)}
+            onNodeClick={onNodeClick}
             onInit={setReactFlowInstance as SetStateAction<any>}
             onDrop={onDrop}
             onDragOver={onDragOver}
@@ -233,7 +245,7 @@ const CreateSituationFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar {...{ onSave, onRestore }} />
+        <Sidebar {...{ onSave, onRestore , onDelete , selectedNode}} />
       </ReactFlowProvider>
     </div>
   );
