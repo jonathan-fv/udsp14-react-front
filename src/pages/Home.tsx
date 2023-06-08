@@ -1,36 +1,36 @@
-import api from '../services/API';
+import api from "../services/API";
 import { Root } from "../type/SituationTypes";
 import { useEffect, useState } from "react";
 
-import Situation from '../components/situation/Situation';
+import Situation from "../components/situation/Situation";
 
-import "../App.css"
+import "../App.css";
 
 const Home = () => {
-    const [data, setData] = useState<Root[]>([]);
+  const [data, setData] = useState<Root[]>([]);
 
-    const getData = async () => {
-        const results = await api.get<Root[]>('situations');
-        setData(results.data)
-    }
+  const getData = async () => {
+    const results = await api.get<Root[]>("situations");
+    setData(results.data);
+  };
 
-    useEffect(() => {
-        getData()
-    }, [])
+  useEffect(() => {
+    getData();
+  }, []);
 
-    console.log(data);
+  console.log(data);
 
-    return (
-        <div className="containt flex justify-center">
-            <div className="flex flex-wrap justify-center ">
-                {data.map(({situation, _id}) => {
-                    return(
-                        <Situation _id={_id} situation={situation} />
-                    );
-                })}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="box_situation flex flex-col items-center justify-center lg:flex-row">
+      {data.map(({ situation, _id }) => {
+        return (
+          <div className="container_situation text-center m-5">
+            <Situation _id={_id} situation={situation} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-export default Home
+export default Home;
