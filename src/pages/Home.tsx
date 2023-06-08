@@ -15,7 +15,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getData()
+        getData().catch(err => console.log(err));
     }, [])
 
     console.log(data);
