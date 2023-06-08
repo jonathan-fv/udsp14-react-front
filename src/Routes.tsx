@@ -8,6 +8,7 @@ import DashboardMenu from "./pages/DashboardMenu";
 import DashboardSituations from "./pages/DashboardSituations";
 import FrontLayout from "./components/layouts/FrontLayout";
 import BackLayout from "./components/layouts/BackLayout";
+import Users from "./pages/Users";
 
 const MainRoute = () => {
   return (
@@ -22,6 +23,7 @@ const MainRoute = () => {
         <Route path='dashboard' element={<DashboardMenu />}/>
         <Route path="situations" element={<DashboardSituations />}/>
         <Route path='create-situation' element={<CreateSituationPage />}/>
+        <Route path='users' element={<Users />} />
       </Route>
     </Routes>
   );
