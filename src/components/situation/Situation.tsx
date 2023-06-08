@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
-import "./Situation.css";
+import { SituationType } from "../../type/SituationTypes";
+
+
 
 type Props = {
-  situation: string;
+    _id: string;
+    situation:  SituationType;
 };
 
 const Situation = (props: Props) => {
-  const { situation } = props;
-  return (
-    <Link
-      to="/situation"
-      className="bg-gray-100 shadow-lg shadow-black-500/50 rounded-md tracking-widest uppercase font-bold w-96 p-5 m-10 text-center link-situation hover:bg-gray-300"
-    >
-      {situation}
-    </Link>
-  );
-};
+    const { _id, situation } = props;
 
-Situation.defaultProps = {
-  situation: "Situation par defaut",
-} as Props;
+    return (
+        <Link
+            to={"/situation/" + _id}
+            className="bg-gray-100 shadow-lg shadow-black-500/50 rounded-md tracking-widest uppercase font-bold w-96 p-5 m-10 text-center link-situation hover:bg-gray-300"
+            >
+            {situation.title}
+        </Link>
+    );
+};
 
 export default Situation;

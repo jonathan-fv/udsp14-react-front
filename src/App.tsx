@@ -1,15 +1,15 @@
 import React from 'react';
-import NavBar from './components/navbar/NavBar'
 import './App.css'
+import MainRoute from "./Routes";
 
 function App() {
-    return (
-        <div className="App">
-            <header>
-                <NavBar />
-            </header>
-        </div>
-    );
+	return (
+			<>
+				<MainRoute/>
+				<div className="App">
+				</div>
+			</>
+	);
 }
 
 export default App;
