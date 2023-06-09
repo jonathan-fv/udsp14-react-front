@@ -37,10 +37,6 @@ const SituationDetail = (props: Props) => {
         />
         <p className="text-justify">
           {situation.situation.description}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta vitae
-          provident sint excepturi ad cupiditate voluptates commodi, saepe,
-          voluptatem et placeat, unde consectetur corrupti atque porro maiores.
-          Corporis, iusto quaerat.
         </p>
       </div>
 
