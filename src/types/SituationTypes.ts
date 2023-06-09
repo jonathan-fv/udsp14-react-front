@@ -13,7 +13,7 @@ export interface Root {
   }
   
   export interface Flow {
-    id: number
+    id: string
     label: string
     type: string
     targets: number[]

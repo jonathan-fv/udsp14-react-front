@@ -6,9 +6,10 @@ type SidebarProps = {
   onSave: () => void;
   onDelete: () => void;
   selectedNode: any;
+  isSaveDisabled: { disabled: boolean , message: string };
 }
 
-const Sidebar = ({ onRestore, onSave, onDelete , selectedNode }: SidebarProps) => {
+const Sidebar = ({ onRestore, onSave, onDelete , selectedNode, isSaveDisabled }: SidebarProps) => {
   // @ts-ignore
   const onDragStart = (event, nodeType, situationType) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
@@ -20,7 +21,11 @@ const Sidebar = ({ onRestore, onSave, onDelete , selectedNode }: SidebarProps) =
 
   const buttonDeleteClass = deleteDisabled
     ? 'border border-gray-200 p-3 bg-gray-200 text-gray-400 cursor-not-allowed'
-    : 'border border-red-600 p-3 hover:bg-red-600 hover:text-white';
+    : 'border border-red-600 p-3 hover:bg-red-600 hover:text-white rounded';
+
+  const buttonSaveClass = isSaveDisabled.disabled
+    ? 'border border-gray-200 p-3 bg-gray-200 text-gray-400 cursor-not-allowed'
+    : 'border border-blue-600 p-3 hover:bg-blue-600 hover:text-white rounded';
 
   return (
     <aside className="flex flex-col md:gap-6 gap-3 p-3">
@@ -30,10 +35,12 @@ const Sidebar = ({ onRestore, onSave, onDelete , selectedNode }: SidebarProps) =
           onClick={onRestore}
         >Restaurer</button>
         <button
-          className='border border-blue-600 px-3 py-2 rounded hover:bg-blue-600 hover:text-white'
+          className={buttonSaveClass}
           onClick={onSave}
+          disabled={isSaveDisabled.disabled}
         >Sauvegarder</button>
       </div>
+      { isSaveDisabled.disabled && <p className='text-red-600 text-xs text-center'>{isSaveDisabled.message}</p> }
       <div className="h-[1px] bg-gray-200"/>
       <div className="description">
         Vous pouvez glisser-déposer les éléments suivants sur le canvas pour créer une situation:
