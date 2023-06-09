@@ -16,7 +16,7 @@ export interface Root {
     id: string
     label: string
     type: string
-    targets: number[]
+    targets: string[]
     media: MediaType[]
   }
 

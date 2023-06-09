@@ -4,13 +4,13 @@ import pls from '../../assets/images/pls-1.jpg';
 import { Link } from 'react-router-dom';
 
 type Props = {
-    id: number;
+    id: string;
     type: string;
     label: string;
-    targets: Array<number>;
+    targets: Array<string>;
     flow: Flow[];
     media: MediaType[];
-    onClick: (answerTarget: number) => void;
+    onClick: (answerTarget: string) => void;
 };
 
 const Answer = (props: Props) => {
