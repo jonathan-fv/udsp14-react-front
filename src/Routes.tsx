@@ -20,6 +20,7 @@ const MainRoute = () => {
         <Route path='/audio' element={<AudioPage />}/>
       </Route>
       <Route path={'/administration'} element={<BackLayout />}>
+        <Route path="login" element={<LoginPage />} />
         <Route path='dashboard' element={<DashboardMenu />}/>
         <Route path="situations" element={<DashboardSituations />}/>
         <Route path='create-situation' element={<CreateSituationPage />}/>
