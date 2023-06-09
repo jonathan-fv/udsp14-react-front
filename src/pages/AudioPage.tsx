@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import api from "../services/API";
-import { Root } from "../type/SituationTypes";
+import { Root } from "../types/SituationTypes";
 
 import Question from '../components/question/Question';
 import "../App.css";
