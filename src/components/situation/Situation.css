@@ -1,10 +1,10 @@
 /* change situation button size when resolution is under 375px */
-@media screen and (max-width: 375px) {
-    .link-situation {
-        width: 20rem;
-    }
-}
-
+/* @media screen and (max-width: 375px) {
+  .link-situation {
+    width: 20rem;
+  }
+} */
 .link-situation {
-    transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: block;
 }

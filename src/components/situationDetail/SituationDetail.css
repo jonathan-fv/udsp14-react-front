@@ -1,0 +1,9 @@
+.box_details {
+  border: 5px solid red;
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+.button_situatuion {
+  padding: 30px 20px;
+  font-weight: ;
+}
