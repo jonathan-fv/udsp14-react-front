@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, SetStateAction, useMemo } from 'react';
+import React, {useState, useRef, useCallback, SetStateAction, useMemo, useEffect} from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -20,6 +20,9 @@ import SoundNode from "./CustomNodes/SoundNode";
 import InputNode from "./CustomNodes/InitialNode";
 import InitialNode from "./CustomNodes/InitialNode";
 import finalNode from "./CustomNodes/FinalNode";
+import CreateSituationForm from "./CreateSituationForm";
+import api from "../../services/API";
+import {redirect, useNavigate} from "react-router-dom";
 
 const initialNodes = [
   {
@@ -90,6 +93,8 @@ const CreateSituationFlow = () => {
     final: finalNode
   }), []);
 
+  const navigate = useNavigate();
+
   const onDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
@@ -108,17 +113,30 @@ const CreateSituationFlow = () => {
         y: event.clientY - reactFlowBounds.top,
       });
 
-      const label =
-          situationType === 'question'
-              ? 'Question'
-              : situationType === 'sound' || situationType === 'image'
-                  ? 'Média'
-                  : situationType === 'input'
-                      ? 'Début de la situation'
-                      : situationType === 'output'
-                          ? 'Fin de situation'
-                          : 'Réponse';
-
+      let label;
+      switch (situationType) {
+        case 'question':
+          label = 'Question';
+          break;
+        case 'image':
+          label = 'Image';
+          break;
+        case 'sound':
+          label = 'Son';
+          break;
+        case 'input':
+          label = 'Début de la situation';
+          break;
+        case 'output':
+          label = 'Fin de situation';
+          break;
+        case 'answer':
+          label = 'Réponse';
+          break
+        default:
+          label = 'Inconnue';
+          break;
+      }
 
       const newNode = {
         id: getId(),
@@ -131,7 +149,16 @@ const CreateSituationFlow = () => {
     }, [reactFlowInstance]
   );
 
-  const onSave = useCallback(() => {
+  const formStoreRef = useRef(null);
+  const [formStore, setFormStore] = useState(null);
+  const handleFormUpdate = useCallback((formStore: { title: string, description: string }) => {
+    // @ts-ignore
+    formStoreRef.current = formStore;
+  }, []);
+
+
+  const onSave = useCallback(async () => {
+
     if (reactFlowInstance) {
       // @ts-ignore
       let renderData = reactFlowInstance.toObject();
@@ -141,8 +168,8 @@ const CreateSituationFlow = () => {
       }));
 
       const filteredArray = updatedNodes.map((obj) => {
-        const { id, type } = obj;
-        const { label } = obj.data;
+        const {id, type} = obj;
+        const {label} = obj.data;
         const targets = obj.edges
             .map((edge) => edge.target)
             .filter((target) => {
@@ -160,18 +187,36 @@ const CreateSituationFlow = () => {
             .map((edge) => {
               const targetObj = updatedNodes.find((node) => node.id === edge.target);
               // @ts-ignore
-              return { name: targetObj.data.label, type: targetObj.type };
+              return {id: targetObj.data.storeId, path: targetObj.data.label, type: targetObj.type};
             });
 
-        return { id, label, type, targets, media };
+        return {id, label, type, targets, media};
       });
 
-      console.log(filteredArray)
 
-      const localStorageKey = 'reactflow';
+      const localStorageKey = 'raw';
       const flow = 'flow';
-      localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
+      const situation = 'situation';
+      localStorage.setItem(situation, JSON.stringify(formStoreRef.current));
       localStorage.setItem(flow, JSON.stringify(filteredArray));
+      localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
+
+      const returnObj = {
+        situation: formStoreRef.current,
+        flow: filteredArray,
+        raw: reactFlowInstance.toObject()
+      };
+
+      try {
+        const response = await api.post('situations', returnObj);
+        console.log(response.data);
+        console.log(response)
+        if (response.status === 201) {
+          navigate('/administration/situations')
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, [reactFlowInstance]);
 
@@ -236,13 +281,13 @@ const CreateSituationFlow = () => {
     if (sourceNode && targetNode) {
       if (
         // Define the valid connections here
-        (sourceNode.type === 'input' && targetNode.type === 'answer') ||
+        (sourceNode.type === 'initial' && targetNode.type === 'answer') ||
         (sourceNode.type === 'answer' && targetNode.type === 'question') ||
-        (sourceNode.type === 'answer' && targetNode.type === 'output') ||
+        (sourceNode.type === 'answer' && targetNode.type === 'final') ||
         (sourceNode.type === 'question' && targetNode.type === 'answer') ||
         (targetNode.type === 'output' && sourceNode.type === 'answer') ||
-        (targetNode.type === 'sound' && sourceNode.type === 'question') ||
-        (targetNode.type === 'image' && sourceNode.type === 'question')
+          (targetNode.type === 'sound' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string)) ||
+          (targetNode.type === 'image' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string))
       ) {
         return true;
       }
@@ -254,6 +299,7 @@ const CreateSituationFlow = () => {
   return (
     <div className="dndflow">
       <ReactFlowProvider>
+        <CreateSituationForm onUpdate={handleFormUpdate}/>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
