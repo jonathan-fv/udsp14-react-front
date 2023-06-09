@@ -1,43 +1,36 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import api from "../services/API";
+import { Root } from "../types/SituationTypes";
+
+import Question from '../components/question/Question';
 import "../App.css";
 
 const AudioPage = () => {
-  const navigate = useNavigate();
-  const handleGoBack = () => {
-    navigate(-1);
+  const { id } = useParams();
+  //console.log("id = " + id);
+
+  const [data, setData] = useState<Root>();
+
+  const getData = async () => {
+    const results = await api.get<Root>(`situations/${id}`);
+    setData(results.data);
+    //console.log(results);
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data);
+
+  // log output of axios api
+  //console.log("API id = " + data);
 
   return (
     <div>
-      <div className="flex justify-center">
-        <button
-          onClick={handleGoBack}
-          className="return-button w-10 bg-gray-200 rounded-full m-4 p-1 text-2xl"
-        >
-          &#706;
-        </button>
-        <h1 className="p-5">Audio Page</h1>
-      </div>
-      <div className="img-box-audio bg-gray-200 rounded-xl"></div>
-      <div className="text-box-audio p-1 text-justify">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-          optio exercitationem autem, ut ducimus aspernatur fugiat sapiente
-          provident eius molestiae praesentium. Molestias atque, cum impedit
-          reiciendis et ullam distinctio provident error perspiciatis est alias
-          culpa perferendis, obcaecati repellendus! Provident doloremque ea
-          delectus perspiciatis, quasi fugiat odio sapiente rem rerum officia!
-        </p>
-      </div>
-      <div className="cta-box flex justify-center mt-10">
-        <Link
-          to="/"
-          className="cta-btn-audio rounded-full bg-blue-500 hover:bg-blue-600"
-        >
-          🏠
-        </Link>
-      </div>
+      {data && <Question situation={data} />}
     </div>
   );
 };

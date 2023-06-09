@@ -16,7 +16,7 @@ const DashboardSituations = () => {
 
     const deleteSituation = (id: string) => {
         axios.delete(`${baseURL}/${id}`).then(() => {
-            alert("Situations Supprimer!");
+            alert("Situations Supprimée!");
             window.location.reload();
       });
     };
@@ -25,6 +25,7 @@ const DashboardSituations = () => {
         return situations.map(situation => 
             <SituationsPanel
                 key={situation._id}
+                id={situation._id}
                 title={situation.situation.title}
                 desc={situation.situation.description}
                 delete={() => deleteSituation(situation._id)}

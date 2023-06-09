@@ -9,6 +9,7 @@ import DashboardSituations from "./pages/DashboardSituations";
 import FrontLayout from "./components/layouts/FrontLayout";
 import BackLayout from "./components/layouts/BackLayout";
 import Users from "./pages/Users";
+import EditSituationPage from "./pages/EditSituationPage";
 
 const MainRoute = () => {
   return (
@@ -17,12 +18,14 @@ const MainRoute = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path='/situation/:id' element={<SituationPage />}/>
-        <Route path='/audio' element={<AudioPage />}/>
+        <Route path='/audio/:id' element={<AudioPage />}/>
       </Route>
       <Route path={'/administration'} element={<BackLayout />}>
+        <Route path="login" element={<LoginPage />} />
         <Route path='dashboard' element={<DashboardMenu />}/>
         <Route path="situations" element={<DashboardSituations />}/>
         <Route path='create-situation' element={<CreateSituationPage />}/>
+        <Route path='edit-situation/:id' element={<EditSituationPage />}/>
         <Route path='users' element={<Users />} />
       </Route>
     </Routes>

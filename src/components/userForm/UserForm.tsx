@@ -1,7 +1,7 @@
 import API from "../../services/API";
 import React, {useEffect, useState} from "react";
-import { UserType } from "../../pages/Users";
 import passwordValidation from "../../services/passwordValidation";
+import { UserType } from "../../types/UserType";
 
 export type UserFormProps = {
 	type: 'add' | 'edit';
@@ -24,11 +24,6 @@ const UserForm = ({ type, title, buttonText, selectedUser, setSelectedUser }: Us
 
 		const form = e.target as HTMLFormElement;
 		const data = Object.fromEntries(new FormData(form))
-		const password = data.password as string;
-		// @ts-ignore
-		data.role = parseInt(data.role as string);
-		console.log(data)
-		console.log(password)
 
 		if (validPassword) {
 			if (type === 'add') {
@@ -76,13 +71,6 @@ const UserForm = ({ type, title, buttonText, selectedUser, setSelectedUser }: Us
 						{!validPassword && (<><br/><span className='text-xs text-red-500'>(8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre)</span></>)}
 					</label>
 					<input type='password' id={`${type}-password`} name='password' defaultValue={''} onChange={e => setPassword(e.target.value)} className={validPassword ? 'border border-green-500' : 'border-2 border-red-500'} />
-				</div>
-				<div className='flex flex-col'>
-					<label htmlFor='role'>Rôle</label>
-					<select id={`${type}-role`} name='role' defaultValue='user'>
-						<option value={1}>Administrateur</option>
-						<option value={0}>Éditeur</option>
-					</select>
 				</div>
 				{ type === 'add' && (
 				<button

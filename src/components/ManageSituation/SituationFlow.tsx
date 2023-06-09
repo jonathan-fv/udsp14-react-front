@@ -17,10 +17,16 @@ import Sidebar from './Sidebar';
 import './SituationFlow.css';
 import ImageNode from "./CustomNodes/ImageNode";
 import SoundNode from "./CustomNodes/SoundNode";
-import InputNode from "./CustomNodes/InitialNode";
 import InitialNode from "./CustomNodes/InitialNode";
 import finalNode from "./CustomNodes/FinalNode";
-import CreateSituationForm from "./CreateSituationForm";
+import api from "../../services/API";
+import { useNavigate } from "react-router-dom";
+import SituationForm from "./Form/SituationForm";
+import {type} from "os";
+
+type SituationFlowProps = {
+  situationId?: string | undefined;
+}
 
 const initialNodes = [
   {
@@ -30,27 +36,6 @@ const initialNodes = [
     position: {x: 250, y: 5},
     style: {border: '1px solid red', width: 400},
   },
-  // {
-  //   id: '2',
-  //   type: 'answer',
-  //   data: {label: 'Entrer une réponse'},
-  //   position: {x: 250, y: 100},
-  //   style: {width: 400},
-  // },
-  // {
-  //   id: '3',
-  //   type: 'question',
-  //   data: {label: 'Entrer une question'},
-  //   position: {x: 250, y: 200},
-  //   style: {width: 400},
-  // },
-  // {
-  //   id: '4',
-  //   type: 'answer',
-  //   data: {label: 'Entrer une réponse'},
-  //   position: {x: 250, y: 300},
-  //   style: {width: 400},
-  // },
   {
     id: '2',
     type: 'final',
@@ -61,22 +46,50 @@ const initialNodes = [
     style: {border: '1px solid red', width: 400},
   }
 ];
+const getId = (type: string) => {
+  return `${type}-${+new Date()}`;
+}
 
-let id = Number(initialNodes[initialNodes.length - 1].id) + 1;
-const getId = () => `${id++}`;
-
-const CreateSituationFlow = () => {
+const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
   const edgeUpdateSuccessful = useRef(true);
   const reactFlowWrapper = useRef(null);
   const [selectedNode, setSelectedNode] = useState<Node|null>(null);
   const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [isSaveDisabled, setIsSaveDisabled] = useState({ disabled: true , message: 'Veuillez remplir le formulaire' });
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
   const onConnect = useCallback((params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds)), []);
   const onDragOver = useCallback((event: { preventDefault: () => void; dataTransfer: { dropEffect: string; }; }) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+  const formStoreRef = useRef<{ title: string, description: string } | null>(null);
+  const [formStore, setFormStore] = useState(null);
+  const handleFormUpdate = useCallback((formStore: { title: string, description: string }) => {
+    formStoreRef.current = formStore;
+  }, []);
+
+  useEffect(() => {
+    if (situationId) {
+      api.get(`/situations/${situationId}`).then((res) => {
+        const flow = res.data.raw;
+        const situationDescription = res.data.situation;
+        const situationNodes = flow.nodes;
+        const situationEdges = flow.edges;
+        reactFlowInstance?.setNodes(situationNodes);
+        reactFlowInstance?.setEdges(situationEdges);
+        setNodes(situationNodes);
+        setEdges(situationEdges);
+        setFormStore(situationDescription);
+      });
+    } else {
+      setNodes(initialNodes);
+    }
+  }, [situationId]);
+
+  useEffect(() => {
+    saveDisable();
+  }, [nodes,  edges, formStoreRef, formStore]);
 
   /**
    * Since we're updating the edges we need to call our custom nodes
@@ -90,6 +103,8 @@ const CreateSituationFlow = () => {
     initial: InitialNode,
     final: finalNode
   }), []);
+
+  const navigate = useNavigate();
 
   const onDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
@@ -109,51 +124,56 @@ const CreateSituationFlow = () => {
         y: event.clientY - reactFlowBounds.top,
       });
 
-      const label =
-          situationType === 'question'
-              ? 'Question'
-              : situationType === 'sound' || situationType === 'image'
-                  ? 'Média'
-                  : situationType === 'input'
-                      ? 'Début de la situation'
-                      : situationType === 'output'
-                          ? 'Fin de situation'
-                          : 'Réponse';
-
+      let label;
+      switch (situationType) {
+        case 'question':
+          label = 'Question';
+          break;
+        case 'image':
+          label = 'Image';
+          break;
+        case 'sound':
+          label = 'Son';
+          break;
+        case 'input':
+          label = 'Début de la situation';
+          break;
+        case 'output':
+          label = 'Fin de situation';
+          break;
+        case 'answer':
+          label = 'Réponse';
+          break
+        default:
+          label = 'Inconnue';
+          break;
+      }
 
       const newNode = {
-        id: getId(),
+        id: getId(type),
         type,
         position,
         data: { label: label },
       };
 
       setNodes((nds) => nds.concat(newNode));
+      console.log(nodes);
     }, [reactFlowInstance]
   );
 
-  const formStoreRef = useRef(null);
-  const [formStore, setFormStore] = useState(null);
-  const handleFormUpdate = useCallback((formStore: { title: string, description: string }) => {
-    // @ts-ignore
-    formStoreRef.current = formStore;
-  }, []);
-
-
-  const onSave = useCallback(() => {
-
-
+  const onSave = useCallback(async () => {
     if (reactFlowInstance) {
       // @ts-ignore
-      let renderData = reactFlowInstance.toObject();
-      const updatedNodes = renderData.nodes.map(node => ({
+      let flowData = reactFlowInstance.toObject();
+      console.log(flowData);
+      const updatedNodes = flowData.nodes.map(node => ({
         ...node,
-        edges: renderData.edges.filter(edge => edge.source === node.id)
+        edges: flowData.edges.filter(edge => edge.source === node.id)
       }));
 
       const filteredArray = updatedNodes.map((obj) => {
-        const { id, type } = obj;
-        const { label } = obj.data;
+        const {id, type} = obj;
+        const {label} = obj.data;
         const targets = obj.edges
             .map((edge) => edge.target)
             .filter((target) => {
@@ -171,12 +191,12 @@ const CreateSituationFlow = () => {
             .map((edge) => {
               const targetObj = updatedNodes.find((node) => node.id === edge.target);
               // @ts-ignore
-              return { name: targetObj.data.label, type: targetObj.type };
+              return {id: targetObj.data.storeId, path: targetObj.data.label, type: targetObj.type};
             });
 
-        return { id, label, type, targets, media };
+        return {id, label, type, targets, media};
       });
-      
+
 
       const localStorageKey = 'raw';
       const flow = 'flow';
@@ -186,26 +206,54 @@ const CreateSituationFlow = () => {
       localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
 
       const returnObj = {
-        "situation": formStoreRef.current,
-        "flow": filteredArray,
-        "raw": reactFlowInstance.toObject()
-      }
+        situation: formStoreRef.current,
+        flow: filteredArray,
+        raw: reactFlowInstance.toObject()
+      };
 
-      console.log(returnObj)
+      if (situationId) {
+        try {
+          const response = await api.put(`situations/${situationId}`, returnObj);
+          if (response.status === 200) {
+            navigate('/administration/situations')
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        try {
+          const response = await api.post('situations', returnObj);
+          if (response.status === 201) {
+            navigate('/administration/situations')
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
     }
   }, [reactFlowInstance]);
 
   const onRestore = useCallback(() => {
     if (reactFlowInstance) {
       const localStorageKey = 'reactflow';
-      const flow = localStorage.getItem(localStorageKey);
-
-      if (flow) {
-        // @ts-ignore
-        const flowParsed = JSON.parse(flow);
-        const { nodes: nodesParsed, edges: edgesParsed } = flowParsed;
-        setNodes(nodesParsed);
-        setEdges(edgesParsed);
+      let flow = null;
+      if (situationId) {
+        api.get(`situations/${situationId}`).then((response) => {
+          flow = response.data.raw;
+          if (flow) {
+            setNodes(flow.nodes);
+            setEdges(flow.edges);
+          }
+        });
+      } else {
+        flow = localStorage.getItem(localStorageKey);
+        if (flow) {
+          // @ts-ignore
+          const flowParsed = JSON.parse(flow);
+          const {nodes: nodesParsed, edges: edgesParsed} = flowParsed;
+          setNodes(nodesParsed);
+          setEdges(edgesParsed);
+        }
       }
     }
   }, [reactFlowInstance]);
@@ -221,7 +269,6 @@ const CreateSituationFlow = () => {
 
   const onNodeClick: NodeMouseHandler = useCallback((event, node) => {
     setSelectedNode(node);
-    console.log('node', node);
   }, []);
 
   const onNodesChange = useCallback(
@@ -230,6 +277,31 @@ const CreateSituationFlow = () => {
     },
     [setNodes]
   );
+
+  const saveDisable = () => {
+    const initialNode = nodes.find((node) => node.type === 'initial');
+    const finalNode = nodes.find((node) => node.type === 'final');
+    const questionNodes = nodes.filter((node) => node.type === 'question');
+    const answerNodes = nodes.filter((node) => node.type === 'answer');
+
+    if (nodes.length < 2) {
+      return setIsSaveDisabled({disabled: true, message: 'Merci de terminer la situation avant de la sauvegarder'});
+    }
+
+    if (!initialNode || !finalNode) {
+      return setIsSaveDisabled({disabled: true, message: 'Merci de terminer la situation avant de la sauvegarder'});
+    }
+
+    if (!formStoreRef.current?.title || !formStoreRef.current?.description) {
+      return setIsSaveDisabled({disabled: true, message: 'Merci de renseigner un titre et une description'});
+    }
+
+    if (questionNodes.length < 1 && answerNodes.length < 2) {
+      return setIsSaveDisabled({disabled: true, message: 'Merci de renseigner au minimum une question et deux réponses'});
+    }
+
+    return setIsSaveDisabled({disabled: false, message: ''});
+  };
 
   const onEdgeUpdateStart = useCallback(() => {
     edgeUpdateSuccessful.current = false;
@@ -261,8 +333,8 @@ const CreateSituationFlow = () => {
         (sourceNode.type === 'answer' && targetNode.type === 'final') ||
         (sourceNode.type === 'question' && targetNode.type === 'answer') ||
         (targetNode.type === 'output' && sourceNode.type === 'answer') ||
-          (targetNode.type === 'sound' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string)) ||
-          (targetNode.type === 'image' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string))
+        (targetNode.type === 'sound' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string)) ||
+        (targetNode.type === 'image' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string))
       ) {
         return true;
       }
@@ -274,7 +346,7 @@ const CreateSituationFlow = () => {
   return (
     <div className="dndflow">
       <ReactFlowProvider>
-        <CreateSituationForm onUpdate={handleFormUpdate}/>
+        <SituationForm onUpdate={handleFormUpdate}/>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -296,7 +368,7 @@ const CreateSituationFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar {...{ onSave, onRestore , onDelete , selectedNode}} />
+        <Sidebar {...{ onSave, onRestore , onDelete , selectedNode, isSaveDisabled}} />
       </ReactFlowProvider>
     </div>
   );

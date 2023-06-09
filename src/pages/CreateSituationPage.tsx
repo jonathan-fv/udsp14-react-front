@@ -1,5 +1,5 @@
-import SituationFlow from "../components/CreateSituation/SituationFlow";
-import CreateSituationForm from "../components/CreateSituation/CreateSituationForm";
+import SituationFlow from "../components/ManageSituation/SituationFlow";
+import SituationForm from "../components/ManageSituation/Form/SituationForm";
 
 const CreateSituationPage = () => {
   return (
