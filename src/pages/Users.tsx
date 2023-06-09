@@ -43,9 +43,6 @@ const User = () => {
       <h1 className='text-3xl font-semibold text-center my-5'>
         Panel de gestion des utilisateurs
       </h1>
-      <button onClick={
-        ()=>{ API.post('auth/login', {username: 'admin@admind.com', password: 'Admin123'}).then(r => console.log(r)).catch(e => console.error(e))}}
-      > Login </button>
       <div className='grid grid-cols-3 px-2 gap-10 md:px-5 md:gap-5'>
         <div className='md:col-span-2 col-span-3 bg-amber-100 rounded-lg'>
           <h2 className='col-span-12 text-center my-3'>Liste des utilisateurs</h2>
