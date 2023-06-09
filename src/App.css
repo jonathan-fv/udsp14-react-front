@@ -1,7 +1,29 @@
+.box_situation {
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.container_situation {
+  width: 85%;
+  border-radius: 5px;
+}
+
+/* @media screen and (min-width: 640px) {
+  .container_situation {
+    width: 45%;
+  }
+} */
+
+@media screen and (min-width: 840px) {
+  .container_situation {
+    width: 30%;
+  }
+}
+
 /* | ------------ | */
 /* | - CSS BASE - | */
 /* | ------------ | */
-.containt {
+/* .containt {
   border: 1px solid red;
   display: flex;
   align-items: center;
@@ -9,24 +31,24 @@
 }
 
 /* scale resolution for resolution under 1024px */
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .containt {
     height: auto;
   }
-}
+} */
 
 /* scale resolution for resolution above 1024px */
-@media screen and (min-width: 1400px) {
+/* @media screen and (min-width: 1400px) {
   .containt {
     height: calc(100vh - 64px);
   }
-}
+} */
 
 /* | ----------------- | */
 /* | - CSS SITUATION - | */
 /* | ----------------- | */
 
-.cta-btn {
+/* .cta-btn {
   font-size: 3rem;
   margin: 0 auto;
   padding: 20px 15px;
@@ -39,8 +61,8 @@
   max-width: 50%;
   height: auto;
   margin: 20px auto;
-}
-
+} */
+/* 
 .text-box {
   width: 90%;
   margin: 20px auto;
@@ -48,36 +70,36 @@
 
 .return-button {
   padding: 10px 20px;
-}
+} */
 
 /* | ------------- | */
 /* | - CSS AUDIO - | */
 /* | ------------- | */
 
-.cta-btn-audio {
+/* .cta-btn-audio {
   font-size: 3rem;
   margin: 0 auto;
   padding: 12px 15px;
   color: white;
   font-weight: bold;
   transition: all 0.25s ease-in-out;
-}
+} */
 
 /* | ---------------------- | */
 /* | - CSS DASHBOARD MENU - | */
 /* | ---------------------- | */
 
-.dasboard-menu-container {
+/* .dasboard-menu-container {
   height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
-}
+} */
 
 /* scale resolution for resolution under 1024px */
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .containt {
     height: auto;
   }
@@ -85,10 +107,10 @@
   .content-box {
     flex-direction: column;
   }
-}
+} */
 
 /* scale resolution for resolution above 1024px */
-@media screen and (min-width: 1400px) {
+/* @media screen and (min-width: 1400px) {
   .containt {
     height: calc(100vh - 64px);
   }
@@ -107,4 +129,4 @@
     width: 50%;
     margin: 20px auto;
   }
-}
+} */
