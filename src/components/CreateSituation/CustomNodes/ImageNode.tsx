@@ -5,13 +5,48 @@ import SelectedNode from "./SelectedNode";
 import imageLogo from "../../../assets/images/image.png";
 
 const ImageNode = ({data, isConnectable, selected}: any) => {
-    const inputId = `input-${Date.now()}`;
+    const inputId = `image-${Date.now()}`;
+
+    //
+    // const onChange = useCallback((evt: any) => {
+    //     setImage(evt.target.files[0].name);
+    //     data.label = evt.target.files[0].name;
+    // }, []);
     const [image, setImage] = useState(data.label);
 
+    const [file, setFile] = useState(null);
+    const [fileList, setFileList] = useState([]);
+
     const onChange = useCallback((evt: any) => {
-        setImage(evt.target.files[0].name);
-        data.label = evt.target.files[0].name;
+        const selectedFile = evt.target.files[0];
+        if (selectedFile) {
+            const id = Date.now();
+            setImage(selectedFile.name);
+            setFile(selectedFile);
+            data.label = evt.target.files[0].name;
+            data.storeId = id;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                // @ts-ignore
+                const fileData = e.target.result;
+                const fileObject = {
+                    storeId: id,
+                    name: selectedFile.name,
+                    type: selectedFile.type,
+                    size: selectedFile.size,
+                    data: fileData
+                };
+                // @ts-ignore
+                setFileList(prevFileList => [...prevFileList, fileObject]);
+            };
+            reader.readAsDataURL(selectedFile);
+        }
     }, []);
+
+    useEffect(() => {
+        console.log(fileList)
+    }, [fileList])
 
     const outline = selected ? '2px solid blue' : '0px';
 

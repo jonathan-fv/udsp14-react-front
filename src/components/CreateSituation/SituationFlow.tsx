@@ -109,17 +109,30 @@ const CreateSituationFlow = () => {
         y: event.clientY - reactFlowBounds.top,
       });
 
-      const label =
-          situationType === 'question'
-              ? 'Question'
-              : situationType === 'sound' || situationType === 'image'
-                  ? 'Média'
-                  : situationType === 'input'
-                      ? 'Début de la situation'
-                      : situationType === 'output'
-                          ? 'Fin de situation'
-                          : 'Réponse';
-
+      let label;
+      switch (situationType) {
+        case 'question':
+          label = 'Question';
+          break;
+        case 'image':
+          label = 'Image';
+          break;
+        case 'sound':
+          label = 'Son';
+          break;
+        case 'input':
+          label = 'Début de la situation';
+          break;
+        case 'output':
+          label = 'Fin de situation';
+          break;
+        case 'answer':
+          label = 'Réponse';
+          break
+        default:
+          label = 'Inconnue';
+          break;
+      }
 
       const newNode = {
         id: getId(),
@@ -171,7 +184,7 @@ const CreateSituationFlow = () => {
             .map((edge) => {
               const targetObj = updatedNodes.find((node) => node.id === edge.target);
               // @ts-ignore
-              return { name: targetObj.data.label, type: targetObj.type };
+              return { id: targetObj.data.storeId ,path: targetObj.data.label, type: targetObj.type };
             });
 
         return { id, label, type, targets, media };
