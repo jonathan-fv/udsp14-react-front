@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Root } from "../../type/SituationTypes";
+import { Root } from "../../types/SituationTypes";
 import Answer from './Answer';
 import { useState } from "react";
 

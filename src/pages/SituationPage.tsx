@@ -1,5 +1,5 @@
 import api from "../services/API";
-import { Root } from "../type/SituationTypes";
+import { Root } from "../types/SituationTypes";
 import { useEffect, useState } from "react";
 import SituationDetail from "../components/situationDetail/SituationDetail";
 import "../App.css";

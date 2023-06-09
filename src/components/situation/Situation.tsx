@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SituationType } from "../../type/SituationTypes";
+import { SituationType } from "../../types/SituationTypes";
 import "./Situation.css";
 
 type Props = {
