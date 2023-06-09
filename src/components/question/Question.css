@@ -1,16 +1,9 @@
-.box_answer {
+.question_box {
     height: calc(100vh - 64px);
     width: 100%;
+    border: 5px solid aquamarine;
 }
 
-.container_question {
-    width: 85%;
-    border-radius: 5px;
-}
-
-  
-@media screen and (min-width: 840px) {
-    .container_question {
-      width: 30%;
-    }
+.question_buttons {
+    border: 5px solid red;
 }

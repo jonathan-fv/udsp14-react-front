@@ -17,17 +17,14 @@ const Question = (props: Props) => {
     }
 
     return (
-        <div>
-            <h1>question</h1>
-            <div className="box_answer lg:flex-row">
-                {situation.flow.map(({ id, type, label, targets, media }) => {
-                    return (currentQuestion ? id === currentQuestion : type === "initial") && (
-                        <div className="container_question text-center m-5">
-                            <Answer media={media} onClick={onClick} flow={situation.flow} id={id} type={type} label={label} targets={targets} />
-                        </div>
-                    );
-                })}
-            </div>
+        <div className="question_box">
+            {situation.flow.map(({ id, type, label, targets, media }) => {
+                return (currentQuestion ? id === currentQuestion : type === "initial") && (
+                    <div className="question_buttons">
+                        <Answer media={media} onClick={onClick} flow={situation.flow} id={id} type={type} label={label} targets={targets} />
+                    </div>
+                );
+            })}
         </div>
     );
 }
