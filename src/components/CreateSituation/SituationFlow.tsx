@@ -21,6 +21,8 @@ import InputNode from "./CustomNodes/InitialNode";
 import InitialNode from "./CustomNodes/InitialNode";
 import finalNode from "./CustomNodes/FinalNode";
 import CreateSituationForm from "./CreateSituationForm";
+import api from "../../services/API";
+import {redirect, useNavigate} from "react-router-dom";
 
 const initialNodes = [
   {
@@ -91,6 +93,8 @@ const CreateSituationFlow = () => {
     final: finalNode
   }), []);
 
+  const navigate = useNavigate();
+
   const onDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
@@ -153,8 +157,7 @@ const CreateSituationFlow = () => {
   }, []);
 
 
-  const onSave = useCallback(() => {
-
+  const onSave = useCallback(async () => {
 
     if (reactFlowInstance) {
       // @ts-ignore
@@ -165,8 +168,8 @@ const CreateSituationFlow = () => {
       }));
 
       const filteredArray = updatedNodes.map((obj) => {
-        const { id, type } = obj;
-        const { label } = obj.data;
+        const {id, type} = obj;
+        const {label} = obj.data;
         const targets = obj.edges
             .map((edge) => edge.target)
             .filter((target) => {
@@ -184,12 +187,12 @@ const CreateSituationFlow = () => {
             .map((edge) => {
               const targetObj = updatedNodes.find((node) => node.id === edge.target);
               // @ts-ignore
-              return { id: targetObj.data.storeId ,path: targetObj.data.label, type: targetObj.type };
+              return {id: targetObj.data.storeId, path: targetObj.data.label, type: targetObj.type};
             });
 
-        return { id, label, type, targets, media };
+        return {id, label, type, targets, media};
       });
-      
+
 
       const localStorageKey = 'raw';
       const flow = 'flow';
@@ -199,12 +202,21 @@ const CreateSituationFlow = () => {
       localStorage.setItem(localStorageKey, JSON.stringify(reactFlowInstance.toObject()));
 
       const returnObj = {
-        "situation": formStoreRef.current,
-        "flow": filteredArray,
-        "raw": reactFlowInstance.toObject()
-      }
+        situation: formStoreRef.current,
+        flow: filteredArray,
+        raw: reactFlowInstance.toObject()
+      };
 
-      console.log(returnObj)
+      try {
+        const response = await api.post('situations', returnObj);
+        console.log(response.data);
+        console.log(response)
+        if (response.status === 201) {
+          navigate('/administration/situations')
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, [reactFlowInstance]);
 
