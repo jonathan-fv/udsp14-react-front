@@ -7,11 +7,11 @@ type Props = {
 };
 
 const Question = (props: Props) => {
-    const [currentQuestion, setCurrentQuestion] = useState<number>();
+    const [currentQuestion, setCurrentQuestion] = useState<string>();
 
     const { situation } = props;
 
-    const onClick = (answerTarget: number) => {
+    const onClick = (answerTarget: string) => {
         setCurrentQuestion(answerTarget)
     }
 
