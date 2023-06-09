@@ -1,6 +1,7 @@
 import { Flow, MediaType } from '../../type/SituationTypes';
 import './Question.css';
 import pls from '../../assets/images/pls-1.jpg';
+import { Link } from 'react-router-dom';
 
 type Props = {
     id: number;
@@ -30,13 +31,19 @@ const Answer = (props: Props) => {
                     return (
                         <div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
                             {flow.map(x => {
-                                return answer === x.id && (
+                                return (answer === x.id) && (
                                     <button onClick={() => onClick(x.targets[0])}>{x.label}</button>
-                                )
+                                );
                             })}
                         </div>
                     );
                 })
+            }
+
+            {type === 'final' &&
+                <div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
+                    <Link to="/">Retour à l'accueil</Link>
+                </div>
             }
         </div>
     );

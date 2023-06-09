@@ -16,7 +16,7 @@ const DashboardSituations = () => {
 
     const deleteSituation = (id: string) => {
         axios.delete(`${baseURL}/${id}`).then(() => {
-            alert("Situations Supprimer!");
+            alert("Situations Supprimée!");
             window.location.reload();
       });
     };
