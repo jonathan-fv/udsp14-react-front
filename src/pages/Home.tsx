@@ -21,7 +21,7 @@ const Home = () => {
   console.log(data);
 
   return (
-    <div className="box_situation flex flex-col items-center justify-center lg:flex-row">
+    <div className="box_situation flex flex-wrap items-center justify-center lg:flex-row">
       {data.map(({ situation, _id }) => {
         return (
           <div className="container_situation text-center m-5">
