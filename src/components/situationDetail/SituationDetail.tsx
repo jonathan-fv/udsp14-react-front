@@ -14,9 +14,9 @@ const SituationDetail = (props: Props) => {
   const { situation } = props;
 
   const navigate = useNavigate();
-  const handleGoBack = () => {
+  /*const handleGoBack = () => {
     navigate(-1);
-  };
+  };*/
 
   return (
     <div className="box_details">

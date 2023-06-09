@@ -22,7 +22,6 @@ import finalNode from "./CustomNodes/FinalNode";
 import api from "../../services/API";
 import { useNavigate } from "react-router-dom";
 import SituationForm from "./Form/SituationForm";
-import {type} from "os";
 
 type SituationFlowProps = {
   situationId?: string | undefined;
@@ -58,7 +57,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [isSaveDisabled, setIsSaveDisabled] = useState({ disabled: true , message: 'Veuillez remplir le formulaire' });
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
-  const onConnect = useCallback((params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback((params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onDragOver = useCallback((event: { preventDefault: () => void; dataTransfer: { dropEffect: string; }; }) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
@@ -85,10 +84,11 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
     } else {
       setNodes(initialNodes);
     }
-  }, [situationId]);
+  }, [situationId, setEdges, setNodes, reactFlowInstance]);
 
   useEffect(() => {
     saveDisable();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nodes,  edges, formStoreRef, formStore]);
 
   /**
@@ -158,7 +158,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
 
       setNodes((nds) => nds.concat(newNode));
 
-    }, [reactFlowInstance]
+    }, [reactFlowInstance, setNodes]
   );
 
   const onSave = useCallback(async () => {
@@ -231,7 +231,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
         }
       }
     }
-  }, [reactFlowInstance]);
+  }, [reactFlowInstance, navigate, situationId]);
 
   const onRestore = useCallback(() => {
     if (reactFlowInstance) {
@@ -256,7 +256,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
         }
       }
     }
-  }, [reactFlowInstance]);
+  }, [reactFlowInstance, setNodes, setEdges, situationId]);
 
   const onDelete = () => {
     if (selectedNode) {
@@ -310,7 +310,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
   const onEdgeUpdate = useCallback((oldEdge: Edge<any>, newConnection: Connection) => {
     edgeUpdateSuccessful.current = false;
     setEdges((eds) => updateEdge(oldEdge, newConnection, eds));
-  }, []);
+  }, [setEdges]);
 
   const onEdgeUpdateEnd = useCallback((_: any, edge: { id: string; }) => {
     if (!edgeUpdateSuccessful.current) {
@@ -318,7 +318,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
     }
 
     edgeUpdateSuccessful.current = true;
-  }, []);
+  }, [ setEdges ]);
 
   // Method to check if the connection is valid
   const isValidConnection = (connection: Connection): boolean => {

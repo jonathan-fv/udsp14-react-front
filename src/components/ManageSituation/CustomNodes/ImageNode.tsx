@@ -1,4 +1,4 @@
-import {ChangeEvent, memo, useCallback, useEffect, useState} from "react";
+import {memo, useCallback, useState} from "react";
 import { Handle, Position } from "reactflow";
 import SelectedNode from "./SelectedNode";
 

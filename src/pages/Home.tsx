@@ -22,7 +22,7 @@ const Home = () => {
     <div className="box_situation flex flex-wrap items-center justify-center lg:flex-row">
       {data.map(({ situation, _id }) => {
         return (
-          <div className="container_situation text-center m-5">
+          <div className="container_situation text-center m-5" key={_id}>
             <Situation _id={_id} situation={situation} />
           </div>
         );

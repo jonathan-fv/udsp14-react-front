@@ -8,7 +8,7 @@ const InitialNode = ({data, isConnectable, selected}: any) => {
     const onChange = useCallback((evt: any) => {
         setText(evt.target.value);
         data.label = evt.target.value;
-    }, []);
+    }, [setText]);
 
     const outline = selected ? '2px solid red' : '0px';
 

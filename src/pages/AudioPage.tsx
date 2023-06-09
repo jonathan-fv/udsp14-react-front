@@ -5,7 +5,6 @@ import api from "../services/API";
 import { Root } from "../types/SituationTypes";
 
 import Question from '../components/question/Question';
-import "../App.css";
 
 const AudioPage = () => {
   const { id } = useParams();
@@ -18,8 +17,8 @@ const AudioPage = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData().catch((err) => console.log(err));
+  }, [data]);
 
   return (
     <div>

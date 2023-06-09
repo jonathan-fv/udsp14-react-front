@@ -16,8 +16,8 @@ const SituationPage = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData().catch((err) => console.log(err));
+  }, [data]);
 
   return <div>{data && <SituationDetail situation={data} />}</div>;
 };

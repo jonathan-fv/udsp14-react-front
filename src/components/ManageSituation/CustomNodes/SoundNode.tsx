@@ -9,7 +9,7 @@ const SoundImage = ({data, isConnectable, selected}: any) => {
     const onChange = useCallback((evt: any) => {
         setImage(evt.target.value);
         data.label = evt.target.value;
-    }, []);
+    }, [setImage]);
 
     const outline = selected ? '2px solid blue' : '0px';
 
