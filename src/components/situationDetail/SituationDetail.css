@@ -1,9 +1,45 @@
 .box_details {
-  border: 5px solid red;
   width: 100%;
   height: calc(100vh - 64px);
 }
-.button_situatuion {
+
+/* .box_details_img img {
+  border: 5px solid blue;
+  display: block;
+}
+
+.box_details_img p {
+  border: 5px solid rgb(52, 156, 130);
+  display: block;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.box_details_img {
+  border: 5px solid red;
+  padding: 10px;
+  display: block;
+}
+
+@media screen and (min-width: 640px) {
+    .box_details_img {
+      display: inline-block;
+    }
+    .box_details_img p {
+      display: inline;
+      width: 20%;
+    }
+    .box_details_img img {
+      display: inline;
+    }
+} */
+
+.button_situation {
   padding: 30px 20px;
-  font-weight: bold;
+  width: 6rem;
+  margin: 30px auto;
+  color: white;
+  font-weight: bolder;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Root } from "../../type/SituationTypes";
 
 import pls from "../../assets/images/pls-1.jpg";
-import "./SituationDetail1.css";
+import "./SituationDetail.css";
 
 type Props = {
   situation: Root;

@@ -16,8 +16,13 @@ export interface Root {
     id: number
     label: string
     type: string
-    edge: number[]
-    audio_path: string
+    targets: number[]
+    media: MediaType[]
+  }
+
+  export interface MediaType {
+    name: string;
+    type: string;
   }
   
   export interface Row {}

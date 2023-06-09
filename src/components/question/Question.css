@@ -1,0 +1,16 @@
+.box_answer {
+    height: calc(100vh - 64px);
+    width: 100%;
+}
+
+.container_question {
+    width: 85%;
+    border-radius: 5px;
+}
+
+  
+@media screen and (min-width: 840px) {
+    .container_question {
+      width: 30%;
+    }
+}
