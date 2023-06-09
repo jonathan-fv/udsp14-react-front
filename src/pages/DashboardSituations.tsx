@@ -25,6 +25,7 @@ const DashboardSituations = () => {
         return situations.map(situation => 
             <SituationsPanel
                 key={situation._id}
+                id={situation._id}
                 title={situation.situation.title}
                 desc={situation.situation.description}
                 delete={() => deleteSituation(situation._id)}

@@ -9,6 +9,7 @@ import DashboardSituations from "./pages/DashboardSituations";
 import FrontLayout from "./components/layouts/FrontLayout";
 import BackLayout from "./components/layouts/BackLayout";
 import Users from "./pages/Users";
+import EditSituationPage from "./pages/EditSituationPage";
 
 const MainRoute = () => {
   return (
@@ -24,6 +25,7 @@ const MainRoute = () => {
         <Route path='dashboard' element={<DashboardMenu />}/>
         <Route path="situations" element={<DashboardSituations />}/>
         <Route path='create-situation' element={<CreateSituationPage />}/>
+        <Route path='edit-situation/:id' element={<EditSituationPage />}/>
         <Route path='users' element={<Users />} />
       </Route>
     </Routes>
