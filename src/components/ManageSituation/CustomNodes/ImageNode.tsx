@@ -44,10 +44,6 @@ const ImageNode = ({data, isConnectable, selected}: any) => {
         }
     }, []);
 
-    useEffect(() => {
-        console.log(fileList)
-    }, [fileList])
-
     const outline = selected ? '2px solid blue' : '0px';
 
     return (

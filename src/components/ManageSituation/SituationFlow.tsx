@@ -157,7 +157,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
       };
 
       setNodes((nds) => nds.concat(newNode));
-      console.log(nodes);
+
     }, [reactFlowInstance]
   );
 
@@ -165,7 +165,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
     if (reactFlowInstance) {
       // @ts-ignore
       let flowData = reactFlowInstance.toObject();
-      console.log(flowData);
+
       const updatedNodes = flowData.nodes.map(node => ({
         ...node,
         edges: flowData.edges.filter(edge => edge.source === node.id)

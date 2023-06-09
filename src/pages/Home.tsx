@@ -18,8 +18,6 @@ const Home = () => {
     getData();
   }, []);
 
-  console.log(data);
-
   return (
     <div className="box_situation flex flex-wrap items-center justify-center lg:flex-row">
       {data.map(({ situation, _id }) => {

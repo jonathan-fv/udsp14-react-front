@@ -9,24 +9,17 @@ import "../App.css";
 
 const AudioPage = () => {
   const { id } = useParams();
-  //console.log("id = " + id);
 
   const [data, setData] = useState<Root>();
 
   const getData = async () => {
     const results = await api.get<Root>(`situations/${id}`);
     setData(results.data);
-    //console.log(results);
   };
 
   useEffect(() => {
     getData();
   }, []);
-
-  console.log(data);
-
-  // log output of axios api
-  //console.log("API id = " + data);
 
   return (
     <div>

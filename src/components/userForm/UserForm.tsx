@@ -47,7 +47,6 @@ const UserForm = ({ type, title, buttonText, selectedUser, setSelectedUser }: Us
 		Object.keys(data).forEach(key => {
 			form[key].value = '';
 		});
-		console.log(selectedUser)
 	}
 
 	return (
