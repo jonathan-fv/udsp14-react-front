@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { Root } from "../../type/SituationTypes";
+import { Root } from "../../types/SituationTypes";
 
 import './SituationDetail.css';
 

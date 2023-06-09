@@ -1,12 +1,7 @@
 import UserForm, {UserFormProps} from "../components/userForm/UserForm";
 import {useEffect, useState} from "react";
 import API from "../services/API";
-
-export type UserType = {
-  userid?: string;
-  username: string;
-  role: number;
-}
+import {UserType} from "../types/UserType";
 
 const User = () => {
   const [selectedUser, setSelectedUser] = useState<UserType | undefined | null>(null);
@@ -51,16 +46,14 @@ const User = () => {
               <thead>
                 <tr>
                   <th className='px-4 py-2'>Identifiant</th>
-                  <th className='px-4 py-2'>Rôle</th>
-                  <th className='px-4 py-2'>Actions</th>
+                  <th className='px-4 py-2 w-72'>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {users?.length ? users.map((user: UserType) => (
                   <tr key={user.userid}>
                     <td className='bg-amber-100 border border-yellow-800 px-4 py-2'>{user.username}</td>
-                    <td className='bg-amber-100 border border-yellow-800 px-4 py-2'>{user.role === 1 ? 'Administrateur' : 'Éditeur'}</td>
-                    <td className='bg-amber-100 border border-yellow-800 py-2 text-center grid gap-1'>
+                    <td className='bg-amber-100 border border-yellow-800 py-2 text-center'>
                       <button
                         className='bg-lime-600 hover:bg-green-700 text-white text-sm font-bold mx-2 py-2 px-4 rounded'
                         onClick={() => setSelectedUser(user)}

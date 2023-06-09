@@ -1,7 +1,7 @@
 import API from "../../services/API";
 import React, {useEffect, useState} from "react";
-import { UserType } from "../../pages/Users";
 import passwordValidation from "../../services/passwordValidation";
+import { UserType } from "../../types/UserType";
 
 export type UserFormProps = {
 	type: 'add' | 'edit';
