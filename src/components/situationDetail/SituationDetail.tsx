@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 import { Root } from "../../types/SituationTypes";
 
@@ -13,10 +13,10 @@ type Props = {
 const SituationDetail = (props: Props) => {
   const { situation } = props;
 
-  const navigate = useNavigate();
-  /*const handleGoBack = () => {
-    navigate(-1);
-  };*/
+	/*const navigate = useNavigate();
+	const handleGoBack = () => {
+		navigate(-1);
+	};*/
 
   return (
     <div className="box_details">
@@ -42,7 +42,7 @@ const SituationDetail = (props: Props) => {
 
       {/* INIT Q-&-A */}
       <div className="bg-cyan-400 hover:bg-cyan-700 rounded-full flex justify-center text-4xl m-10 button_situation">
-        <Link to={"/audio/" + situation._id}>112</Link>
+        <Link to={"/simulation/" + situation._id}>112</Link>
       </div>
       {/* RETURN TO THE 
       LAST PAGE */}

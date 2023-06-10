@@ -1,4 +1,4 @@
-import api from "../services/API";
+import API from "../services/API";
 import { Root } from "../types/SituationTypes";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ const Home = () => {
   const [data, setData] = useState<Root[]>([]);
 
   const getData = async () => {
-    const results = await api.get<Root[]>("situations");
+    const results = await API.get<Root[]>("situations");
     setData(results.data);
   };
 

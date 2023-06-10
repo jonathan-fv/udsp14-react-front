@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import api from "../services/API";
+import API from "../services/API";
 import { Root } from "../types/SituationTypes";
 
 import Question from '../components/question/Question';
 
-const AudioPage = () => {
+const SimulationPage = () => {
   const { id } = useParams();
 
   const [data, setData] = useState<Root>();
 
   const getData = async () => {
-    const results = await api.get<Root>(`situations/${id}`);
+    const results = await API.get<Root>(`situations/${id}`);
     setData(results.data);
   };
 
   useEffect(() => {
     getData().catch((err) => console.log(err));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (
@@ -27,4 +28,4 @@ const AudioPage = () => {
   );
 };
 
-export default AudioPage;
+export default SimulationPage;
