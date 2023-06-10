@@ -18,10 +18,10 @@ export const nodeLabelHandler = (nodeType: string) => {
 			break;
 		case 'answer':
 			label = 'Réponse';
-			break
+			break;
 		default:
 			label = 'Inconnue';
 			break;
 	}
 	return label;
-}
+};

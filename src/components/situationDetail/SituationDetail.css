@@ -1,6 +1,6 @@
 .box_details {
-  width: 100%;
-  height: calc(100vh - 64px);
+	width: 100%;
+	height: calc(100vh - 64px);
 }
 
 /* .box_details_img img {
@@ -35,11 +35,11 @@
 } */
 
 .button_situation {
-  padding: 30px 20px;
-  width: 6rem;
-  margin: 30px auto;
-  color: white;
-  font-weight: bolder;
-  transition: all 0.25s ease-in-out;
-  cursor: pointer;
+	padding: 30px 20px;
+	width: 6rem;
+	margin: 30px auto;
+	color: white;
+	font-weight: bolder;
+	transition: all 0.25s ease-in-out;
+	cursor: pointer;
 }

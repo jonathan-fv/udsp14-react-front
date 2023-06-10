@@ -1,13 +1,13 @@
-import React, {MutableRefObject} from "react";
-import {nodeLabelHandler} from "./nodeLabelHandler";
-import {ReactFlowInstance} from "reactflow";
+import React, { MutableRefObject } from 'react';
+import { nodeLabelHandler } from './nodeLabelHandler';
+import { ReactFlowInstance } from 'reactflow';
 
 export const handleNodeDrop = (
 	event: React.DragEvent<HTMLDivElement>,
 	reactFlowWrapper: MutableRefObject<any>,
-	reactFlowInstance: ReactFlowInstance<any,any> | null,
-	getId: (type: string) => string) => {
-
+	reactFlowInstance: ReactFlowInstance<any, any> | null,
+	getId: (type: string) => string
+) => {
 	// @ts-ignore
 	const reactFlowBounds = reactFlowWrapper?.current?.getBoundingClientRect();
 	const type = event.dataTransfer.getData('application/reactflow');
@@ -29,4 +29,4 @@ export const handleNodeDrop = (
 		position,
 		data: { label: nodeLabelHandler(situationType) },
 	};
-}
+};

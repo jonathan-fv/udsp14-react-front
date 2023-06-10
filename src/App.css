@@ -1,11 +1,11 @@
 .box_situation {
-  height: calc(100vh - 64px);
-  width: 100%;
+	height: calc(100vh - 64px);
+	width: 100%;
 }
 
 .container_situation {
-  width: 85%;
-  border-radius: 5px;
+	width: 85%;
+	border-radius: 5px;
 }
 
 /* @media screen and (min-width: 640px) {
@@ -15,9 +15,9 @@
 } */
 
 @media screen and (min-width: 840px) {
-  .container_situation {
-    width: 30%;
-  }
+	.container_situation {
+		width: 30%;
+	}
 }
 
 /* | ------------ | */
@@ -89,13 +89,13 @@
 /* | - CSS DASHBOARD MENU - | */
 /* | ---------------------- | */
 
- .dasboard-menu-container {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
+.dasboard-menu-container {
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
 }
 
 /* scale resolution for resolution under 1024px */

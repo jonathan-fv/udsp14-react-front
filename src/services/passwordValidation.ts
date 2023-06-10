@@ -13,7 +13,13 @@ const passwordValidation = (password: string): boolean => {
 	const lowercaseRegex = /(?=(.*[a-z]))/;
 	const digitsRegex = /(?=(.*\d){2})/;
 
-	if (!(uppercaseRegex.test(password) && lowercaseRegex.test(password) && digitsRegex.test(password))) {
+	if (
+		!(
+			uppercaseRegex.test(password) &&
+			lowercaseRegex.test(password) &&
+			digitsRegex.test(password)
+		)
+	) {
 		return false;
 	}
 
@@ -24,6 +30,6 @@ const passwordValidation = (password: string): boolean => {
 
 	// Check against forbidden passwords
 	return !forbiddenPasswords.includes(password);
-}
+};
 
 export default passwordValidation;

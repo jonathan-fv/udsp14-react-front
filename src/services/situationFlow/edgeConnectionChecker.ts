@@ -1,6 +1,9 @@
-import {Connection, Node} from "reactflow";
+import { Connection, Node } from 'reactflow';
 
-export const edgeConnectionChecker = (connection: Connection, nodes: Node[]) => {
+export const edgeConnectionChecker = (
+	connection: Connection,
+	nodes: Node[]
+) => {
 	const sourceNode = nodes.find((node) => node.id === connection.source);
 	const targetNode = nodes.find((node) => node.id === connection.target);
 
@@ -12,12 +15,18 @@ export const edgeConnectionChecker = (connection: Connection, nodes: Node[]) => 
 			(sourceNode.type === 'answer' && targetNode.type === 'final') ||
 			(sourceNode.type === 'question' && targetNode.type === 'answer') ||
 			(targetNode.type === 'output' && sourceNode.type === 'answer') ||
-			(targetNode.type === 'sound' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string)) ||
-			(targetNode.type === 'image' && ['question', 'answer', 'initial', 'final'].includes(sourceNode.type as string))
+			(targetNode.type === 'sound' &&
+				['question', 'answer', 'initial', 'final'].includes(
+					sourceNode.type as string
+				)) ||
+			(targetNode.type === 'image' &&
+				['question', 'answer', 'initial', 'final'].includes(
+					sourceNode.type as string
+				))
 		) {
 			return true;
 		}
 	}
 
 	return false;
-}
+};
