@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import React from "react";
-import NavBar from "../navbar/NavBar";
+import { Outlet } from 'react-router-dom';
+import React from 'react';
+import NavBar from '../navbar/NavBar';
 
 const FrontLayout = () => {
 	return (
@@ -10,7 +10,7 @@ const FrontLayout = () => {
 			</header>
 			<Outlet />
 		</>
-	)
+	);
 };
 
 export default FrontLayout;

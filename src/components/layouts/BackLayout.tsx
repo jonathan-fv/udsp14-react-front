@@ -1,6 +1,6 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import NavbarDashboard from "../navbar-dashboard/NavbarDashboard";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import NavbarDashboard from '../navbar-dashboard/NavbarDashboard';
 
 const BackLayout = () => {
 	return (
@@ -10,7 +10,7 @@ const BackLayout = () => {
 			</header>
 			<Outlet />
 		</>
-	)
+	);
 };
 
 export default BackLayout;
