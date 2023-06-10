@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SituationPage from "./pages/SituationPage";
-import AudioPage from "./pages/AudioPage";
+import SimulationPage from "./pages/SimulationPage";
 import Home from "./pages/Home";
 import CreateSituationPage from "./pages/CreateSituationPage";
 import DashboardMenu from "./pages/DashboardMenu";
@@ -18,7 +18,7 @@ const MainRoute = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path='/situation/:id' element={<SituationPage />}/>
-        <Route path='/audio/:id' element={<AudioPage />}/>
+        <Route path='/simulation/:id' element={<SimulationPage />}/>
       </Route>
       <Route path={'/administration'} element={<BackLayout />}>
         <Route path="login" element={<LoginPage />} />

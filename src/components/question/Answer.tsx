@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Answer = (props: Props) => {
-    const { id, type, label, targets, flow, media, onClick } = props;
+    const { type, label, targets, flow, media, onClick } = props;
     return(
         <div className="flex flex-col flex-wrap items-center">
                 <div className="">
