@@ -1,4 +1,4 @@
-const SelectedNode = ({ selected = false, removeNode }: any) => {
+const SelectedNodeIndicator = ({ selected = false, removeNode }: any) => {
   return(
     selected &&
     <div
@@ -10,4 +10,4 @@ const SelectedNode = ({ selected = false, removeNode }: any) => {
   )
 };
 
-export default SelectedNode;
+export default SelectedNodeIndicator;

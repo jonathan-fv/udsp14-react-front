@@ -1,4 +1,4 @@
-import api from "../services/API";
+import API from "../services/API";
 import { Root } from "../types/SituationTypes";
 import { useEffect, useState } from "react";
 import SituationDetail from "../components/situationDetail/SituationDetail";
@@ -7,21 +7,18 @@ import { useParams } from "react-router-dom";
 
 const SituationPage = () => {
   const { id } = useParams();
-  //console.log("id = " + id);
 
   const [data, setData] = useState<Root>();
 
   const getData = async () => {
-    const results = await api.get<Root>(`situations/${id}`);
+    const results = await API.get<Root>(`situations/${id}`);
     setData(results.data);
-    //console.log(results);
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  console.log(data);
+    getData().catch((err) => console.log(err));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return <div>{data && <SituationDetail situation={data} />}</div>;
 };

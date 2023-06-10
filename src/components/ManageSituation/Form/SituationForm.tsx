@@ -1,6 +1,6 @@
 import "./SituationForm.css";
 import React, {useCallback, useEffect, useState} from "react";
-import api from "../../../services/API";
+import API from "../../../services/API";
 import {useParams} from "react-router-dom";
 
 type CreateSituationFormProps = {
@@ -16,7 +16,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 
     useEffect(() => {
         if (id) {
-            api
+            API
                 .get(`/situations/${id}`).then((response) => {
                     setTitle(response.data.situation.title);
                     setDescription(response.data.situation.description);
@@ -27,7 +27,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
                 })
                 .catch((error) => console.log(error));
         }
-    }, [id]);
+    }, [id, onUpdate]);
 
     const onTitleChange = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
         const newTitle = evt.target.value;

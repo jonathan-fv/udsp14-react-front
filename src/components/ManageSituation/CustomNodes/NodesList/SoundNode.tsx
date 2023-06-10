@@ -1,21 +1,21 @@
-import {memo, useCallback, useState} from "react";
+import { memo, useCallback } from "react";
 import { Handle, Position } from "reactflow";
-import SelectedNode from "./SelectedNode";
-import soundLogo from "../../../assets/images/music.png"
+import SelectedNodeIndicator from "../SelectedNodeIndicator";
+import soundLogo from "../../../../assets/images/music.png"
 
 const SoundImage = ({data, isConnectable, selected}: any) => {
     const inputId = `input-${Date.now()}`;
-    const [image, setImage] = useState('Aucun son sélectionné');
+    //const [image, setImage] = useState('Aucun son sélectionné');
     const onChange = useCallback((evt: any) => {
-        setImage(evt.target.value);
+        //setImage(evt.target.value);
         data.label = evt.target.value;
-    }, []);
+    }, [data]);
 
     const outline = selected ? '2px solid blue' : '0px';
 
     return (
         <div  style={{border: '2px solid purple', padding: '5px', position: 'relative', outline: outline }} className={"w-12 h-12 flex items-center justify-center rounded-full"}>
-            <SelectedNode selected={selected} />
+            <SelectedNodeIndicator selected={selected} />
             {/*<input type={"file"} accept={"audio/*"} onChange={onChange}></input>*/}
             <label htmlFor={inputId}
                    className="inline-block w-5 h-5 rounded-full bg-white cursor-pointer">
