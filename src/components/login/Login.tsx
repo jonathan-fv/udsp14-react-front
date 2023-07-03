@@ -24,7 +24,7 @@ const Login = () => {
 						<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 							Connexion au compte
 						</h1>
-						<form className="space-y-4 md:space-y-6" action="#" onSubmit={submitLogin}>
+						<form className="space-y-4 md:space-y-6" onSubmit={submitLogin}>
 							<div>
 								<input
 									type="username"
