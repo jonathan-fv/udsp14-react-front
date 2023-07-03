@@ -1,48 +1,63 @@
 import SituationsPanel from '../components/SituationPanel/SituationPanel';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import API from '../services/API';
 
 const DashboardSituations = () => {
-	const [situations, setSituations] = useState(null);
-
-	const baseURL = 'http://localhost:8000/situations';
+	const [situations, setSituations] = useState<any[]>([]);
 
 	useEffect(() => {
-		axios.get(baseURL).then((response) => {
-			setSituations(response.data);
-		});
+		API.get('situations')
+			.then((res) => {
+				setSituations(res.data);
+			})
+			.catch((e) => console.error(e));
 	}, []);
 
 	const deleteSituation = (id: string) => {
-		axios.delete(`${baseURL}/${id}`).then(() => {
-			alert('Situations Supprimée!');
-			window.location.reload();
-		});
+		API.delete(`situations/${id}`)
+			.then(() => {
+				alert('Situations Supprimée!');
+				window.location.reload();
+			})
+			.catch((e) => console.error(e));
 	};
-
-	const renderListSituations = (situations: any[]) => {
-		return situations.map((situation) => (
-			<SituationsPanel
-				key={situation._id}
-				id={situation._id}
-				title={situation.situation.title}
-				desc={situation.situation.description}
-				delete={() => deleteSituation(situation._id)}
-			/>
-		));
-	};
-
-	if (!situations) return <p>Aucune Situation présente !</p>;
 
 	return (
-		<>
-			<div className="situations-title">
-				<h1>Toutes les Situations</h1>
-			</div>
-			<div className="situations-container">
-				{renderListSituations(situations)}
-			</div>
-		</>
+		<div className="container mx-auto px-4">
+			<h1 className="text-4xl font-bold text-center my-5">
+				Liste des situations
+			</h1>
+			<div className="h-0.5 bg-amber-300 rounded-lg mb-10" /> {/* divider */}
+			{situations && situations.length > 0 ? (
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center">
+					{situations.map((situation) => (
+						<SituationsPanel
+							key={situation._id}
+							id={situation._id}
+							title={situation.situation.title}
+							desc={situation.situation.description}
+							delete={() => deleteSituation(situation._id)}
+						/>
+					))}
+				</div>
+			) : (
+				<>
+					<p className="text-center text-xl mx-auto font-bold mb-10">
+						Aucune situation n'a été trouvée.
+					</p>
+					<p className="text-center text-xl mx-auto font-bold">
+						Vous pouvez en créer une en cliquant
+						<br />
+						sur le bouton &nbsp;
+						<span className="text-amber-600 font-bold underline underline-offset-4">
+							"Nouvelle situation"
+						</span>
+						&nbsp; situé dans la barre de navigation.
+					</p>
+				</>
+			)}
+		</div>
 	);
 };
 
