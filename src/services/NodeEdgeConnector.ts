@@ -50,8 +50,8 @@ const connectEdgesToNodes = (graphData: GraphData) => {
 
 	nodes.forEach((node) => {
 		const connectedEdges = getConnectedEdges(node.id);
-		// @ts-ignore
 		const connectedNodeIds = [
+			// @ts-ignore
 			...new Set(connectedEdges.flatMap((edge) => [edge.source, edge.target])),
 		];
 
