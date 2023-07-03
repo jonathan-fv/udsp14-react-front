@@ -35,9 +35,13 @@ const UserForm = ({
 
 		if (validPassword) {
 			if (type === 'add') {
-				API.post('auth/register', data).then((r) => console.log(r));
+				API.post('auth/register', data)
+					.then(()=> window.location.reload())
+					.catch((e) => console.error(e));
 			} else if (type === 'edit') {
-				API.put(`auth/user/${data._id}`, data).then((r) => console.log(r));
+				API.put(`auth/user/${data._id}`, data)
+					.then(()=> window.location.reload())
+					.catch((e) => console.error(e));
 			} else {
 				console.error('Invalid type form');
 			}
