@@ -1,6 +1,17 @@
 .box_details {
 	width: 100%;
 	height: calc(100vh - 64px);
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	max-width: 80%;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.text-justify {
+	font-size: 20px;
 }
 
 /* .box_details_img img {

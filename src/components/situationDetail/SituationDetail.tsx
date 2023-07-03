@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Root } from '../../types/SituationTypes';
 
 import pls from '../../assets/images/pls-1.jpg';
+
 import './SituationDetail.css';
+import AudioPlayer from '../question/AudioQuestions';
 
 type Props = {
 	situation: Root;
@@ -35,7 +37,25 @@ const SituationDetail = (props: Props) => {
 					alt={situation.situation.title}
 					className="rounded-md m-5"
 				/>
-				<p className="text-justify">{situation.situation.description}</p>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '50px',
+						maxWidth: '50%',
+						justifyContent: 'center',
+					}}
+				>
+					<p className="text-justify">{situation.situation.description}</p>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+						}}
+					>
+						<AudioPlayer />
+					</div>
+				</div>
 			</div>
 
 			{/* INIT Q-&-A */}

@@ -6,4 +6,5 @@
 
 .question_buttons {
 	border: 5px solid red;
+	cursor: pointer;
 }
