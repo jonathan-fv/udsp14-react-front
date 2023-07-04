@@ -11,24 +11,28 @@ const SituationPanel = (props: {
 
 	return (
 		<>
-			<div className="panel-container">
-				<div className="panel-title">
+			<div className="p-3 bg-amber-100 rounded-lg flex flex-col gap-3 w-full">
+				<div className="text-center text-2xl font-bold">
 					<p>{props.title}</p>
 				</div>
+				<div className="h-0.5 bg-amber-300 rounded-lg"/> {/* divider */}
 				<div className="panel-description">
 					<p>{props.desc}</p>
 				</div>
-				<div className="panel-action">
+				<div className="flex justify-end gap-3">
 					<button
-						className="panel-edit"
+						className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-100 hover:text-green-600"
 						onClick={() =>
 							navigate(`/administration/edit-situation/${props.id}`)
 						}
 					>
-						Edit
+						Éditer
 					</button>
-					<button className="panel-delete" onClick={props.delete}>
-						X
+					<button
+						className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-100 hover:text-red-600"
+						onClick={props.delete}
+					>
+						Supprimer
 					</button>
 				</div>
 			</div>

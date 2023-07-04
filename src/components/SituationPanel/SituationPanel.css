@@ -5,21 +5,9 @@
 	border-radius: 6px;
 }
 
-.panel-title,
-.panel-description {
-	margin-bottom: 10px;
-}
-
 .panel-action {
 	display: flex;
 	gap: 15px;
-}
-
-.panel-action button {
-	padding: 10px 0px;
-	width: 50px;
-	border: 1px solid black;
-	border-radius: 6px;
 }
 
 .situations-title {
