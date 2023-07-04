@@ -6,8 +6,7 @@
 	justify-content: flex-start;
 	gap: 10px;
 	margin: 10px;
-	background: #dadada;
-	height: 250px;
+	background: rgba(241, 241, 241, 0.79);
 	width: 400px;
 	padding: 5px;
 }
@@ -27,12 +26,16 @@
 }
 
 .inputSituation {
-	min-height: 15px;
 	border-radius: 5px;
 	overflow: auto;
 	border: #1a192b 1px solid;
 	padding: 5px;
 }
+
+.textSituation {
+	min-height: 100px;
+}
+
 
 .buttonSituation {
 	font-weight: bold;
