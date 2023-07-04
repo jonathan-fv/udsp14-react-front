@@ -1,10 +1,21 @@
-/* change situation button size when resolution is under 375px */
-/* @media screen and (max-width: 375px) {
-  .link-situation {
-    width: 20rem;
-  }
-} */
-.link-situation {
-	transition: all 0.3s ease-in-out;
-	display: block;
+.box_situation{
+  background: rgb(6,24,73);
+  background: linear-gradient(73deg, rgba(6,24,73,1) 24%, rgba(255,255,255,1) 50%, rgba(239,25,27,1) 72%);
+  backdrop-filter: blur(180px);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: start;
+  height: auto;
+}
+
+.link-situation{
+  display: block;
+  color : #061849;
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 10px 0;
+  margin: 0 auto;
 }
