@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import API from '../../services/API';
+import LogoUDPS from '../../assets/images/Logo_UDPS14.png';
 
 const NavbarDashboard = () => {
 	const navList = [
@@ -18,13 +20,21 @@ const NavbarDashboard = () => {
 
 	const style = 'block py-2 pl-3 pr-4 rounded text-xl ';
 
+	const logout = () => {
+		API.post('auth/logout')
+			.then(() => {
+				window.location.href = '/administration/login';
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	return (
 		<nav className="bg-white w-full z-20 border-b-2 border-b-[#051949]">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<NavLink to="dashboard" className="flex items-center">
-					<span className="self-center text-2xl font-semibold whitespace-nowrap text-[#051949]">
-						Dashboard
-					</span>
+					<img src={LogoUDPS} alt="Logo UDPS" className="w-32" />
 				</NavLink>
 				<div
 					className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -47,6 +57,14 @@ const NavbarDashboard = () => {
 								</NavLink>
 							</li>
 						))}
+						<li>
+							<button
+								className={style + 'text-red-700 hover:text-red-900'}
+								onClick={logout}
+							>
+								Déconnexion
+							</button>
+						</li>
 					</ul>
 				</div>
 			</div>
