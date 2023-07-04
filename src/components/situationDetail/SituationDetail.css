@@ -23,3 +23,21 @@
 	transition: all 0.25s ease-in-out;
 	cursor: pointer;
 }
+
+.vectors-img {
+  width: 100%;
+}
+
+.vectors-img-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28vmin;
+}
+
+.vectors-img-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 28vmin;
+}

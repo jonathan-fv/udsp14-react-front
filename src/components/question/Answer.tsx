@@ -3,6 +3,9 @@ import './Question.css';
 import pls from '../../assets/images/pls-1.jpg';
 import { Link } from 'react-router-dom';
 
+import Vector_1 from '../../assets/images/Vector_1.svg';
+import Vector_2 from '../../assets/images/Vector_2.svg';
+
 type Props = {
 	id: string;
 	type: string;
@@ -49,6 +52,11 @@ const Answer = (props: Props) => {
 					<Link to="/">Retour à l'accueil</Link>
 				</div>
 			)}
+
+			<div className="vectors-img">
+				<img className="vectors-img-left" src={Vector_2} alt="Vector 2"/>
+				<img className="vectors-img-right" src={Vector_1} alt="Vector 1"/>
+			</div>
 		</div>
 	);
 };
