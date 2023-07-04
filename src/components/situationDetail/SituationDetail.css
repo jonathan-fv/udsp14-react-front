@@ -26,8 +26,9 @@
 	justify-content: space-between;
 	justify-items: center;
 	align-items: center;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
+	z-index: 1;
 }
 
 .vectors-img-left {
@@ -69,7 +70,6 @@
 
 .box-img {
 	border-radius: 15px;
-	max-width: 800px;
 	/* height: auto; */
 	border: 1px solid red;
 }
@@ -77,8 +77,32 @@
 .detail-presentation {
 	border: 1px solid red;
 	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	justify-items: center;
 	align-items: center;
 	gap: 50px;
 	padding: 50px;
 	margin-bottom: 100px;
+	z-index: 2;
+}
+
+
+@media screen and (max-width: 980px) {
+	.detail-presentation {
+		flex-direction: column-reverse;
+		flex-wrap: wrap;
+	}
+
+	.box-img {
+		width: 60%;
+		vertical-align: middle;
+		align-items: center;
+		margin: 0 auto;
+	}
+
+	.box-detail {
+		width: 60%;
+	}
 }
