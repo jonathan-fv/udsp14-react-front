@@ -32,7 +32,7 @@ const NavbarDashboard = () => {
 
 	return (
 		<nav className="bg-white w-full z-20 border-b-2 border-b-[#051949]">
-			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
 				<NavLink to="dashboard" className="flex items-center">
 					<img src={LogoUDPS} alt="Logo UDPS" className="w-32" />
 				</NavLink>
