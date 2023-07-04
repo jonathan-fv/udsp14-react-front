@@ -20,7 +20,7 @@ const SituationPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
-	return <div className="bg-[#061849] text-white">{data && <SituationDetail situation={data} />}</div>;
+	return <div className="box-situationpage text-white">{data && <SituationDetail situation={data} />}</div>;
 };
 
 export default SituationPage;

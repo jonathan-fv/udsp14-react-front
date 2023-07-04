@@ -27,6 +27,11 @@
   overflow: auto;
 }
 
+.box-situationpage {
+	background-color: #061849;
+	height: calc(100vh - 64px);
+}
+
 
 @media screen and (min-width: 840px) {
 	.container_situation {
