@@ -32,7 +32,11 @@ const User = () => {
 	};
 
 	const onDeleteUser = (user: UserType) => {
-		API.delete(`users/${user.userid}`).then((r) => console.log(r));
+		API.delete(`auth/DeleteAndLogoutUserById/${user.userid}`)
+			.then(() => {
+				window.location.reload();
+			})
+			.catch((e) => console.error(e));
 	};
 
 	return (
