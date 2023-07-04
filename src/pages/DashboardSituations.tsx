@@ -24,13 +24,13 @@ const DashboardSituations = () => {
 	};
 
 	return (
-		<div className="container mx-auto px-4">
-			<h1 className="text-4xl font-bold text-center my-5">
+		<div className="container mx-auto px-4 h-[80vh]">
+			<h1 className="text-4xl font-bold text-center my-5 text-white">
 				Liste des situations
 			</h1>
-			<div className="h-0.5 bg-amber-300 rounded-lg mb-10" /> {/* divider */}
+			<div className="h-0.5 bg-white rounded-lg mb-10" /> {/* divider */}
 			{situations && situations.length > 0 ? (
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center h-[70vh] overflow-y-scroll">
 					{situations.map((situation) => (
 						<SituationsPanel
 							key={situation._id}

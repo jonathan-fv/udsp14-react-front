@@ -1,40 +1,39 @@
 const DashboardMenu = () => {
+	const menuList = [
+		{
+			name: 'Ajouter une nouvelle situation',
+			link: 'create-situation',
+		},
+		{
+			name: 'Liste de toutes les situations',
+			link: 'situations',
+		},
+		{
+			name: 'Liste des Utilisateurs',
+			link: 'users',
+		},
+	];
+
 	return (
-		<>
-			<div className="dasboard-menu-container">
-				<div className="menu-button">
-					<a
-						href="create-situation"
-						className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white active:bg-pink-600 font-bold uppercase px-8 py-3 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-						type="button"
-					>
-						Ajouter une nouvelle situation
-					</a>
-				</div>
-				<div className="menu-button">
-					<div className="menu-button">
-						<a
-							href="situations"
-							className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white active:bg-pink-600 font-bold uppercase px-8 py-3 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-							type="button"
+		<div className="dasboard-menu-container w-full h-[90vh]">
+			<ul className="flex flex-col px-4 py-2 gap-[3em]">
+				{menuList.map((menuItem, index) => {
+					return (
+						<li
+							key={index}
+							className="bg-white border-blue-600 rounded-lg text-center text-black hover:bg-blue-600"
 						>
-							Liste de toutes les situations
-						</a>
-					</div>
-				</div>
-				<div className="menu-button">
-					<div className="menu-button">
-						<a
-							href="/administration"
-							className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white active:bg-pink-600 font-bold uppercase px-8 py-3 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-							type="button"
-						>
-							Utilisateur
-						</a>
-					</div>
-				</div>
-			</div>
-		</>
+							<a
+								href={menuItem.link}
+								className="block px-6 py-3 text-black hover:text-white text-xl font-semibold"
+							>
+								{menuItem.name}
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
 	);
 };
 
