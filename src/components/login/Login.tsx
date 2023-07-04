@@ -1,7 +1,11 @@
 import './Login.css';
 import API from "../../services/API";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+	const navigate = useNavigate();
+
 	const submitLogin = (e: { preventDefault: () => void; target: any; }) => {
 		e.preventDefault();
 
@@ -13,7 +17,13 @@ const Login = () => {
 			password: data.get('password')
 		}
 
-		API.post('/auth/login', dataObject).then().catch((e)=>{console.log(e)})
+		API.post('/auth/login', dataObject)
+		.then(res => {
+			if(res.data.IsAuth === true) {
+				navigate('/administration/dashboard');
+			}
+		})
+		.catch((e)=>{console.log(e)})
 	};
 
 	return (
