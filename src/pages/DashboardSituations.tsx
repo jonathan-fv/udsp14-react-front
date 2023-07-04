@@ -30,7 +30,7 @@ const DashboardSituations = () => {
 			</h1>
 			<div className="h-0.5 bg-white rounded-lg mb-10" /> {/* divider */}
 			{situations && situations.length > 0 ? (
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center h-[70vh] overflow-y-scroll">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center overflow-y-scroll h-fit max-h-[70vh]">
 					{situations.map((situation) => (
 						<SituationsPanel
 							key={situation._id}

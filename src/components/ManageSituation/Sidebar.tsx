@@ -34,6 +34,26 @@ const Sidebar = ({
 		? 'border border-gray-200 p-3 bg-gray-200 text-gray-400 cursor-not-allowed'
 		: 'border border-blue-600 p-3 hover:bg-blue-600 hover:text-white rounded';
 
+	let nodeLabel
+	if (selectedNode?.type === 'image') {
+		nodeLabel = (
+			<label>{selectedNode?.data?.label}
+				<img className="w-24 m-auto" src={selectedNode?.data?.url} alt="" />
+			</label>)
+	}
+	if (selectedNode?.type === 'sound') {
+		nodeLabel = (
+			<label>{selectedNode?.data?.label}
+				<audio className="w-20 m-auto" controls src={selectedNode?.data?.url} />
+			</label>)
+	}
+	else {
+		selectedNode = selectedNode?.data?.label
+	}
+	// const nodeLabel = selectedNode?.type === 'image' ? (
+	// 	<img className="w-24 m-auto" src={selectedNode?.data?.url} alt="" />
+	// ) : selectedNode?.data?.label;
+
 	return (
 		<aside className="flex flex-col md:gap-6 gap-3 p-3">
 			<div className="flex justify-center gap-3">
@@ -94,7 +114,7 @@ const Sidebar = ({
 			<div className="h-[1px] bg-gray-200" />
 			<div className="flex flex-col justify-center gap-3">
 				<p className="text-center">Node séléctionné:</p>
-				<p>{selectedNode?.data?.label}</p>
+				{nodeLabel}
 				{selectedNode && (
 					<button
 						className={buttonDeleteClass}

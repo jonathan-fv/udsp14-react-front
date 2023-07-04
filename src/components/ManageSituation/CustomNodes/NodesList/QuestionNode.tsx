@@ -17,7 +17,7 @@ const QuestionNode = ({ data, isConnectable, selected }: any) => {
 	return (
 		<div
 			style={{
-				border: '1px solid orange',
+				border: '1px solid #2563eb',
 				padding: '5px',
 				width: '400px',
 				outline: outline,
