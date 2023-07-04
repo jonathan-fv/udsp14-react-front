@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-
 //@ts-ignore
 import audioTest from '../../assets/audio/audiotest.mp3';
 
 const AudioPlayer: React.FC = () => {
-	const [isPlaying, setIsPlaying] = useState(false);
-
-	const togglePlay = () => {
-		setIsPlaying(!isPlaying);
-	};
 
 	return (
 		<div>

@@ -8,6 +8,9 @@ import pls from '../../assets/images/pls-1.jpg';
 import './SituationDetail.css';
 import AudioPlayer from '../question/AudioQuestions';
 
+import Vector_1 from '../../assets/images/Vector_1.svg';
+import Vector_2 from '../../assets/images/Vector_2.svg';
+
 type Props = {
 	situation: Root;
 };
@@ -62,23 +65,11 @@ const SituationDetail = (props: Props) => {
 			<div className="bg-cyan-400 hover:bg-cyan-700 rounded-full flex justify-center text-4xl m-10 button_situation">
 				<Link to={'/simulation/' + situation._id}>112</Link>
 			</div>
-			{/* RETURN TO THE 
-      LAST PAGE */}
-			{/* <div>
-        <button
-          onClick={handleGoBack}
-          className="return-button bg-gray-200 rounded-full m-4 text-2xl flex items-center gap-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 320 512"
-          >
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-          </svg>
-          Accueil
-        </button>
-      </div> */}
+
+			<div className="vectors-img">
+				<img className="vectors-img-left" src={Vector_2} alt="Vector 2"/>
+				<img className="vectors-img-right" src={Vector_1} alt="Vector 1"/>
+			</div>
 		</div>
 	);
 };
