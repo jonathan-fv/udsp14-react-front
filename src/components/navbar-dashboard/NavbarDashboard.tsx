@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import API from '../../services/API';
+import LogoUDPS from '../../assets/images/Logo_UDPS14.png';
 
 const NavbarDashboard = () => {
 	const navList = [
@@ -33,9 +34,7 @@ const NavbarDashboard = () => {
 		<nav className="bg-white w-full z-20 border-b-2 border-b-[#051949]">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<NavLink to="dashboard" className="flex items-center">
-					<span className="self-center text-2xl font-semibold whitespace-nowrap text-[#051949]">
-						Dashboard
-					</span>
+					<img src={LogoUDPS} alt="Logo UDPS" className="w-32" />
 				</NavLink>
 				<div
 					className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"

@@ -20,13 +20,15 @@ const MainRoute = () => {
 				<Route path="/situation/:id" element={<SituationPage />} />
 				<Route path="/simulation/:id" element={<SimulationPage />} />
 			</Route>
-			<Route path={'/administration'} element={<BackLayout />}>
+			<Route path={'/administration'}>
 				<Route path="login" element={<LoginPage />} />
-				<Route path="dashboard" element={<DashboardMenu />} />
-				<Route path="situations" element={<DashboardSituations />} />
-				<Route path="create-situation" element={<CreateSituationPage />} />
-				<Route path="edit-situation/:id" element={<EditSituationPage />} />
-				<Route path="users" element={<Users />} />
+				<Route element={<BackLayout />}>
+					<Route path="dashboard" element={<DashboardMenu />} />
+					<Route path="situations" element={<DashboardSituations />} />
+					<Route path="create-situation" element={<CreateSituationPage />} />
+					<Route path="edit-situation/:id" element={<EditSituationPage />} />
+					<Route path="users" element={<Users />} />
+				</Route>
 			</Route>
 		</Routes>
 	);
