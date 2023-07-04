@@ -3,6 +3,7 @@ import { Handle, Position } from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
 import soundLogo from '../../../../assets/images/music.png';
 import axios from "axios";
+import API from "../../../../services/API";
 
 const SoundImage = ({ data, isConnectable, selected }: any) => {
 	const inputId = `input-${Date.now()}`;
@@ -13,7 +14,7 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 			const formData = new FormData();
 			formData.append('audios', selectedImage);
 			console.log(formData)
-			const response = await axios.post('http://localhost:8000/upload/audio', formData);
+			const response = await API.post('/upload/audio', formData);
 			return response.data.image_url;
 		} catch (error) {
 			console.log(error);
