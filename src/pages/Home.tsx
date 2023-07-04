@@ -20,6 +20,7 @@ const Home = () => {
 
 	return (
 		<div className="box_situation flex flex-wrap items-center justify-center lg:flex-row">
+			<h2 className="text-[2.8rem] m-5 text-[#061849] uppercase font-medium tracking-wide text-center">Liste de toutes les situations</h2>
 			{data.map(({ situation, _id }) => {
 				return (
 					<div className="container_situation text-center m-5" key={_id}>
