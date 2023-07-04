@@ -120,7 +120,7 @@ const SituationDetail = (props: Props) => {
 							borderRadius: 15,
 							maxWidth: '576px',
 							height: '300px',
-							border: '2px solid red',
+							border: '1px solid red',
 						}}
 					/>
 				</div>
