@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Root } from '../../types/SituationTypes';
 
 import pls from '../../assets/images/pls-1.jpg';
+import call112 from '../../assets/images/Appel112.svg';
 
 import './SituationDetail.css';
 import AudioPlayer from '../question/AudioQuestions';
@@ -24,51 +25,46 @@ const SituationDetail = (props: Props) => {
 	};*/
 
 	return (
+		// <div className="box_details"></div>
 		<div className="box_details">
-			<h1 className="text-center uppercase text-xl m-5 font-bold ">
-				{situation.situation.title}
-			</h1>
-			{/* <div className="img-box bg-gray-200 rounded-xl"></div> */}
-			{/* <img
-          src={situation.situation.image_path}
-          alt={situation.situation.title}
-          className=""
-        /> */}
-			<div className="box_details_img flex m-2 flex-col flex-nowrap items-center justify-between sm:flex-row">
-				<img
-					src={pls}
-					alt={situation.situation.title}
-					className="rounded-md m-5"
-				/>
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						gap: '50px',
-						maxWidth: '50%',
-						justifyContent: 'center',
-					}}
-				>
-					<p className="text-justify">{situation.situation.description}</p>
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-						}}
-					>
-						<AudioPlayer />
+			<div
+				style={{
+					display: 'flex',
+					gap: 200,
+					marginBottom: 250,
+					alignItems: 'center',
+				}}
+			>
+				<div className="box-detail">
+					<h2 style={{ paddingBottom: 10, fontWeight: 'bold', fontSize: 30 }}>
+						Titre de la situation
+					</h2>
+					<div className="box-title">
+						<p>{situation.situation.title}</p>
+					</div>
+					<h2 style={{ paddingBottom: 10, fontWeight: 'bold', fontSize: 30 }}>
+						Description de la situation
+					</h2>
+					<div className="box-info">
+						<p>{situation.situation.description}</p>
 					</div>
 				</div>
+				<div>
+					<img src={pls} alt={situation.situation.title} className="box-img" />
+				</div>
 			</div>
-
-			{/* INIT Q-&-A */}
-			<div className="bg-cyan-400 hover:bg-cyan-700 rounded-full flex justify-center text-4xl m-10 button_situation">
-				<Link to={'/simulation/' + situation._id}>112</Link>
+			<div>
+				<Link to={'/simulation/' + situation._id}>
+					<img
+						src={call112}
+						alt={situation.situation.title}
+						style={{ borderRadius: '50%', width: 150 }}
+					/>
+				</Link>
 			</div>
-
 			<div className="vectors-img">
-				<img className="vectors-img-left" src={Vector_2} alt="Vector 2"/>
-				<img className="vectors-img-right" src={Vector_1} alt="Vector 1"/>
+				<img className="vectors-img-left" src={Vector_2} alt="Vector 2" />
+				<img className="vectors-img-right" src={Vector_1} alt="Vector 1" />
 			</div>
 		</div>
 	);
