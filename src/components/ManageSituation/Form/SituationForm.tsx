@@ -8,7 +8,7 @@ type CreateSituationFormProps = {
 	id?: string | undefined;
 };
 const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
-	const [title, setTitle] = useState('Title');
+	const [title, setTitle] = useState('Titre');
 	const [description, setDescription] = useState('Description');
 
 	const { id } = useParams<{ id: string }>();
@@ -47,7 +47,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 	);
 
 	return (
-		<div className={'formSituation dark:bg-gray-900'}>
+		<div className={'formSituation dark:bg-gray-900 rounded min-h-fit'}>
 			<div className={'labelGroup'}>
 				<label className={'labelSituation'} htmlFor={'titleSituation'}>
 					Titre de la situation
@@ -56,7 +56,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 					className={'inputSituation'}
 					id={'titleSituation'}
 					onChange={onTitleChange}
-					value={title}
+					placeholder={title}
 				/>
 			</div>
 			<div className={'labelGroup'}>
@@ -64,10 +64,10 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 					Description de la situation
 				</label>
 				<textarea
-					className={'inputSituation'}
+					className={'inputSituation textSituation'}
 					id={'descriptionSituation'}
 					onChange={onDescChange}
-					value={description}
+					placeholder={description}
 				/>
 			</div>
 			{/*<button type={"button"} className={"buttonSituation"}>Valider</button>*/}
