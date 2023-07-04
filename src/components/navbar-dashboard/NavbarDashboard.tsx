@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import API from '../../services/API';
 
 const NavbarDashboard = () => {
 	const navList = [
@@ -17,6 +18,16 @@ const NavbarDashboard = () => {
 	];
 
 	const style = 'block py-2 pl-3 pr-4 rounded text-xl ';
+
+	const logout = () => {
+		API.post('auth/logout')
+			.then(() => {
+				window.location.href = '/administration/login';
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	return (
 		<nav className="bg-white w-full z-20 border-b-2 border-b-[#051949]">
@@ -47,6 +58,14 @@ const NavbarDashboard = () => {
 								</NavLink>
 							</li>
 						))}
+						<li>
+							<button
+								className={style + 'text-red-700 hover:text-red-900'}
+								onClick={logout}
+							>
+								Déconnexion
+							</button>
+						</li>
 					</ul>
 				</div>
 			</div>
