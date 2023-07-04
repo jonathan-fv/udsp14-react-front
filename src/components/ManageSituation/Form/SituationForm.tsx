@@ -56,7 +56,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 					className={'inputSituation'}
 					id={'titleSituation'}
 					onChange={onTitleChange}
-					placeholder={title}
+					value={title}
 				/>
 			</div>
 			<div className={'labelGroup'}>
@@ -67,7 +67,7 @@ const SituationForm: React.FC<CreateSituationFormProps> = ({ onUpdate }) => {
 					className={'inputSituation textSituation'}
 					id={'descriptionSituation'}
 					onChange={onDescChange}
-					placeholder={description}
+					value={description}
 				/>
 			</div>
 			{/*<button type={"button"} className={"buttonSituation"}>Valider</button>*/}
