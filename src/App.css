@@ -1,6 +1,11 @@
 /* | ---------------------- | */
 /* | - CSS SITUATION - | */
 /* | ---------------------- | */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: 0;
+}
 
 .box_situation {
 	height: calc(100vh - 64px);

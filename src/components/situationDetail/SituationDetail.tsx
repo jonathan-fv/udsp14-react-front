@@ -27,14 +27,7 @@ const SituationDetail = (props: Props) => {
 	return (
 		// <div className="box_details"></div>
 		<div className="box_details">
-			<div
-				style={{
-					display: 'flex',
-					gap: 200,
-					marginBottom: 250,
-					alignItems: 'center',
-				}}
-			>
+			<div className="detail-presentation">
 				<div className="box-detail">
 					<h2 style={{ paddingBottom: 10, fontWeight: 'bold', fontSize: 30 }}>
 						Titre de la situation

@@ -1,13 +1,8 @@
 .box_details {
-	width: 100%;
-	height: calc(100vh - 64px);
 	display: flex;
 	flex-direction: column;
-	padding: 30px;
-	/* gap: 50px; */
-	max-width: 80%;
 	align-items: center;
-	/* justify-content: center; */
+	flex-wrap: nowrap;
 	margin: 0 auto;
 }
 
@@ -27,19 +22,17 @@
 
 .vectors-img {
 	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	justify-items: center;
+	align-items: center;
 }
 
 .vectors-img-left {
-	position: absolute;
-	left: 0;
-	bottom: 0;
 	width: 28vmin;
 }
 
 .vectors-img-right {
-	position: absolute;
-	right: 0;
-	bottom: 0;
 	width: 28vmin;
 }
 
@@ -77,4 +70,13 @@
 	max-width: 800px;
 	/* height: auto; */
 	border: 1px solid red;
+}
+
+.detail-presentation {
+	border: 1px solid red;
+	display: flex;
+	align-items: center;
+	gap: 50px;
+	padding: 30px;
+	margin-bottom: 250px;
 }
