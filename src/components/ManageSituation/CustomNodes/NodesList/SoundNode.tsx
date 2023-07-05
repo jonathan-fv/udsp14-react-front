@@ -2,8 +2,7 @@ import { memo, useCallback } from 'react';
 import { Handle, Position } from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
 import soundLogo from '../../../../assets/images/music.png';
-import axios from "axios";
-import API from "../../../../services/API";
+import API from '../../../../services/API';
 
 const SoundImage = ({ data, isConnectable, selected }: any) => {
 	const inputId = `input-${Date.now()}`;
@@ -13,8 +12,10 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 		try {
 			const formData = new FormData();
 			formData.append('audios', selectedImage);
-			console.log(formData)
-			const response = await axios.post('http://localhost:8000/upload/audio', formData);
+			console.log(formData);
+			const response = await API.post('/upload/audio', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			});
 			return response.data.image_url;
 		} catch (error) {
 			console.log(error);
@@ -23,12 +24,12 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 
 	const onChange = useCallback(
 		async (evt: any) => {
-			const selectedFile = evt.target.files[0]
+			const selectedFile = evt.target.files[0];
 			try {
 				data.url = await handleUpload(selectedFile);
 				data.label = selectedFile.name;
 			} catch (error) {
-				console.log(error)
+				console.log(error);
 			}
 		},
 		[data]

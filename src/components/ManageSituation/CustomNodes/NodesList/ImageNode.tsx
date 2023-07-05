@@ -1,9 +1,8 @@
-import {memo, useCallback, useState} from 'react';
-import {Handle, Position} from 'reactflow';
+import { memo, useCallback, useState } from 'react';
+import { Handle, Position } from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
 import imageLogo from '../../../../assets/images/image.png';
-import API from "../../../../services/API";
-import axios from "axios";
+import API from '../../../../services/API';
 
 const ImageNode = ({ data, isConnectable, selected }: any) => {
 	const inputId = `image-${Date.now()}`;
@@ -17,35 +16,39 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 	const [file, setFile] = useState(null);
 	const [fileList, setFileList] = useState([]);
 
-
 	const handleUpload = async (selectedImage: string | Blob) => {
 		try {
 			const formData = new FormData();
 			formData.append('images', selectedImage);
-			const response = await axios.post('http://localhost:8000/upload/image', formData);
+			const response = await API.post('/upload/image', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			});
 			return response.data.image_url;
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	//@ts-ignore
-	const onChange = useCallback(async (evt) => {
-		const selectedFile = evt.target.files[0];
-		if (selectedFile) {
-			const id = Date.now();
-			setImage(selectedFile.name);
-			setFile(selectedFile);
+	const onChange = useCallback(
+		//@ts-ignore
+		async (evt) => {
+			const selectedFile = evt.target.files[0];
+			if (selectedFile) {
+				const id = Date.now();
+				setImage(selectedFile.name);
+				setFile(selectedFile);
 
-			try {
-				data.url = await handleUpload(selectedFile);
-				data.label = selectedFile.name;
-				data.storeId = id;
-			} catch (error) {
-				console.log(error)
+				try {
+					data.url = await handleUpload(selectedFile);
+					data.label = selectedFile.name;
+					data.storeId = id;
+				} catch (error) {
+					console.log(error);
+				}
+				console.log(file);
 			}
-			console.log(file)
-		}
-	}, [data]);
+		},
+		[data]
+	);
 
 	const outline = selected ? '2px solid blue' : '0px';
 
