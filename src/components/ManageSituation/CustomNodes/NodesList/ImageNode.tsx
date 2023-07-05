@@ -1,8 +1,8 @@
-import { memo, useCallback, useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import {memo, useCallback, useState} from 'react';
+import {Handle, Position} from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
-
 import imageLogo from '../../../../assets/images/image.png';
+import API from "../../../../services/API";
 
 const ImageNode = ({ data, isConnectable, selected }: any) => {
 	const inputId = `image-${Date.now()}`;
@@ -16,42 +16,43 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 	const [file, setFile] = useState(null);
 	const [fileList, setFileList] = useState([]);
 
-	const onChange = useCallback(
-		(evt: any) => {
-			const selectedFile = evt.target.files[0];
-			if (selectedFile) {
-				const id = Date.now();
-				setImage(selectedFile.name);
-				setFile(selectedFile);
-				data.label = evt.target.files[0].name;
-				data.storeId = id;
 
-				const reader = new FileReader();
-				reader.onload = (e) => {
-					// @ts-ignore
-					const fileData = e.target.result;
-					const fileObject = {
-						storeId: id,
-						name: selectedFile.name,
-						type: selectedFile.type,
-						size: selectedFile.size,
-						data: fileData,
-					};
-					// @ts-ignore
-					setFileList((prevFileList) => [...prevFileList, fileObject]);
-				};
-				reader.readAsDataURL(selectedFile);
+	const handleUpload = async (selectedImage: string | Blob) => {
+		try {
+			const formData = new FormData();
+			formData.append('images', selectedImage);
+			const response = await API.post('/upload/image', formData);
+			return response.data.image_url;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	//@ts-ignore
+	const onChange = useCallback(async (evt) => {
+		const selectedFile = evt.target.files[0];
+		if (selectedFile) {
+			const id = Date.now();
+			setImage(selectedFile.name);
+			setFile(selectedFile);
+
+			try {
+				data.url = await handleUpload(selectedFile);
+				data.label = selectedFile.name;
+				data.storeId = id;
+			} catch (error) {
+				console.log(error)
 			}
-		},
-		[data]
-	);
+			console.log(file)
+		}
+	}, [data]);
 
 	const outline = selected ? '2px solid blue' : '0px';
 
+	// @ts-ignore
 	return (
 		<div
 			style={{
-				border: '2px solid purple',
+				border: '2px solid #ca8a04',
 				padding: '5px',
 				position: 'relative',
 				outline: outline,
@@ -61,7 +62,9 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 			<SelectedNodeIndicator selected={selected} />
 			<label
 				htmlFor={inputId}
-				className="inline-block w-5 h-5 rounded-full bg-white cursor-pointer"
+				className={`inline-block w-5 h-5 rounded-full bg-white ${
+					data?.url ? 'cursor-not-allowed' : 'cursor-pointer'
+				}`}
 			>
 				<img src={imageLogo} alt="une icone symbolisant une image" />
 			</label>
@@ -72,6 +75,7 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 				className={'hidden'}
 				accept={'image/*'}
 				onChange={onChange}
+				disabled={data?.url}
 			></input>
 			<Handle
 				type="target"

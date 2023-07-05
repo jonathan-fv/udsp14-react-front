@@ -35,9 +35,13 @@ const UserForm = ({
 
 		if (validPassword) {
 			if (type === 'add') {
-				API.post('auth/register', data).then((r) => console.log(r));
+				API.post('auth/register', data)
+					.then(() => window.location.reload())
+					.catch((e) => console.error(e));
 			} else if (type === 'edit') {
-				API.put(`auth/user/${data._id}`, data).then((r) => console.log(r));
+				API.put(`auth/user/${data._id}`, data)
+					.then(() => window.location.reload())
+					.catch((e) => console.error(e));
 			} else {
 				console.error('Invalid type form');
 			}
@@ -58,10 +62,12 @@ const UserForm = ({
 	};
 
 	return (
-		<div className="md:col-span-1 col-span-3 bg-amber-100 rounded-lg flex flex-col gap-3">
-			<h2 className="col-span-12 text-center mt-3">{title}</h2>
+		<div className="md:col-span-1 col-span-3 bg-white rounded-lg flex flex-col">
+			<h2 className="col-span-12 text-center mt-3 border-b-2 pb-3 border-[#051949]">
+				{title}
+			</h2>
 			<form
-				className="flex flex-col gap-3 col-span-12 px-2 py-3 bg-amber-200 rounded-b-lg"
+				className="flex flex-col gap-3 col-span-12 px-2 py-3 bg-white rounded-b-lg"
 				id={`${type}-user-form`}
 				onSubmit={submitUser}
 			>
@@ -80,6 +86,7 @@ const UserForm = ({
 						id={`${type}-username`}
 						name="username"
 						defaultValue={type === 'edit' ? selectedUser?.username : ''}
+						className="border border-[#051949] rounded"
 					/>
 				</div>
 				<div className="flex flex-col">
@@ -102,14 +109,14 @@ const UserForm = ({
 						onChange={(e) => setPassword(e.target.value)}
 						className={
 							validPassword
-								? 'border border-green-500'
-								: 'border-2 border-red-500'
+								? 'border border-green-500 rounded'
+								: 'border-2 border-red-500 rounded'
 						}
 					/>
 				</div>
 				{type === 'add' && (
 					<button
-						className="col-span-12 px-2 py-1 bg-amber-600 text-white rounded hover:bg-amber-100 hover:text-amber-600"
+						className="col-span-12 px-2 py-1 bg-[#051949] text-white rounded hover:bg-white hover:text-[#051949] hover:outline hover:outline-[#051949]"
 						type={'submit'}
 					>
 						<span>{buttonText}</span>
@@ -117,9 +124,8 @@ const UserForm = ({
 				)}
 				{type === 'edit' && (
 					<button
-						className={`col-span-12 px-2 py-1 bg-amber-600 text-white rounded hover:bg-amber-100 hover:text-amber-600 ${
-							!selectedUser ? 'opacity-50 cursor-not-allowed' : ''
-						}`}
+						className={`col-span-12 px-2 py-1 bg-[#051949] text-white rounded hover:bg-white hover:text-[#051949] hover:outline hover:outline-[#051949]
+						${!selectedUser ? 'opacity-50 cursor-not-allowed' : ''}`}
 						type={'submit'}
 						disabled={!selectedUser}
 					>
@@ -130,7 +136,7 @@ const UserForm = ({
 				)}
 				{type === 'edit' && selectedUser && (
 					<button
-						className="col-span-12 px-2 py-1 bg-amber-600 text-white rounded hover:bg-amber-100 hover:text-amber-600"
+						className="col-span-12 px-2 py-1 bg-red-500 text-white rounded hover:bg-white hover:text-red-500 hover:outline hover:outline-red-500"
 						onClick={cancelEdit}
 						type={'button'}
 					>

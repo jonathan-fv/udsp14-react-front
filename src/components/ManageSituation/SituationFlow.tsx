@@ -38,6 +38,7 @@ import { saveChecker } from '../../services/situationFlow/saveChecker';
 import { normalizeFlowData } from '../../services/situationFlow/normalizeFlowData';
 import { edgeConnectionChecker } from '../../services/situationFlow/edgeConnectionChecker';
 import { handleNodeDrop } from '../../services/situationFlow/handleNodeDrop';
+import axios from "axios";
 
 type SituationFlowProps = {
 	situationId?: string | undefined;
@@ -221,6 +222,18 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
 
 	const onDelete = () => {
 		if (selectedNode) {
+			const type = selectedNode.type
+			if (['image', 'sound'].includes(type as string)) {
+				if (selectedNode.data.url) {
+					const path = type === 'image' ? type : 'audio'
+					const fileName = selectedNode.data?.url?.split('/').pop()
+					try {
+						API.delete(`/upload/${path}/?name=${fileName}`).then(r => r)
+					} catch (e) {
+						console.log(e)
+					}
+				}
+			}
 			const { id } = selectedNode;
 			setNodes((nds) => nds.filter((node) => node.id !== id));
 			setEdges((eds) =>

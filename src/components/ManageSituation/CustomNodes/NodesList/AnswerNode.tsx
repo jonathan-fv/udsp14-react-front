@@ -18,7 +18,7 @@ const AnswerNode = ({ data, isConnectable, selected }: any) => {
 	return (
 		<div
 			style={{
-				border: '1px solid blue',
+				border: '1px solid #ea580c',
 				padding: '5px',
 				width: '400px',
 				position: 'relative',

@@ -41,8 +41,9 @@ export const normalizeFlowData = ({
 					);
 					return {
 						id: targetObj?.data.storeId,
-						path: targetObj?.data.label,
+						name: targetObj?.data.label,
 						type: targetObj?.type,
+						url: targetObj?.data.url
 					};
 				});
 
