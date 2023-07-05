@@ -14,7 +14,7 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 			const formData = new FormData();
 			formData.append('audios', selectedImage);
 			console.log(formData)
-			const response = await API.post('/upload/audio', formData);
+			const response = await axios.post('http://localhost:8000/upload/audio', formData);
 			return response.data.image_url;
 		} catch (error) {
 			console.log(error);
