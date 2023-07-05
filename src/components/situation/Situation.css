@@ -6,8 +6,9 @@
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: start;
-  height: auto;
+  min-height: calc(100vh - 64px);
 }
+
 .link-situation{
   display: block;
   color : #061849;
