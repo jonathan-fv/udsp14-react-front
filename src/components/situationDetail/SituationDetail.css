@@ -1,3 +1,7 @@
+/* ---------------------------- */
+/* - PAGE SituationDetail.tsx - */
+/* ---------------------------- */
+
 .box_details {
 	display: flex;
 	flex-direction: column;
@@ -6,8 +10,54 @@
 	margin: 0 auto;
 }
 
+.detail-presentation {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	gap: 50px;
+	padding: 50px;
+	margin-bottom: 100px;
+	z-index: 2;
+}
+
+.box-detail {
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+	border-radius: 10px;
+	width: 750px;
+	color: #061849;
+	background: white;
+}
+
+.box-title {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	font-size: 25px;
+}
+
+.box-info {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	overflow: scroll;
+	height: 200px;
+	overflow-x: hidden;
+	text-align: justify;
+}
+
 .text-justify {
 	font-size: 20px;
+}
+
+.box-img {
+	border-radius: 15px;
+	border: 1px solid red;
 }
 
 .button_situation {
@@ -19,6 +69,16 @@
 	transition: all 0.25s ease-in-out;
 	cursor: pointer;
 }
+
+.button-112 {
+	border-radius: 50%;
+	width: 150px;
+	cursor: pointer;
+}
+
+/* -------------------------- */
+/* - VECTORS IN BOTTOM PAGE - */
+/* -------------------------- */
 
 .vectors-img {
 	width: 100%;
@@ -39,52 +99,10 @@
 	width: 28vmin;
 }
 
-.box-detail {
-	border: 1px solid black;
-	padding: 10px;
-	text-align: center;
-	border-radius: 10px;
-	width: 750px;
-	color: #061849;
-	background: white;
-}
 
-.box-info {
-	border: 1px solid black;
-	padding: 15px;
-	border-radius: 8px;
-	overflow: scroll;
-	height: 200px;
-	overflow-x: hidden;
-	text-align: justify;
-}
-
-.box-title {
-	border: 1px solid black;
-	padding: 15px;
-	border-radius: 8px;
-	margin-bottom: 10px;
-	font-size: 25px;
-}
-
-.box-img {
-	border-radius: 15px;
-	border: 1px solid red;
-}
-
-.detail-presentation {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: center;
-	justify-items: center;
-	align-items: center;
-	gap: 50px;
-	padding: 50px;
-	margin-bottom: 100px;
-	z-index: 2;
-}
-
+/* -------------- */
+/* - RESPONSIVE - */
+/* -------------- */
 
 @media screen and (max-width: 980px) {
 	.detail-presentation {
