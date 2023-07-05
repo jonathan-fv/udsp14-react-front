@@ -1,10 +1,12 @@
 import { Flow, MediaType } from '../../types/SituationTypes';
 import './Question.css';
-//import pls from '../../assets/images/pls-1.jpg';
+
+import pls from '../../assets/images/pls-1.jpg';
+//@ts-ignore
+import AudioTest from '../../assets/audio/audiotest.mp3';
 import { Link } from 'react-router-dom';
 
-import Vector_1 from '../../assets/images/Vector_1.svg';
-import Vector_2 from '../../assets/images/Vector_2.svg';
+import Footer from '../footer/Footer';
 
 type Props = {
 	id: string;
@@ -19,20 +21,40 @@ type Props = {
 const Answer = (props: Props) => {
 	const { type, label, targets, flow, media, onClick } = props;
 	return (
-		<div className="flex flex-col flex-wrap items-center">
-			<div className="">
+		<div className="box-mediaA">
+			<div className="detail-presentationQ">
 				<h1 className="text-2xl text-center">{label}</h1>
 				{media.map((media) => {
 					return (
-						<div>
+						<div key={media.name}>
 							{
 								media.type === 'image' ?
-									<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} />
-								: media.type === 'sound' 
-								?
-									<h3>audio: {media.name}</h3>
+									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
+									media.name.length > 1
+									? 
+										//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} /> 
+										<div>
+											<img src={pls} alt={media.name} />
+										</div>
+									: 
+										<div>
+											<img src={pls} alt={media.name} />
+										</div>
+									
+								
+								: media.type === 'sound' ?
+									// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
+									media.name.length > 1
+									?
+										<div className="audioBoxA">
+											<audio controls src={AudioTest}>
+												Votre navigateur ne prend pas en charge l'élément audio.
+											</audio>
+										</div>
+									:
+										false
 								:
-									<h3>Error</h3>
+									false
 							}
 						</div>
 					);
@@ -55,15 +77,30 @@ const Answer = (props: Props) => {
 			})}
 
 			{type === 'final' && (
-				<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
-					<Link to="/">Retour à l'accueil</Link>
+				<div className="detail-presentationQ">
+					{
+						!media.length ?
+							<div>
+								<img src={pls} alt="default" />
+							</div>
+						:
+						media.map((media) => {
+							return(
+								<div>
+									<img src={media.name} alt={media.name} />
+								</div>
+							);
+						})
+					}
+					<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
+						<Link to="/">Retour à l'accueil</Link>
+					</div>
 				</div>
 			)}
 
-			<div className="vectors-img">
-				<img className="vectors-img-left" src={Vector_2} alt="Vector 2"/>
-				<img className="vectors-img-right" src={Vector_1} alt="Vector 1"/>
-			</div>
+			<Footer />
+
+			
 		</div>
 	);
 };

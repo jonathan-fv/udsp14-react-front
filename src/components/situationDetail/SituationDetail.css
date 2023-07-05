@@ -7,7 +7,6 @@
 	flex-direction: column;
 	align-items: center;
 	flex-wrap: nowrap;
-	margin: 0 auto;
 }
 
 .detail-presentation {
@@ -28,7 +27,7 @@
 	padding: 10px;
 	text-align: center;
 	border-radius: 10px;
-	width: 750px;
+	width: 60vw;
 	color: #061849;
 	background: white;
 }
@@ -51,10 +50,6 @@
 	text-align: justify;
 }
 
-.text-justify {
-	font-size: 20px;
-}
-
 .box-img {
 	border-radius: 15px;
 	border: 1px solid red;
@@ -73,30 +68,19 @@
 .button-112 {
 	border-radius: 50%;
 	width: 150px;
+	border: 1px solid red;
 	cursor: pointer;
+	z-index: 3;
 }
 
-/* -------------------------- */
-/* - VECTORS IN BOTTOM PAGE - */
-/* -------------------------- */
-
-.vectors-img {
-	width: 100%;
+.box-media{
 	display: flex;
-	justify-content: space-between;
-	justify-items: center;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	position: fixed;
-	bottom: 0;
-	z-index: 1;
 }
-
-.vectors-img-left {
-	width: 28vmin;
-}
-
-.vectors-img-right {
-	width: 28vmin;
+.box-media .audioBox audio{
+	margin: 20px auto;
 }
 
 
