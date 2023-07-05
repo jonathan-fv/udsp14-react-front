@@ -7,6 +7,13 @@
 	box-sizing: 0;
 }
 
+/* first div of situation page and simulation page */
+.box-situation {
+	background-color: #061849;
+	min-height: calc(100vh - 64px);
+}
+
+
 .box_situation {
 	height: calc(100vh - 64px);
 	width: 100%;
@@ -17,7 +24,6 @@
 	border-radius: 5px;
 }
 
-
 .box-scroll{
   height: 80vh;
   width: 100vw;
@@ -26,11 +32,6 @@
   align-items: center;
   overflow: auto;
 }
-
-.box-situation {
-	background-color: #061849;
-}
-
 
 @media screen and (min-width: 840px) {
 	.container_situation {

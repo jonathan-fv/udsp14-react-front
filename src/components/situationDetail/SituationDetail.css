@@ -47,7 +47,6 @@
 	width: 750px;
 	color: #061849;
 	background: white;
-	/* box-shadow: -1px 5px 5px -1px red; */
 }
 
 .box-info {
@@ -70,12 +69,10 @@
 
 .box-img {
 	border-radius: 15px;
-	/* height: auto; */
 	border: 1px solid red;
 }
 
 .detail-presentation {
-	border: 1px solid red;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
