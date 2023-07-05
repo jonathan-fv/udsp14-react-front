@@ -228,8 +228,7 @@ const CreateSituationFlow = ({ situationId }: SituationFlowProps) => {
 					const path = type === 'image' ? type : 'audio'
 					const fileName = selectedNode.data?.url?.split('/').pop()
 					try {
-						axios.delete(`http://localhost:8000/upload/${path}/?name=${fileName}`).then(r => r)
-						console.log(`http://localhost:8000/upload/${path}/?name=${fileName}`)
+						API.delete(`/upload/${path}/?name=${fileName}`).then(r => r)
 					} catch (e) {
 						console.log(e)
 					}

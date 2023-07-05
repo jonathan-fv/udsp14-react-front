@@ -2,7 +2,7 @@ import {memo, useCallback, useState} from 'react';
 import {Handle, Position} from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
 import imageLogo from '../../../../assets/images/image.png';
-import axios from "axios";
+import API from "../../../../services/API";
 
 const ImageNode = ({ data, isConnectable, selected }: any) => {
 	const inputId = `image-${Date.now()}`;
@@ -21,7 +21,7 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 		try {
 			const formData = new FormData();
 			formData.append('images', selectedImage);
-			const response = await axios.post('http://localhost:8000/upload/image', formData);
+			const response = await API.post('/upload/image', formData);
 			return response.data.image_url;
 		} catch (error) {
 			console.log(error);
