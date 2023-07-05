@@ -1,9 +1,8 @@
 .question_box {
 	height: calc(100vh - 64px);
 	width: 100%;
-	border: 5px solid aquamarine;
 }
 
 .question_buttons {
-	border: 5px solid red;
+	cursor: pointer;
 }

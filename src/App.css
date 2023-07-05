@@ -1,3 +1,12 @@
+/* | ---------------------- | */
+/* | - CSS SITUATION - | */
+/* | ---------------------- | */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: 0;
+}
+
 .box_situation {
 	height: calc(100vh - 64px);
 	width: 100%;
@@ -8,82 +17,26 @@
 	border-radius: 5px;
 }
 
-/* @media screen and (min-width: 640px) {
-  .container_situation {
-    width: 45%;
-  }
-} */
+
+.box-scroll{
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.box-situation {
+	background-color: #061849;
+}
+
 
 @media screen and (min-width: 840px) {
 	.container_situation {
 		width: 30%;
 	}
 }
-
-/* | ------------ | */
-/* | - CSS BASE - | */
-/* | ------------ | */
-/* .containt {
-  border: 1px solid red;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* scale resolution for resolution under 1024px */
-/* @media screen and (max-width: 1024px) {
-  .containt {
-    height: auto;
-  }
-} */
-
-/* scale resolution for resolution above 1024px */
-/* @media screen and (min-width: 1400px) {
-  .containt {
-    height: calc(100vh - 64px);
-  }
-} */
-
-/* | ----------------- | */
-/* | - CSS SITUATION - | */
-/* | ----------------- | */
-
-/* .cta-btn {
-  font-size: 3rem;
-  margin: 0 auto;
-  padding: 20px 15px;
-  color: white;
-  font-weight: bold;
-  transition: all 0.25s ease-in-out;
-}
-
-.img-box {
-  max-width: 50%;
-  height: auto;
-  margin: 20px auto;
-} */
-/* 
-.text-box {
-  width: 90%;
-  margin: 20px auto;
-}
-
-.return-button {
-  padding: 10px 20px;
-} */
-
-/* | ------------- | */
-/* | - CSS AUDIO - | */
-/* | ------------- | */
-
-/* .cta-btn-audio {
-  font-size: 3rem;
-  margin: 0 auto;
-  padding: 12px 15px;
-  color: white;
-  font-weight: bold;
-  transition: all 0.25s ease-in-out;
-} */
 
 /* | ---------------------- | */
 /* | - CSS DASHBOARD MENU - | */
@@ -96,36 +49,3 @@
 	align-items: center;
 	gap: 50px;
 }
-
-/* scale resolution for resolution under 1024px */
-/* @media screen and (max-width: 1024px) {
-  .containt {
-    height: auto;
-  }
-
-  .content-box {
-    flex-direction: column;
-  }
-} */
-
-/* scale resolution for resolution above 1024px */
-/* @media screen and (min-width: 1400px) {
-  .containt {
-    height: calc(100vh - 64px);
-  }
-
-  .content-box {
-    margin: 60px;
-    justify-content: space-between;
-    gap: 100px;
-  }
-
-  .return-button {
-    margin-left: 72px;
-  }
-
-  .text-box-audio {
-    width: 50%;
-    margin: 20px auto;
-  }
-} */

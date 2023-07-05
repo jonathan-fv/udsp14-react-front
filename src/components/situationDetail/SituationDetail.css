@@ -1,38 +1,14 @@
 .box_details {
-	width: 100%;
-	height: calc(100vh - 64px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: nowrap;
+	margin: 0 auto;
 }
 
-/* .box_details_img img {
-  border: 5px solid blue;
-  display: block;
+.text-justify {
+	font-size: 20px;
 }
-
-.box_details_img p {
-  border: 5px solid rgb(52, 156, 130);
-  display: block;
-  margin-top: 10px;
-  padding: 5px;
-}
-
-.box_details_img {
-  border: 5px solid red;
-  padding: 10px;
-  display: block;
-}
-
-@media screen and (min-width: 640px) {
-    .box_details_img {
-      display: inline-block;
-    }
-    .box_details_img p {
-      display: inline;
-      width: 20%;
-    }
-    .box_details_img img {
-      display: inline;
-    }
-} */
 
 .button_situation {
 	padding: 30px 20px;
@@ -42,4 +18,91 @@
 	font-weight: bolder;
 	transition: all 0.25s ease-in-out;
 	cursor: pointer;
+}
+
+.vectors-img {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	justify-items: center;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	z-index: 1;
+}
+
+.vectors-img-left {
+	width: 28vmin;
+}
+
+.vectors-img-right {
+	width: 28vmin;
+}
+
+.box-detail {
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+	border-radius: 10px;
+	width: 750px;
+	color: #061849;
+	background: white;
+	/* box-shadow: -1px 5px 5px -1px red; */
+}
+
+.box-info {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	overflow: scroll;
+	height: 200px;
+	overflow-x: hidden;
+	text-align: justify;
+}
+
+.box-title {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	font-size: 25px;
+}
+
+.box-img {
+	border-radius: 15px;
+	/* height: auto; */
+	border: 1px solid red;
+}
+
+.detail-presentation {
+	border: 1px solid red;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	gap: 50px;
+	padding: 50px;
+	margin-bottom: 100px;
+	z-index: 2;
+}
+
+
+@media screen and (max-width: 980px) {
+	.detail-presentation {
+		flex-direction: column-reverse;
+		flex-wrap: wrap;
+	}
+
+	.box-img {
+		width: 60%;
+		vertical-align: middle;
+		align-items: center;
+		margin: 0 auto;
+	}
+
+	.box-detail {
+		width: 60%;
+	}
 }
