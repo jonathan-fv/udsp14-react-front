@@ -1,6 +1,6 @@
 import { Flow, MediaType } from '../../types/SituationTypes';
 import './Question.css';
-import pls from '../../assets/images/pls-1.jpg';
+//import pls from '../../assets/images/pls-1.jpg';
 import { Link } from 'react-router-dom';
 
 import Vector_1 from '../../assets/images/Vector_1.svg';
@@ -24,10 +24,17 @@ const Answer = (props: Props) => {
 				<h1 className="text-2xl text-center">{label}</h1>
 				{media.map((media) => {
 					return (
-						media.type === 'image' && (
-							<img src={pls} alt={media.type} />
-							//<img src={media.name} alt={media.type}/>
-						)
+						<div>
+							{
+								media.type === 'image' ?
+									<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} />
+								: media.type === 'sound' 
+								?
+									<h3>audio: {media.name}</h3>
+								:
+									<h3>Error</h3>
+							}
+						</div>
 					);
 				})}
 			</div>
