@@ -49,7 +49,7 @@ const Answer = (props: Props) => {
 							</div>}
 
 							{sound &&
-									<AudioPlayer source={sound} color="white"/>
+									<AudioPlayer source={sound} color="white" autoPlay={true}/>
 							}
 							{/*{*/}
 							{/*	media.type === 'image' ?*/}

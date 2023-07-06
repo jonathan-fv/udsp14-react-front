@@ -7,7 +7,7 @@ import pauseImageWhite from '../../../assets/images/pauseWhite.png';
 const AudioPlayer = (props: any) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
-    const { source, className, color } = props;
+    const { source, className, color, autoPlay } = props;
 
     const togglePlayPause = () => {
         isPlaying
@@ -15,6 +15,9 @@ const AudioPlayer = (props: any) => {
                 : audioRef.current?.play();
         setIsPlaying(!isPlaying);
     };
+    useEffect(() => {
+        autoPlay && setIsPlaying(true)
+    }, [])
 
     const play = color === 'white' ? playImageWhite : playImage
     const pause = color === 'white' ? pauseImageWhite : pauseImage
@@ -39,7 +42,7 @@ const AudioPlayer = (props: any) => {
                     <img className={className} src={play} alt="" />
                 )}
             </button>
-            <audio ref={audioRef} src={source}></audio>
+            <audio ref={audioRef} src={source} autoPlay={autoPlay} loop={false}></audio>
         </div>
     );
 };
