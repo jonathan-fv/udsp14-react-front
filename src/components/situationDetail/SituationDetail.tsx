@@ -62,7 +62,7 @@ const SituationDetail = (props: Props) => {
 			<img className="button-112" src={Call_112} alt="112B" onClick={clickButton112} />
 
 		</div>
-	<Footer />
+	{/*<Footer />*/}
 		</>
 
 );

@@ -74,8 +74,6 @@ const Answer = (props: Props) => {
 				</div>
 			)}
 
-			<Footer />
-
 			
 		</div>
 	);
