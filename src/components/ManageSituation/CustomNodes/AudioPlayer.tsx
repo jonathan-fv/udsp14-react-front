@@ -31,7 +31,7 @@ const AudioPlayer = (props: any) => {
     }, []);
 
     return (
-        <div className="m-auto">
+        <div className="m-auto flex justify-center">
             <button onClick={togglePlayPause} className="focus:outline-none">
                 {isPlaying ? (
                     <img className={className} src={pause} alt="" />

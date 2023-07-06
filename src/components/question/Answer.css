@@ -1,18 +1,21 @@
 .media-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
+    flex-direction: column;
     width: 150%;
 }
 .imgShowMedia{
-    width: 250px;
+    width: 400px;
+    border-radius: 15px;
 }
 .imgShowMedia img{
     border-radius: 15px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 .audioBoxA{
-    border: 1px solid yellow;
+    /*border: 1px solid yellow;*/
 }
 
 .answer-box{
@@ -26,10 +29,11 @@
 
 .button-answer{
     width : 560px;
+    height: 50px;
     background-color: #fff;
     color: #061849;
-    padding: 20px;
+    /*padding: 20px;*/
     border-radius: 15px;
     margin: 20px;
-    height: auto;
+    /*height: auto;*/
 }
