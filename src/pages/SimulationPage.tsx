@@ -19,7 +19,7 @@ const SimulationPage = () => {
 	useEffect(() => {
 		getData().catch((err) => console.log(err));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data]);
+	}, []);
 
 	return <div className="box-situation text-white">{data && <Question situation={data} />}</div>;
 };

@@ -1,8 +1,38 @@
 .question_box {
-	height: calc(100vh - 64px);
+	min-height: calc(100vh - 64px);
 	width: 100%;
 }
 
 .question_buttons {
 	cursor: pointer;
+}
+
+.detail-presentationQ {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	gap: 50px;
+	padding: 50px;
+	margin-bottom: 100px;
+	z-index: 1;
+}
+
+.box-mediaA {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+/* -------------- */
+/* - RESPONSIVE - */
+/* -------------- */
+
+@media screen and (max-width: 980px) {
+	.detail-presentationQ {
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
 }

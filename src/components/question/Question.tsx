@@ -20,7 +20,7 @@ const Question = (props: Props) => {
 			{situation.flow.map(({ id, type, label, targets, media }) => {
 				return (
 					(currentQuestion ? id === currentQuestion : type === 'initial') && (
-						<div className="question_buttons">
+						<div key={id} className="question_buttons">
 							<Answer
 								media={media}
 								onClick={onClick}

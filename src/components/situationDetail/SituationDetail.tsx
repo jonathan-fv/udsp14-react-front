@@ -1,31 +1,36 @@
-import { Link } from 'react-router-dom';
-//import { useNavigate } from "react-router-dom";
-
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Root } from '../../types/SituationTypes';
+//import AudioPlayer from '../question/AudioQuestions';
 
-import pls from '../../assets/images/pls-1.jpg';
-import call112 from '../../assets/images/Appel112.svg';
+import ShowMedia from '../showMedia/ShowMedia';
+
+import Call_112 from '../../assets/images/Appel112.svg';
+
+import Footer from '../footer/Footer';
 
 import './SituationDetail.css';
-import AudioPlayer from '../question/AudioQuestions';
-
-import Vector_1 from '../../assets/images/Vector_1.svg';
-import Vector_2 from '../../assets/images/Vector_2.svg';
 
 type Props = {
 	situation: Root;
 };
 
 const SituationDetail = (props: Props) => {
+	const navigate = useNavigate();
 	const { situation } = props;
 
-	/*const navigate = useNavigate();
-	const handleGoBack = () => {
-		navigate(-1);
-	};*/
+	const [currentQuestion, setCurrentQuestion] = useState<string>();
+
+	const onClick = (answerTarget: string) => {
+		setCurrentQuestion(answerTarget);
+	};
+
+	const clickButton112 = () => {
+		navigate("/simulation/" + situation._id)
+	}
+	
 
 	return (
-		// <div className="box_details"></div>
 		<div className="box_details">
 			<div className="detail-presentation">
 				<div className="box-detail">
@@ -42,23 +47,31 @@ const SituationDetail = (props: Props) => {
 						<p>{situation.situation.description}</p>
 					</div>
 				</div>
-				<div>
-					<img src={pls} alt={situation.situation.title} className="box-img" />
+				<div className='box-media'>
+					{
+						situation.flow.map(({id, type, label, targets, media}) => {
+							return (
+								(currentQuestion ? id === currentQuestion : type === 'initial') && (
+									<ShowMedia
+										key={id}
+										media={media}
+										onClick={onClick}
+										flow={situation.flow}
+										id={id}
+										type={type}
+										label={label}
+										targets={targets}
+									/>
+								)
+							);
+						})
+					}
 				</div>
 			</div>
-			<div>
-				<Link to={'/simulation/' + situation._id}>
-					<img
-						src={call112}
-						alt={situation.situation.title}
-						style={{ borderRadius: '50%', width: 150 }}
-					/>
-				</Link>
-			</div>
-			<div className="vectors-img">
-				<img className="vectors-img-left" src={Vector_2} alt="Vector 2" />
-				<img className="vectors-img-right" src={Vector_1} alt="Vector 1" />
-			</div>
+
+			<img className="button-112" src={Call_112} alt="112B" onClick={clickButton112} />
+
+			<Footer />
 		</div>
 	);
 };
