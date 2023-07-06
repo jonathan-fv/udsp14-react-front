@@ -18,3 +18,9 @@
 .vectors-img-right {
 	width: 28vmin;
 }
+
+@media screen and (max-width: 767px) {
+	.vectors-img-left, .vectors-img-right, .vectors-footer {
+		display: none;
+	}
+}

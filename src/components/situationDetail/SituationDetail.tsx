@@ -28,52 +28,44 @@ const SituationDetail = (props: Props) => {
 	const clickButton112 = () => {
 		navigate("/simulation/" + situation._id)
 	}
-	
+	let imageUrl = ''
+	const image = situation.flow[0].media.map((e) => {
+		if (e.type === 'image') {
+			imageUrl = e.url
+		}
+		return imageUrl
+	})
 
 	return (
+		<>
 		<div className="box_details">
 			<div className="detail-presentation">
 				<div className="box-detail">
-					<h2 style={{ paddingBottom: 10, fontWeight: 'bold', fontSize: 30 }}>
+					<h2 className="box-detail-title">
 						Titre de la situation
 					</h2>
 					<div className="box-title">
 						<p>{situation.situation.title}</p>
 					</div>
-					<h2 style={{ paddingBottom: 10, fontWeight: 'bold', fontSize: 30 }}>
+					<h2  className="box-detail-title">
 						Description de la situation
 					</h2>
 					<div className="box-info">
 						<p>{situation.situation.description}</p>
 					</div>
 				</div>
-				<div className='box-media'>
-					{
-						situation.flow.map(({id, type, label, targets, media}) => {
-							return (
-								(currentQuestion ? id === currentQuestion : type === 'initial') && (
-									<ShowMedia
-										key={id}
-										media={media}
-										onClick={onClick}
-										flow={situation.flow}
-										id={id}
-										type={type}
-										label={label}
-										targets={targets}
-									/>
-								)
-							);
-						})
-					}
+				<div style={{width: '50%'}} className='flex justify-center items-center'>
+					<img src={imageUrl} alt=""/>
 				</div>
 			</div>
 
 			<img className="button-112" src={Call_112} alt="112B" onClick={clickButton112} />
 
-			<Footer />
 		</div>
-	);
+	<Footer />
+		</>
+
+);
 };
 
 export default SituationDetail;

@@ -4,7 +4,8 @@
     align-items: center;
     gap: 20px;
     flex-direction: column;
-    width: 150%;
+    margin-bottom: 20px;
+    /*width: 150%;*/
 }
 .imgShowMedia{
     width: 400px;
@@ -28,7 +29,7 @@
 }
 
 .button-answer{
-    width : 560px;
+    width : 40%;
     height: 50px;
     background-color: #fff;
     color: #061849;
@@ -36,4 +37,10 @@
     border-radius: 15px;
     margin: 20px;
     /*height: auto;*/
+}
+
+@media screen and (max-width: 767px) {
+    .button-answer {
+        width: 100%;
+    }
 }

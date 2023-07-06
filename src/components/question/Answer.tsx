@@ -34,47 +34,20 @@ const Answer = (props: Props) => {
 		}
 	})
 
-	console.log(image)
-	console.log(sound)
 	//console.log(media)
 	return (
 		<div className="box-mediaA">
 			<div className="detail-presentationQ">
-				<h1 className="text-2xl text-center">{label}</h1>
 				<div className="media-container">
-
-						<div >
 							{<div>
 								<img className='imgShowMedia' src={image ? image : pls} alt="" />
 							</div>}
 
+							<h1 className=" p-4  text-4xl text-center">{label}</h1>
+
 							{sound &&
 									<AudioPlayer source={sound} color="white" autoPlay={true}/>
 							}
-							{/*{*/}
-							{/*	media.type === 'image' ?*/}
-							{/*		// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut*/}
-							{/*			(<div >*/}
-							{/*				<img className='imgShowMedia' src={media.name === 'Image' ? pls : media.url} alt={media.name} />*/}
-							{/*			</div>)*/}
-							{/*		*/}
-							{/*	*/}
-							{/*	: media.type === 'sound' ?*/}
-							{/*		// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut*/}
-							{/*		media.name.length > 1*/}
-							{/*		?*/}
-							{/*			<div className="audioBoxA">*/}
-							{/*				/!*<audio controls src={media.url}>*!/*/}
-							{/*				/!*	Votre navigateur ne prend pas en charge l'élément audio.*!/*/}
-							{/*				/!*</audio>*!/*/}
-							{/*				<AudioPlayer source={media.url} color='white'/>*/}
-							{/*			</div>*/}
-							{/*		:*/}
-							{/*			false*/}
-							{/*	:*/}
-							{/*		false*/}
-							{/*	}*/}
-						</div>
 				</div>
 			</div>
 			<div className="answer-box">
@@ -96,10 +69,8 @@ const Answer = (props: Props) => {
 			</div>
 
 			{type === 'final' && (
-				<div className="detail-presentationQ">
-					<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm button-answer" style={{width: '100%', height: '100%'}}>
-						<Link to="/">Retour à l'accueil</Link>
-					</div>
+				<div className="detail-presentationQ flex justify-center items-center">
+						<Link className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm button-answer flex justify-center items-center" to="/">Retour à l'accueil</Link>
 				</div>
 			)}
 
