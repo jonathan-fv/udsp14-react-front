@@ -1,7 +1,6 @@
 /* ---------------------------- */
 /* - PAGE SituationDetail.tsx - */
 /* ---------------------------- */
-
 .box_details {
 	display: flex;
 	flex-direction: column;
@@ -75,9 +74,10 @@
 
 .box-media{
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column-reverse;
+}
+.box-media img{
+	border-radius: 15px;
 }
 .box-media .audioBox audio{
 	margin: 20px auto;
