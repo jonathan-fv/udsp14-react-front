@@ -1,6 +1,6 @@
 import { Flow, MediaType } from '../../types/SituationTypes';
 import './Question.css';
-
+import './Answer.css';
 import pls from '../../assets/images/pls-1.jpg';
 //@ts-ignore
 //import AudioTest from '../../assets/audio/audiotest.mp3';
@@ -25,6 +25,7 @@ const Answer = (props: Props) => {
 		<div className="box-mediaA">
 			<div className="detail-presentationQ">
 				<h1 className="text-2xl text-center">{label}</h1>
+				<div className="media-container">
 				{media.map((media) => {
 					return (
 						<div key={media.name}>
@@ -33,11 +34,11 @@ const Answer = (props: Props) => {
 									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
 									media.name === "Image"
 									? 
-										<div>
+										<div className='imgShowMedia'>
 											<img src={pls} alt={media.name} />
 										</div>
 									: 
-										<div>
+										<div className='imgShowMedia'>
 											<img src={media.url} alt={media.name} />
 										</div>
 									
@@ -59,22 +60,25 @@ const Answer = (props: Props) => {
 						</div>
 					);
 				})}
+				</div>
 			</div>
+			<div className="answer-box">
 			{targets.map((answer) => {
 				return (
-					<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
-						{flow.map((x) => {
-							return (
-								answer === x.id && (
-									<button key={x.id} onClick={() => onClick(x.targets[0])}>
-										{x.label}
-									</button>
-								)
-							);
+					<div className="button-answer">
+					{flow.map((x) => {
+						return (
+							answer === x.id && (
+								<button onClick={() => onClick(x.targets[0])}>
+									{x.label}
+								</button>
+							)
+						);
 						})}
 					</div>
 				);
 			})}
+			</div>
 
 			{type === 'final' && (
 				<div className="detail-presentationQ">

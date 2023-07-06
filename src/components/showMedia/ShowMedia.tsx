@@ -1,6 +1,6 @@
 import { Flow, MediaType } from '../../types/SituationTypes';
 import pls from '../../assets/images/pls-1.jpg';
-
+import './ShowMedia.css';
 //@ts-ignore
 //import AudioTest from '../../assets/audio/audiotest.mp3';
 
@@ -16,11 +16,9 @@ type Props = {
 
 
 const ShowMedia = (props: Props) => {
-    const { label, media } = props;
-    console.log(media)
-	return(
-        <div className="">
-			<div className="">
+    const { type, label, targets, flow, media, onClick } = props;
+    return(
+			<div className="flex flex-col justify-center">
 				<h1 className="text-2xl text-center">{label}</h1>
 				{media.map((media) => {
 					return (
@@ -31,12 +29,12 @@ const ShowMedia = (props: Props) => {
 									media.name === "Image" || media.name === " "
 									? 
 										//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} /> 
-										<div>
-											<img src={pls} alt={media.name} />
+										<div className="imageShowMedia">
+											<img src={media.url} alt={media.name} />
 										</div>
 									: 
-										<div>
-											<img src={media.url} alt={media.name} />
+										<div className="imageShowMedia">
+											<img src={pls} alt={media.name} />
 										</div>
 									
 								
@@ -58,8 +56,6 @@ const ShowMedia = (props: Props) => {
 					);
 				})}
 			</div>
-
-		</div>
     );
 }
 
