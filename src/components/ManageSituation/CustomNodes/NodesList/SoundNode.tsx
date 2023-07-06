@@ -12,7 +12,6 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 		try {
 			const formData = new FormData();
 			formData.append('audios', selectedImage);
-			console.log(formData);
 			const response = await API.post('/upload/audio', formData, {
 				headers: { 'Content-Type': 'multipart/form-data' },
 			});
