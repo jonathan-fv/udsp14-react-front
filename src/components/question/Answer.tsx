@@ -32,15 +32,9 @@ const Answer = (props: Props) => {
 							{
 								media.type === 'image' ?
 									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-									media.name === "Image"
-									? 
-										<div className='imgShowMedia'>
-											<img src={pls} alt={media.name} />
-										</div>
-									: 
-										<div className='imgShowMedia'>
-											<img src={media.url} alt={media.name} />
-										</div>
+										(<div >
+											<img className='imgShowMedia' src={media.name === 'Image' ? pls : media.url} alt={media.name} />
+										</div>)
 									
 								
 								: media.type === 'sound' ?

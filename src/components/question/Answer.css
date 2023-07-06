@@ -1,12 +1,11 @@
 .media-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    border: 1px solid green;
+    width: 150%;
 }
 .imgShowMedia{
-    width: 50%;
+    width: 250px;
 }
 .imgShowMedia img{
     border-radius: 15px;
