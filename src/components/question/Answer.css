@@ -41,6 +41,7 @@
 
 @media screen and (max-width: 767px) {
     .button-answer {
-        width: 100%;
+        width: 80%;
+        margin: 20px 0px;
     }
 }

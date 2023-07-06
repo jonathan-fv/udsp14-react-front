@@ -20,7 +20,7 @@ const Home = () => {
 
 	return (
 		<div className="box_situation flex flex-wrap items-center justify-center lg:flex-row">
-			<h2 className="text-[2.2rem] m-5 text-[#061849] uppercase font-medium tracking-wide text-center">Liste de toutes les situations</h2>
+			<h2 className="text-[1rem] m-5 text-[#061849] uppercase font-medium tracking-wide text-center">Liste de toutes les situations</h2>
 			<div className="box-scroll">
 				{data.map(({ situation, _id }) => {
 				return (
