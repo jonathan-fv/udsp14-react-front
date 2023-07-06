@@ -52,7 +52,8 @@ const SituationDetail = (props: Props) => {
 						situation.flow.map(({id, type, label, targets, media}) => {
 							return (
 								(currentQuestion ? id === currentQuestion : type === 'initial') && (
-									<ShowMedia key={id}
+									<ShowMedia
+										key={id}
 										media={media}
 										onClick={onClick}
 										flow={situation.flow}

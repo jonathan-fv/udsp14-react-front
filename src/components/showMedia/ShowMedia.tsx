@@ -17,7 +17,8 @@ type Props = {
 
 const ShowMedia = (props: Props) => {
     const { type, label, targets, flow, media, onClick } = props;
-    return(
+    console.log(media)
+	return(
         <div className="">
 			<div className="">
 				<h1 className="text-2xl text-center">{label}</h1>
@@ -27,15 +28,15 @@ const ShowMedia = (props: Props) => {
 							{
 								media.type === 'image' ?
 									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-									media.name.length > 1
+									media.name === "Image" || media.name === " "
 									? 
 										//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} /> 
 										<div>
-											<img src={media.url} alt={media.name} />
+											<img src={pls} alt={media.name} />
 										</div>
 									: 
 										<div>
-											<img src={pls} alt={media.name} />
+											<img src={media.url} alt={media.name} />
 										</div>
 									
 								
