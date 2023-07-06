@@ -31,7 +31,7 @@ const ShowMedia = (props: Props) => {
 									? 
 										//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} /> 
 										<div>
-											<img src={pls} alt={media.name} />
+											<img src={media.url} alt={media.name} />
 										</div>
 									: 
 										<div>
@@ -44,7 +44,7 @@ const ShowMedia = (props: Props) => {
 									media.name.length > 1
 									?
 										<div className="audioBox">
-											<audio controls src={AudioTest}>
+											<audio controls src={media.url}>
 												Votre navigateur ne prend pas en charge l'élément audio.
 											</audio>
 										</div>

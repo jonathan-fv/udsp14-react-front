@@ -25,6 +25,7 @@ export interface Flow {
 export interface MediaType {
 	name: string;
 	type: string;
+	url: string;
 }
 
 export interface Row {}

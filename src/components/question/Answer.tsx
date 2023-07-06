@@ -3,7 +3,7 @@ import './Question.css';
 
 import pls from '../../assets/images/pls-1.jpg';
 //@ts-ignore
-import AudioTest from '../../assets/audio/audiotest.mp3';
+//import AudioTest from '../../assets/audio/audiotest.mp3';
 import { Link } from 'react-router-dom';
 
 import Footer from '../footer/Footer';
@@ -30,15 +30,14 @@ const Answer = (props: Props) => {
 							{
 								media.type === 'image' ?
 									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-									media.name.length > 1
+									!media.url.length
 									? 
-										//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} /> 
 										<div>
 											<img src={pls} alt={media.name} />
 										</div>
 									: 
 										<div>
-											<img src={pls} alt={media.name} />
+											<img src={media.url} alt={media.name} />
 										</div>
 									
 								
@@ -47,7 +46,7 @@ const Answer = (props: Props) => {
 									media.name.length > 1
 									?
 										<div className="audioBoxA">
-											<audio controls src={AudioTest}>
+											<audio controls src={media.url}>
 												Votre navigateur ne prend pas en charge l'élément audio.
 											</audio>
 										</div>
@@ -87,7 +86,7 @@ const Answer = (props: Props) => {
 						media.map((media) => {
 							return(
 								<div>
-									<img src={media.name} alt={media.name} />
+									<img src={media.url} alt={media.name} />
 								</div>
 							);
 						})
