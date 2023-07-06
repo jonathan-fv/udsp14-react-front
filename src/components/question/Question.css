@@ -11,6 +11,24 @@
 	border-radius: 15px;
 }
 
+.answer-box {
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+	z-index: 1;
+}
+.button-answer {
+	width: 560px;
+	background-color: #fff;
+	color: #061849;
+	padding: 20px;
+	border-radius: 15px;
+	margin: 20px;
+	height: auto;
+}
+
 .detail-presentationQ {
 	display: flex;
 	flex-direction: column;

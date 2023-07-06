@@ -60,21 +60,23 @@ const Answer = (props: Props) => {
 					);
 				})}
 			</div>
-			{targets.map((answer) => {
-				return (
-					<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
-						{flow.map((x) => {
-							return (
-								answer === x.id && (
-									<button onClick={() => onClick(x.targets[0])}>
-										{x.label}
-									</button>
-								)
-							);
-						})}
-					</div>
-				);
-			})}
+			<div className="answer-box">
+				{targets.map((answer) => {
+					return (
+						<div className="button-answer">
+							{flow.map((x) => {
+								return (
+									answer === x.id && (
+										<button onClick={() => onClick(x.targets[0])}>
+											{x.label}
+										</button>
+									)
+								);
+							})}
+						</div>
+					);
+				})}
+			</div>
 
 			{type === 'final' && (
 				<div className="detail-presentationQ">

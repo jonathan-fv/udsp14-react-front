@@ -73,16 +73,15 @@
 	z-index: 3;
 }
 
-.box-media{
+.box-media {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-.box-media .audioBox audio{
+.box-media .audioBox audio {
 	margin: 20px auto;
 }
-
 
 /* -------------- */
 /* - RESPONSIVE - */

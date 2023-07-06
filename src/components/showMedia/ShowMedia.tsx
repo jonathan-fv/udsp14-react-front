@@ -18,46 +18,40 @@ type Props = {
 const ShowMedia = (props: Props) => {
 	const { type, label, targets, flow, media, onClick } = props;
 	return (
-		<div className="">
-			<div className="">
-				<h1 className="text-2xl text-center">{label}</h1>
-				{media.map((media) => {
-					return (
-						<div key={media.name}>
-							{media.type === 'image' ? (
-								// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-								media.name.length > 1 ? (
-									//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} />
-									<div>
-										<img
-											src={media.url}
-											alt={media.name}
-											className="imgShowMedia"
-										/>
-									</div>
-								) : (
-									<div>
-										<img src={pls} alt={media.name} className="imgShowMedia" />
-									</div>
-								)
-							) : media.type === 'sound' ? (
-								// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
-								media.name.length > 1 ? (
-									<div className="audioBox">
-										<audio controls src={media.url}>
-											Votre navigateur ne prend pas en charge l'élément audio.
-										</audio>
-									</div>
-								) : (
-									false
-								)
+		<div className="flex justify-center flex-col">
+			<h1 className="text-2xl text-center">{label}</h1>
+			{media.map((media) => {
+				return (
+					<div key={media.name}>
+						{media.type === 'image' ? (
+							// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
+							media.name.length > 1 ? (
+								//<img src={`http://localhost:8000/upload/images/` + media.name} alt={media.name} />
+								<div className="imgShowMedia">
+									<img src={media.url} alt={media.name} />
+								</div>
+							) : (
+								<div className="imgShowMedia">
+									<img src={pls} alt={media.name} />
+								</div>
+							)
+						) : media.type === 'sound' ? (
+							// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
+							media.name.length > 1 ? (
+								<div className="audioBox">
+									<audio controls src={media.url}>
+										Votre navigateur ne prend pas en charge l'élément audio.
+									</audio>
+								</div>
 							) : (
 								false
-							)}
-						</div>
-					);
-				})}
-			</div>
+							)
+						) : (
+							false
+						)}
+					</div>
+				);
+			})}
 		</div>
 	);
 };
