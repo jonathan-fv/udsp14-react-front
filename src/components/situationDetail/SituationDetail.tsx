@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Root } from '../../types/SituationTypes';
 //import AudioPlayer from '../question/AudioQuestions';
 
@@ -26,9 +26,8 @@ const SituationDetail = (props: Props) => {
 	};
 
 	const clickButton112 = () => {
-		navigate("/simulation/" + situation._id)
-	}
-	
+		navigate('/simulation/' + situation._id);
+	};
 
 	return (
 		<div className="box_details">
@@ -47,28 +46,34 @@ const SituationDetail = (props: Props) => {
 						<p>{situation.situation.description}</p>
 					</div>
 				</div>
-				<div className='box-media'>
-					{
-						situation.flow.map(({id, type, label, targets, media}) => {
-							return (
-								(currentQuestion ? id === currentQuestion : type === 'initial') && (
-									<ShowMedia key={id}
-										media={media}
-										onClick={onClick}
-										flow={situation.flow}
-										id={id}
-										type={type}
-										label={label}
-										targets={targets}
-									/>
-								)
-							);
-						})
-					}
+				<div className="box-media">
+					{situation.flow.map(({ id, type, label, targets, media }) => {
+						return (
+							(currentQuestion
+								? id === currentQuestion
+								: type === 'initial') && (
+								<ShowMedia
+									key={id}
+									media={media}
+									onClick={onClick}
+									flow={situation.flow}
+									id={id}
+									type={type}
+									label={label}
+									targets={targets}
+								/>
+							)
+						);
+					})}
 				</div>
 			</div>
 
-			<img className="button-112" src={Call_112} alt="112B" onClick={clickButton112} />
+			<img
+				className="button-112"
+				src={Call_112}
+				alt="112B"
+				onClick={clickButton112}
+			/>
 
 			<Footer />
 		</div>

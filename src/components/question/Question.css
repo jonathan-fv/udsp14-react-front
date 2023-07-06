@@ -7,6 +7,10 @@
 	cursor: pointer;
 }
 
+.imgShowMedia {
+	border-radius: 15px;
+}
+
 .detail-presentationQ {
 	display: flex;
 	flex-direction: column;
@@ -27,10 +31,9 @@
 	align-items: center;
 }
 
-.box-mediaA .audioBoxA audio{
+.box-mediaA .audioBoxA audio {
 	margin: 20px auto;
 }
-
 
 /* -------------- */
 /* - RESPONSIVE - */

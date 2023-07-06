@@ -27,34 +27,35 @@ const Answer = (props: Props) => {
 				{media.map((media) => {
 					return (
 						<div key={media.name}>
-							{
-								media.type === 'image' ?
-									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-									!media.url.length
-									? 
-										<div>
-											<img src={pls} alt={media.name} />
-										</div>
-									: 
-										<div>
-											<img src={media.url} alt={media.name} />
-										</div>
-									
-								
-								: media.type === 'sound' ?
-									// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
-									media.name.length > 1
-									?
-										<div className="audioBoxA">
-											<audio controls src={media.url}>
-												Votre navigateur ne prend pas en charge l'élément audio.
-											</audio>
-										</div>
-									:
-										false
-								:
+							{media.type === 'image' ? (
+								// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
+								!media.url.length ? (
+									<div>
+										<img src={pls} alt={media.name} className="imgShowMedia" />
+									</div>
+								) : (
+									<div>
+										<img
+											src={media.url}
+											alt={media.name}
+											className="imgShowMedia"
+										/>
+									</div>
+								)
+							) : media.type === 'sound' ? (
+								// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
+								media.name.length > 1 ? (
+									<div className="audioBoxA">
+										<audio controls src={media.url}>
+											Votre navigateur ne prend pas en charge l'élément audio.
+										</audio>
+									</div>
+								) : (
 									false
-							}
+								)
+							) : (
+								false
+							)}
 						</div>
 					);
 				})}
@@ -77,20 +78,19 @@ const Answer = (props: Props) => {
 
 			{type === 'final' && (
 				<div className="detail-presentationQ">
-					{
-						!media.length ?
-							<div>
-								<img src={pls} alt="default" />
-							</div>
-						:
+					{!media.length ? (
+						<div>
+							<img src={pls} alt="default" />
+						</div>
+					) : (
 						media.map((media) => {
-							return(
+							return (
 								<div>
 									<img src={media.url} alt={media.name} />
 								</div>
 							);
 						})
-					}
+					)}
 					<div className="bg-gray-100 hover:bg-gray-300 shadow-lg shadow-black-500/50 tracking-wide uppercase font-bold text-center p-5 m-5 text-sm">
 						<Link to="/">Retour à l'accueil</Link>
 					</div>
@@ -98,8 +98,6 @@ const Answer = (props: Props) => {
 			)}
 
 			<Footer />
-
-			
 		</div>
 	);
 };
