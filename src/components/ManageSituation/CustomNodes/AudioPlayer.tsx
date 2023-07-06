@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import playImage from '../../../assets/images/play.png';
+import playImageWhite from '../../../assets/images/playWhite.png';
 import pauseImage from '../../../assets/images/pause.png';
+import pauseImageWhite from '../../../assets/images/pauseWhite.png';
 
 const AudioPlayer = (props: any) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
-    const { source, className } = props;
+    const { source, className, color } = props;
 
     const togglePlayPause = () => {
         isPlaying
@@ -13,6 +15,9 @@ const AudioPlayer = (props: any) => {
                 : audioRef.current?.play();
         setIsPlaying(!isPlaying);
     };
+
+    const play = color === 'white' ? playImageWhite : playImage
+    const pause = color === 'white' ? pauseImageWhite : pauseImage
 
     const handleAudioEnded = () => {
         setIsPlaying(false);
@@ -29,9 +34,9 @@ const AudioPlayer = (props: any) => {
         <div className="m-auto">
             <button onClick={togglePlayPause} className="focus:outline-none">
                 {isPlaying ? (
-                    <img className={className} src={pauseImage} alt="" />
+                    <img className={className} src={pause} alt="" />
                 ) : (
-                    <img className={className} src={playImage} alt="" />
+                    <img className={className} src={play} alt="" />
                 )}
             </button>
             <audio ref={audioRef} src={source}></audio>

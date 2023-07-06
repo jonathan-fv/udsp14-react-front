@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { Handle, Position } from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
-import soundLogo from '../../../../assets/images/music.png';
+import soundLogo from '../../../../assets/images/musicWhite.png';
 import API from '../../../../services/API';
 
 const SoundImage = ({ data, isConnectable, selected }: any) => {
@@ -50,7 +50,7 @@ const SoundImage = ({ data, isConnectable, selected }: any) => {
 			{/*<input type={"file"} accept={"audio/*"} onChange={onChange}></input>*/}
 			<label
 				htmlFor={inputId}
-				className={`inline-block w-5 h-5 rounded-full bg-white ${
+				className={`inline-block w-5 h-5 rounded-full ${
 					data?.url ? 'cursor-not-allowed' : 'cursor-pointer'
 				}`}
 			>

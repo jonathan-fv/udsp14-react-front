@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import SelectedNodeIndicator from '../SelectedNodeIndicator';
-import imageLogo from '../../../../assets/images/image.png';
+import imageLogo from '../../../../assets/images/imageWhite.png';
 import API from '../../../../services/API';
 
 const ImageNode = ({ data, isConnectable, selected }: any) => {
@@ -66,7 +66,7 @@ const ImageNode = ({ data, isConnectable, selected }: any) => {
 			<SelectedNodeIndicator selected={selected} />
 			<label
 				htmlFor={inputId}
-				className={`inline-block w-5 h-5 rounded-full bg-white ${
+				className={`inline-block w-5 h-5 rounded-full ${
 					data?.url ? 'cursor-not-allowed' : 'cursor-pointer'
 				}`}
 			>
