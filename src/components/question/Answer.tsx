@@ -1,6 +1,6 @@
 import { Flow, MediaType } from '../../types/SituationTypes';
 import './Question.css';
-
+import './Answer.css';
 import pls from '../../assets/images/pls-1.jpg';
 //@ts-ignore
 //import AudioTest from '../../assets/audio/audiotest.mp3';
@@ -20,45 +20,44 @@ type Props = {
 
 const Answer = (props: Props) => {
 	const { type, label, targets, flow, media, onClick } = props;
+	//console.log(media)
 	return (
 		<div className="box-mediaA">
 			<div className="detail-presentationQ">
 				<h1 className="text-2xl text-center">{label}</h1>
-				{media.map((media) => {
-					return (
-						<div key={media.name}>
-							{media.type === 'image' ? (
-								// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-								!media.url.length ? (
-									<div>
-										<img src={pls} alt={media.name} className="imgShowMedia" />
-									</div>
-								) : (
-									<div>
-										<img
-											src={media.url}
-											alt={media.name}
-											className="imgShowMedia"
-										/>
-									</div>
-								)
-							) : media.type === 'sound' ? (
-								// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
-								media.name.length > 1 ? (
-									<div className="audioBoxA">
-										<audio controls src={media.url}>
-											Votre navigateur ne prend pas en charge l'élément audio.
-										</audio>
-									</div>
+				<div className="media-container">
+					{media.map((media) => {
+						return (
+							<div key={media.name}>
+								{media.type === 'image' ? (
+									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
+									media.name === 'Image' ? (
+										<div className="imgShowMedia">
+											<img src={pls} alt={media.name} />
+										</div>
+									) : (
+										<div className="imgShowMedia">
+											<img src={media.url} alt={media.name} />
+										</div>
+									)
+								) : media.type === 'sound' ? (
+									// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
+									media.name.length > 1 ? (
+										<div className="audioBoxA">
+											<audio controls src={media.url}>
+												Votre navigateur ne prend pas en charge l'élément audio.
+											</audio>
+										</div>
+									) : (
+										false
+									)
 								) : (
 									false
-								)
-							) : (
-								false
-							)}
-						</div>
-					);
-				})}
+								)}
+							</div>
+						);
+					})}
+				</div>
 			</div>
 			<div className="answer-box">
 				{targets.map((answer) => {
@@ -87,7 +86,7 @@ const Answer = (props: Props) => {
 					) : (
 						media.map((media) => {
 							return (
-								<div>
+								<div key={media.name}>
 									<img src={media.url} alt={media.name} />
 								</div>
 							);
