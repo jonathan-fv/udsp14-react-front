@@ -20,6 +20,16 @@ type Props = {
 
 const Answer = (props: Props) => {
 	const { type, label, targets, flow, media, onClick } = props;
+	console.log(media)
+	// let image
+	// let sound
+	// media.forEach((m) => {
+	// 	m.type = 'sound' 
+	// 		? sound = m?.url
+	// 		: image = m?.url
+	// })
+	//console.log(image)
+	//console.log(sound)
 	return (
 		<div className="box-mediaA">
 			<div className="detail-presentationQ">
@@ -28,33 +38,38 @@ const Answer = (props: Props) => {
 					return (
 						<div key={media.name}>
 							{
-								media.type === 'image' ?
-									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
-									!media.url.length
-									? 
-										<div>
-											<img src={pls} alt={media.name} />
-										</div>
-									: 
-										<div>
-											<img src={media.url} alt={media.name} />
-										</div>
-									
 								
-								: media.type === 'sound' ?
-									// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
-									media.name.length > 1
-									?
-										<div className="audioBoxA">
-											<audio controls src={media.url}>
-												Votre navigateur ne prend pas en charge l'élément audio.
-											</audio>
-										</div>
-									:
-										false
-								:
-									false
-							}
+							
+								// !media.type ?
+								// 	<img src={pls} alt="default" />
+								// :
+								// 	media.type === 'image' ?
+								// 		// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
+								// 		!media.url.length
+								// 		? 
+								// 			<div>
+								// 				<img src={pls} alt={media.name} />
+								// 			</div>
+								// 		: 
+								// 			<div>
+								// 				<img src={media.url} alt={media.name} />
+								// 			</div>
+										
+									
+								// 	: media.type === 'sound' ?
+								// 		// test la longueur du media, s'il y'a un media on affiche le son sinon on met le son par defaut
+								// 		media.name.length > 1
+								// 		?
+								// 			<div className="audioBoxA">
+								// 				<audio controls src={media.url}>
+								// 					Votre navigateur ne prend pas en charge l'élément audio.
+								// 				</audio>
+								// 			</div>
+								// 		:
+								// 			false
+								// 	:
+								// 		false
+								}
 						</div>
 					);
 				})}
