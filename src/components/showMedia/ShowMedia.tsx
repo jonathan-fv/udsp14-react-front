@@ -2,7 +2,7 @@ import { Flow, MediaType } from '../../types/SituationTypes';
 import pls from '../../assets/images/pls-1.jpg';
 
 //@ts-ignore
-import AudioTest from '../../assets/audio/audiotest.mp3';
+//import AudioTest from '../../assets/audio/audiotest.mp3';
 
 type Props = {
 	id: string;
@@ -16,7 +16,7 @@ type Props = {
 
 
 const ShowMedia = (props: Props) => {
-    const { type, label, targets, flow, media, onClick } = props;
+    const { label, media } = props;
     console.log(media)
 	return(
         <div className="">

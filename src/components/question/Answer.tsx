@@ -20,23 +20,14 @@ type Props = {
 
 const Answer = (props: Props) => {
 	const { type, label, targets, flow, media, onClick } = props;
-	console.log(media)
-	// let image
-	// let sound
-	// media.forEach((m) => {
-	// 	m.type = 'sound' 
-	// 		? sound = m?.url
-	// 		: image = m?.url
-	// })
-	// console.log(image)
-	// console.log(sound)
+	//console.log(media)
 	return (
 		<div className="box-mediaA">
 			<div className="detail-presentationQ">
 				<h1 className="text-2xl text-center">{label}</h1>
 				{media.map((media) => {
 					return (
-						<div>
+						<div key={media.name}>
 							{
 								media.type === 'image' ?
 									// test la longueur du media, s'il y'a un media on affiche l'image sinon on met celle par defaut
@@ -75,7 +66,7 @@ const Answer = (props: Props) => {
 						{flow.map((x) => {
 							return (
 								answer === x.id && (
-									<button onClick={() => onClick(x.targets[0])}>
+									<button key={x.id} onClick={() => onClick(x.targets[0])}>
 										{x.label}
 									</button>
 								)
@@ -95,7 +86,7 @@ const Answer = (props: Props) => {
 						:
 						media.map((media) => {
 							return(
-								<div>
+								<div key={media.name}>
 									<img src={media.url} alt={media.name} />
 								</div>
 							);
