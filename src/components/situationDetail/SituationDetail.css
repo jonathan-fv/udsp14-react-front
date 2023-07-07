@@ -1,38 +1,58 @@
+/* ---------------------------- */
+/* - PAGE SituationDetail.tsx - */
+/* ---------------------------- */
 .box_details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: nowrap;
+	/*height: 100vh;*/
+}
+
+.detail-presentation {
 	width: 100%;
-	height: calc(100vh - 64px);
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 50px;
+	padding: 50px;
+
+	z-index: 2;
 }
 
-/* .box_details_img img {
-  border: 5px solid blue;
-  display: block;
+.box-detail {
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+	border-radius: 10px;
+	width: 50%;
+	color: #061849;
+	background: white;
 }
 
-.box_details_img p {
-  border: 5px solid rgb(52, 156, 130);
-  display: block;
-  margin-top: 10px;
-  padding: 5px;
+.box-title {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	font-size: 25px;
 }
 
-.box_details_img {
-  border: 5px solid red;
-  padding: 10px;
-  display: block;
+.box-info {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 8px;
+	overflow: scroll;
+	height: 200px;
+	overflow-x: hidden;
+	text-align: justify;
 }
 
-@media screen and (min-width: 640px) {
-    .box_details_img {
-      display: inline-block;
-    }
-    .box_details_img p {
-      display: inline;
-      width: 20%;
-    }
-    .box_details_img img {
-      display: inline;
-    }
-} */
+.box-img {
+	border-radius: 15px;
+	border: 1px solid red;
+}
 
 .button_situation {
 	padding: 30px 20px;
@@ -42,4 +62,65 @@
 	font-weight: bolder;
 	transition: all 0.25s ease-in-out;
 	cursor: pointer;
+}
+
+.button-112 {
+	margin-top: 40px;
+	border-radius: 50%;
+	width: 150px;
+	cursor: pointer;
+	z-index: 3;
+}
+
+.box-media{
+	display: flex;
+	flex-direction: column-reverse;
+}
+.box-media img{
+	border-radius: 15px;
+}
+.box-media .audioBox audio{
+	margin: 20px auto;
+}
+
+.box-detail-title {
+	padding-bottom: 10px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/* -------------- */
+/* - RESPONSIVE - */
+/* -------------- */
+
+@media screen and (max-width: 980px) {
+
+	.detail-presentation {
+		margin-bottom: 40px;
+		padding: 10px 0;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
+	.box-img {
+		width: 60%;
+		vertical-align: middle;
+		align-items: center;
+		margin: 0 auto;
+	}
+
+	.box-detail {
+		width: 90%;
+		margin-top: 20px;
+	}
+	.box-detail-title {
+		font-size: 20px;
+	}
+	.button-112 {
+		margin-bottom: 50px;
+	}
+	.box-details{
+		padding: 10px 0;
+	}
 }

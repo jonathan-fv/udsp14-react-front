@@ -16,7 +16,6 @@ const MainRoute = () => {
 		<Routes>
 			<Route element={<FrontLayout />}>
 				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<LoginPage />} />
 				<Route path="/situation/:id" element={<SituationPage />} />
 				<Route path="/simulation/:id" element={<SimulationPage />} />
 			</Route>

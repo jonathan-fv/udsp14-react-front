@@ -1,0 +1,26 @@
+/* -------------------------- */
+/* - VECTORS IN BOTTOM PAGE - */
+/* -------------------------- */
+
+.vectors-footer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	bottom: 0;
+	z-index: 0;
+}
+
+.vectors-img-left {
+	width: 28vmin;
+}
+
+.vectors-img-right {
+	width: 28vmin;
+}
+
+@media screen and (max-width: 767px) {
+	.vectors-img-left, .vectors-img-right, .vectors-footer {
+		display: none;
+	}
+}

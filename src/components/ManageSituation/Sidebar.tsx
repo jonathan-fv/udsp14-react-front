@@ -1,5 +1,6 @@
 import React from 'react';
 import './SituationFlow.css';
+import AudioPlayer from "./CustomNodes/AudioPlayer";
 
 type SidebarProps = {
 	onRestore: () => void;
@@ -43,9 +44,10 @@ const Sidebar = ({
 	}
 	if (selectedNode?.type === 'sound') {
 		nodeLabel = (
-			<label>{selectedNode?.data?.label}
-				<audio className="w-20 m-auto" controls src={selectedNode?.data?.url} />
-			</label>)
+			// <label>{selectedNode?.data?.label}
+			// 	<audio className="w-20 m-auto" controls src={selectedNode?.data?.url} />
+			// </label>
+		<AudioPlayer source={selectedNode?.data?.url} className="w-8 h-8"/>)
 	}
 	else {
 		selectedNode = selectedNode?.data?.label
